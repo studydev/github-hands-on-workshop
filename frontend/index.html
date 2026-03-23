@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Workshop Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🏆 GitHub Workshop Tracker</h1>
+    <div class="controls">
+      <select id="session-select">
+        <option value="">세션을 선택하세요...</option>
+      </select>
+      <button id="create-session-btn" class="btn-primary">+ 세션 만들기</button>
+    </div>
+  </header>
+
+  <main id="dashboard" class="hidden">
+    <!-- Session info bar -->
+    <div id="session-info" class="session-info"></div>
+
+    <!-- Stats bar -->
+    <div id="session-stats" class="session-stats"></div>
+
+    <!-- Podium -->
+    <section id="podium-section" class="podium-section">
+      <div id="podium" class="podium"></div>
+      <div id="podium-countdown" class="podium-countdown"></div>
+    </section>
+
+    <!-- Participants table -->
+    <section class="panel" id="participants-panel">
+      <h2>전체 참가자</h2>
+      <table id="participants-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>User name</th>
+            <th>시작 시간</th>
+            <th>완료 시간</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Live feed -->
+    <section class="panel" id="feed-panel">
+      <h2>🔔 실시간 피드</h2>
+      <ul id="feed-list"></ul>
+    </section>
+  </main>
+
+  <!-- Create session modal -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <h2>새 세션 만들기</h2>
+      <form id="create-session-form">
+        <label>세션 이름
+          <input type="text" id="form-name" required placeholder="예: A 고객사 트랙 1 교육">
+        </label>
+        <label>트랙(Skill) 이름
+          <input type="text" id="form-track" required placeholder="예: GitHub Pages">
+        </label>
+        <label>시작 날짜/시간
+          <input type="datetime-local" id="form-start">
+        </label>
+        <label>종료 날짜/시간
+          <input type="datetime-local" id="form-end">
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">생성</button>
+          <button type="button" id="modal-cancel" class="btn-secondary">취소</button>
+        </div>
+      </form>
+
+      <!-- Post-creation snippet -->
+      <div id="snippet-result" class="snippet-result hidden">
+        <h3>✅ 세션 생성 완료</h3>
+        <p>Session ID: <code id="snippet-session-id"></code></p>
+        <p>아래 스텝을 GitHub Actions 워크플로우에 추가하세요:</p>
+        <pre id="snippet-code"></pre>
+        <button id="copy-snippet-btn" class="btn-primary">📋 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
