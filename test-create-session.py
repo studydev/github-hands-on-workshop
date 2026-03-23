@@ -5,14 +5,8 @@ url = 'https://workshop-tracker-api.jollyocean-9c92d5de.koreacentral.azurecontai
 data = json.dumps({
     "name": "Test Session",
     "track": "github-pages",
-    "totalSteps": 5,
-    "steps": [
-        {"step": 1, "name": "Enable GitHub Pages"},
-        {"step": 2, "name": "Configure your site"},
-        {"step": 3, "name": "Customize your homepage"},
-        {"step": 4, "name": "Create a site blog"},
-        {"step": 5, "name": "Merge your pull request"}
-    ]
+    "startDate": "2026-03-24T09:00:00.000Z",
+    "endDate": "2026-03-24T12:00:00.000Z"
 }).encode('utf-8')
 
 req = urllib.request.Request(url, data=data, method='POST')
