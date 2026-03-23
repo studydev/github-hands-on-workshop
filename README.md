@@ -2,6 +2,8 @@
 
 GitHub Skills 기반 핸즈온 워크숍에서 참가자의 시작과 완료 이벤트를 실시간으로 수집하고, 먼저 완료한 순서대로 리더보드를 보여주는 대시보드입니다.
 
+![image](./images/image2.png)
+
 ## 배포 주소
 
 - Dashboard: https://polite-glacier-0c5007800.1.azurestaticapps.net
