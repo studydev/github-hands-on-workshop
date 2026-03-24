@@ -6,8 +6,7 @@ GitHub Skills 기반 핸즈온 워크숍에서 참가자의 시작과 완료 이
 
 ## 배포 주소
 
-- Dashboard: https://polite-glacier-0c5007800.1.azurestaticapps.net
-- API: https://workshop-tracker-api.jollyocean-9c92d5de.koreacentral.azurecontainerapps.io
+- Dashboard: https://github-skills.studydev.com
 
 ## 핵심 기능
 
