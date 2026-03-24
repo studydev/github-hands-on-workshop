@@ -8,6 +8,8 @@
   // --- DOM refs ---
   const sessionSelect = document.getElementById('session-select');
   const createSessionBtn = document.getElementById('create-session-btn');
+  const editSessionBtn = document.getElementById('edit-session-btn');
+  const landing = document.getElementById('landing');
   const dashboard = document.getElementById('dashboard');
   const sessionInfoEl = document.getElementById('session-info');
   const sessionStatsEl = document.getElementById('session-stats');
@@ -25,6 +27,25 @@
   const snippetCode = document.getElementById('snippet-code');
   const copySnippetBtn = document.getElementById('copy-snippet-btn');
 
+  // Edit Modal
+  const editModalOverlay = document.getElementById('edit-modal-overlay');
+  const editForm = document.getElementById('edit-session-form');
+  const editModalCancel = document.getElementById('edit-modal-cancel');
+  const editSnippetResult = document.getElementById('edit-snippet-result');
+  const editSnippetSessionId = document.getElementById('edit-snippet-session-id');
+  const editSnippetCode = document.getElementById('edit-snippet-code');
+  const editCopySnippetBtn = document.getElementById('edit-copy-snippet-btn');
+
+  // Search Modal
+  const searchUserBtn = document.getElementById('search-user-btn');
+  const searchModalOverlay = document.getElementById('search-modal-overlay');
+  const searchForm = document.getElementById('search-user-form');
+  const searchModalClose = document.getElementById('search-modal-close');
+  const searchResultsDiv = document.getElementById('search-results');
+  const searchResultsBody = document.querySelector('#search-results-table tbody');
+  const searchUserProfile = document.getElementById('search-user-profile');
+  const searchEmpty = document.getElementById('search-empty');
+
   let currentSessionId = null;
   let currentSession = null;
   let eventSource = null;
@@ -36,12 +57,27 @@
 
     sessionSelect.addEventListener('change', onSessionChange);
     createSessionBtn.addEventListener('click', openModal);
+    editSessionBtn.addEventListener('click', openEditModal);
     modalCancel.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', (e) => {
       if (e.target === modalOverlay) closeModal();
     });
     createForm.addEventListener('submit', onCreateSession);
     copySnippetBtn.addEventListener('click', copySnippet);
+
+    editModalCancel.addEventListener('click', closeEditModal);
+    editModalOverlay.addEventListener('click', (e) => {
+      if (e.target === editModalOverlay) closeEditModal();
+    });
+    editForm.addEventListener('submit', onEditSession);
+    editCopySnippetBtn.addEventListener('click', copyEditSnippet);
+
+    searchUserBtn.addEventListener('click', openSearchModal);
+    searchModalClose.addEventListener('click', closeSearchModal);
+    searchModalOverlay.addEventListener('click', (e) => {
+      if (e.target === searchModalOverlay) closeSearchModal();
+    });
+    searchForm.addEventListener('submit', onSearchUser);
 
     // Auto-select from URL
     const params = new URLSearchParams(window.location.search);
@@ -80,11 +116,15 @@
     currentSessionId = sessionSelect.value;
     if (!currentSessionId) {
       dashboard.classList.add('hidden');
+      landing.classList.remove('hidden');
+      editSessionBtn.classList.add('hidden');
       disconnectSSE();
       clearCountdown();
       return;
     }
+    landing.classList.add('hidden');
     dashboard.classList.remove('hidden');
+    editSessionBtn.classList.remove('hidden');
     updateURL();
     await refreshDashboard();
     connectSSE();
@@ -243,6 +283,10 @@
         ? new Date(p.completedAt).toLocaleString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
         : '-';
 
+      const repoLink = p.repo
+        ? `<a href="https://github.com/${escapeAttr(p.repo)}" target="_blank" rel="noopener" class="repo-link">${escapeHtml(p.repo)}</a>`
+        : '-';
+
       tr.innerHTML = `
         <td class="rank-cell ${rankClass}">${rank || '-'}</td>
         <td>
@@ -255,6 +299,7 @@
             </div>
           </div>
         </td>
+        <td>${repoLink}</td>
         <td>${startTime}</td>
         <td>${completeTime}</td>
         <td>
@@ -293,10 +338,12 @@
     const time = new Date(data.timestamp).toLocaleTimeString('ko-KR', {
       hour: '2-digit', minute: '2-digit',
     });
+    const avatarUrl = `https://github.com/${encodeURIComponent(data.username)}.png?size=32`;
+    const avatarHtml = `<img class="feed-avatar" src="${avatarUrl}" alt="" onerror="this.style.display='none'">`;
     if (data.type === 'started') {
-      li.innerHTML = `<span class="feed-time">${time}</span> 🚀 <strong>${escapeHtml(data.username)}</strong> 실습을 시작했습니다!`;
+      li.innerHTML = `<span class="feed-time">${time}</span> ${avatarHtml} 🚀 <strong>${escapeHtml(data.username)}</strong> 실습을 시작했습니다!`;
     } else {
-      li.innerHTML = `<span class="feed-time">${time}</span> 🎉 <strong>${escapeHtml(data.username)}</strong> 실습을 완료했습니다!`;
+      li.innerHTML = `<span class="feed-time">${time}</span> ${avatarHtml} 🎉 <strong>${escapeHtml(data.username)}</strong> 실습을 완료했습니다!`;
     }
     feedList.prepend(li);
     while (feedList.children.length > 50) {
@@ -396,6 +443,172 @@
       copySnippetBtn.textContent = '✅ 복사됨!';
       setTimeout(() => { copySnippetBtn.textContent = '📋 복사'; }, 2000);
     });
+  }
+
+  // --- Modal: Edit session ---
+  function openEditModal() {
+    if (!currentSession) return;
+    editSnippetResult.classList.add('hidden');
+    editForm.classList.remove('hidden');
+    document.getElementById('edit-form-name').value = currentSession.name || '';
+    document.getElementById('edit-form-track').value = currentSession.track || '';
+    if (currentSession.startDate) {
+      document.getElementById('edit-form-start').value = toLocalDateTimeString(currentSession.startDate);
+    } else {
+      document.getElementById('edit-form-start').value = '';
+    }
+    if (currentSession.endDate) {
+      document.getElementById('edit-form-end').value = toLocalDateTimeString(currentSession.endDate);
+    } else {
+      document.getElementById('edit-form-end').value = '';
+    }
+    editModalOverlay.classList.remove('hidden');
+  }
+
+  function closeEditModal() {
+    editModalOverlay.classList.add('hidden');
+  }
+
+  function toLocalDateTimeString(isoStr) {
+    const d = new Date(isoStr);
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  async function onEditSession(e) {
+    e.preventDefault();
+    const name = document.getElementById('edit-form-name').value.trim();
+    const track = document.getElementById('edit-form-track').value.trim();
+    const startDate = document.getElementById('edit-form-start').value
+      ? new Date(document.getElementById('edit-form-start').value).toISOString()
+      : null;
+    const endDate = document.getElementById('edit-form-end').value
+      ? new Date(document.getElementById('edit-form-end').value).toISOString()
+      : null;
+
+    try {
+      const result = await api(`/api/sessions/${currentSessionId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, track, startDate, endDate }),
+      });
+
+      // Show snippet
+      editSnippetSessionId.textContent = result.sessionId;
+      editSnippetCode.textContent = generateSnippet(result.sessionId, track);
+      editSnippetResult.classList.remove('hidden');
+      editForm.classList.add('hidden');
+
+      // Reload session list and refresh
+      await loadSessions();
+      sessionSelect.value = currentSessionId;
+      await refreshDashboard();
+    } catch (err) {
+      alert('세션 수정 실패: ' + err.message);
+    }
+  }
+
+  function copyEditSnippet() {
+    navigator.clipboard.writeText(editSnippetCode.textContent).then(() => {
+      editCopySnippetBtn.textContent = '✅ 복사됨!';
+      setTimeout(() => { editCopySnippetBtn.textContent = '📋 복사'; }, 2000);
+    });
+  }
+
+  // --- Modal: User search ---
+  function openSearchModal() {
+    searchResultsDiv.classList.add('hidden');
+    searchEmpty.classList.add('hidden');
+    searchUserProfile.innerHTML = '';
+    searchResultsBody.innerHTML = '';
+    document.getElementById('search-query').value = '';
+    searchModalOverlay.classList.remove('hidden');
+  }
+
+  function closeSearchModal() {
+    searchModalOverlay.classList.add('hidden');
+  }
+
+  async function onSearchUser(e) {
+    e.preventDefault();
+    const q = document.getElementById('search-query').value.trim();
+    if (!q) return;
+
+    try {
+      const data = await api(`/api/users/search?q=${encodeURIComponent(q)}`);
+
+      if (!data.results || data.results.length === 0) {
+        searchResultsDiv.classList.add('hidden');
+        searchEmpty.classList.remove('hidden');
+        searchUserProfile.innerHTML = '';
+        return;
+      }
+
+      searchEmpty.classList.add('hidden');
+      searchResultsDiv.classList.remove('hidden');
+
+      // Show user profile if searching by username
+      const firstUser = data.results[0].username;
+      const allSameUser = data.results.every((r) => r.username === firstUser);
+      if (allSameUser) {
+        const avatarUrl = `https://github.com/${encodeURIComponent(firstUser)}.png?size=80`;
+        const completedCount = data.results.filter((r) => r.status === 'completed').length;
+        const totalCount = data.results.length;
+        searchUserProfile.innerHTML = `
+          <img class="search-avatar" src="${avatarUrl}" alt="" onerror="this.style.display='none'">
+          <div class="search-profile-info">
+            <div class="search-profile-name">${escapeHtml(firstUser)}</div>
+            <div class="search-profile-stats">총 ${totalCount}개 세션 참여 · ${completedCount}개 수료</div>
+          </div>
+        `;
+      } else {
+        const uniqueUsers = [...new Set(data.results.map((r) => r.username))];
+        searchUserProfile.innerHTML = `
+          <div class="search-profile-info">
+            <div class="search-profile-name">🏢 ${escapeHtml(q)}</div>
+            <div class="search-profile-stats">${uniqueUsers.length}명의 사용자 · ${data.results.length}개 참여 기록</div>
+          </div>
+        `;
+      }
+
+      // Render results
+      searchResultsBody.innerHTML = '';
+      for (const r of data.results) {
+        const tr = document.createElement('tr');
+        const avatarUrl = `https://github.com/${encodeURIComponent(r.username)}.png?size=32`;
+        const startTime = r.startedAt
+          ? new Date(r.startedAt).toLocaleString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+          : '-';
+        const completeTime = r.completedAt
+          ? new Date(r.completedAt).toLocaleString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+          : '-';
+        const repoLink = r.repo
+          ? `<a href="https://github.com/${escapeAttr(r.repo)}" target="_blank" rel="noopener" class="repo-link">${escapeHtml(r.repo)}</a>`
+          : '-';
+
+        tr.innerHTML = `
+          <td>${escapeHtml(r.sessionName)}</td>
+          <td>${escapeHtml(r.sessionTrack)}</td>
+          <td>
+            <div class="user-cell">
+              <img class="user-avatar" src="${avatarUrl}" alt="" onerror="this.style.display='none'">
+              <span>${escapeHtml(r.username)}</span>
+            </div>
+          </td>
+          <td>${repoLink}</td>
+          <td>${startTime}</td>
+          <td>${completeTime}</td>
+          <td>
+            <span class="status-badge ${r.status === 'completed' ? 'status-completed' : 'status-started'}">
+              ${r.status === 'completed' ? '수료' : '진행 중'}
+            </span>
+          </td>
+        `;
+        searchResultsBody.appendChild(tr);
+      }
+    } catch (err) {
+      alert('검색 실패: ' + err.message);
+    }
   }
 
   // --- Utility ---

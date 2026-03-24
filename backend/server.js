@@ -6,6 +6,7 @@ const sessionsRouter = require('./routes/sessions');
 const eventsRouter = require('./routes/events');
 const leaderboardRouter = require('./routes/leaderboard');
 const streamRouter = require('./routes/stream');
+const usersRouter = require('./routes/users');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -40,6 +41,7 @@ app.use('/api/sessions', sessionsRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/sessions', leaderboardRouter);
 app.use('/api/stream', streamRouter);
+app.use('/api/users', usersRouter);
 
 // Health check
 app.get('/api/health', (_req, res) => {

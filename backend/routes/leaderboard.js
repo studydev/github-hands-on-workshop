@@ -12,7 +12,7 @@ router.get('/:sessionId/leaderboard', async (req, res) => {
 
     const { resources: events } = await getEvents().items
       .query({
-        query: 'SELECT e.username, e.type, e.timestamp FROM e WHERE e.sessionId = @sessionId',
+        query: 'SELECT e.username, e.type, e.timestamp, e.repo FROM e WHERE e.sessionId = @sessionId',
         parameters: [{ name: '@sessionId', value: sessionId }],
       })
       .fetchAll();
@@ -21,11 +21,12 @@ router.get('/:sessionId/leaderboard', async (req, res) => {
     const userMap = new Map();
     for (const e of events) {
       if (!userMap.has(e.username)) {
-        userMap.set(e.username, { username: e.username, startedAt: null, completedAt: null });
+        userMap.set(e.username, { username: e.username, startedAt: null, completedAt: null, repo: '' });
       }
       const u = userMap.get(e.username);
       if (e.type === 'started' && !u.startedAt) u.startedAt = e.timestamp;
       if (e.type === 'completed' && !u.completedAt) u.completedAt = e.timestamp;
+      if (e.repo) u.repo = e.repo;
     }
 
     // Leaderboard: only completed users, ranked by completion time (earliest first)
@@ -37,6 +38,7 @@ router.get('/:sessionId/leaderboard', async (req, res) => {
         username: u.username,
         startedAt: u.startedAt,
         completedAt: u.completedAt,
+        repo: u.repo,
       }));
 
     // All participants sorted: completed first (by time), then started (by time)
@@ -53,6 +55,7 @@ router.get('/:sessionId/leaderboard', async (req, res) => {
         status: u.completedAt ? 'completed' : 'started',
         startedAt: u.startedAt,
         completedAt: u.completedAt,
+        repo: u.repo,
       }));
 
     res.json({ leaderboard: completedUsers, participants });

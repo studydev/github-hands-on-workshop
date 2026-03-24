@@ -46,6 +46,43 @@ router.get('/', async (_req, res) => {
   }
 });
 
+// PUT /api/sessions/:sessionId — update a session
+router.put('/:sessionId', async (req, res) => {
+  try {
+    const { sessionId } = req.params;
+    const { name, track, startDate, endDate } = req.body;
+
+    if (!name || !track) {
+      return res.status(400).json({ error: 'name, track are required' });
+    }
+
+    const { resource: existing } = await getSessions()
+      .item(sessionId, sessionId)
+      .read();
+
+    if (!existing) {
+      return res.status(404).json({ error: 'Session not found' });
+    }
+
+    const updated = {
+      ...existing,
+      name,
+      track,
+      startDate: startDate || null,
+      endDate: endDate || null,
+    };
+
+    const { resource: result } = await getSessions()
+      .item(sessionId, sessionId)
+      .replace(updated);
+
+    res.json({ sessionId: result.id, session: result });
+  } catch (err) {
+    console.error('PUT /api/sessions/:id error:', err.message);
+    res.status(500).json({ error: 'Failed to update session' });
+  }
+});
+
 // GET /api/sessions/:sessionId — session detail + summary stats
 router.get('/:sessionId', async (req, res) => {
   try {

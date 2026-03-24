@@ -2,7 +2,7 @@
 
 GitHub Skills 기반 핸즈온 워크숍에서 참가자의 시작과 완료 이벤트를 실시간으로 수집하고, 먼저 완료한 순서대로 리더보드를 보여주는 대시보드입니다.
 
-![image](./images/image2.png)
+![image](./images/image.png)
 
 ## 배포 주소
 
@@ -11,10 +11,15 @@ GitHub Skills 기반 핸즈온 워크숍에서 참가자의 시작과 완료 이
 
 ## 핵심 기능
 
+- 워크숍 랜딩 페이지: 세션 선택 전 워크숍 설명과 주요 기능을 안내하는 소개 화면
 - 세션 생성: 교육 회차별로 세션을 만들고 트랙, 시작일, 종료일을 관리
-- 실시간 피드: started, completed 이벤트를 SSE로 즉시 반영
+- 세션 수정: 기존 세션의 이름, 트랙, 일정을 수정하고 GitHub Actions 스니펫 재확인
+- 실시간 피드: started, completed 이벤트를 SSE로 즉시 반영 (사용자 아바타 포함)
 - 포디움 리더보드: 완료 시각 기준 상위 3명을 포디움 형태로 표시
 - 진행 현황: 시작 인원, 완료 인원, 완료율을 세션 단위로 집계
+- GitHub 아바타: GitHub user_id 기반 프로필 이미지를 리더보드, 참가자 목록, 실시간 피드에 표시
+- Repo URL 추적: GitHub Actions 호출 시 사용자의 Repo URL을 자동 저장 및 참가자 목록에 표시
+- 참여 이력 검색: GitHub ID 또는 Organization 이름으로 검색하여 어떤 세션에 참석/수료했는지 확인
 - Zero Config 학생 경험: 학생은 fork와 과제 완료만 수행하면 됨
 
 ## 아키텍처
@@ -93,7 +98,9 @@ Azure Static Web Apps Dashboard
 | POST | /api/sessions | 세션 생성 |
 | GET | /api/sessions | 세션 목록 |
 | GET | /api/sessions/:sessionId | 세션 상세 및 통계 |
+| PUT | /api/sessions/:sessionId | 세션 수정 |
 | POST | /api/events | 시작, 완료 이벤트 수집 |
+| GET | /api/users/search?q=... | GitHub ID/Org 기반 참여 이력 검색 |
 | GET | /api/sessions/:sessionId/leaderboard | 완료 순위와 참가자 목록 조회 |
 | GET | /api/stream?sessionId=... | 세션별 실시간 이벤트 스트림 |
 

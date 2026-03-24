@@ -3,19 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Workshop Tracker</title>
+  <title>GitHub Workshop Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>🏆 GitHub Workshop Tracker</h1>
+    <h1>🏆 GitHub Workshop Dashboard</h1>
     <div class="controls">
       <select id="session-select">
         <option value="">세션을 선택하세요...</option>
       </select>
       <button id="create-session-btn" class="btn-primary">+ 세션 만들기</button>
+      <button id="edit-session-btn" class="btn-secondary hidden">✏️ 세션 수정</button>
+      <button id="search-user-btn" class="btn-secondary">🔍 참여 이력 검색</button>
     </div>
   </header>
+
+  <!-- Landing page (shown when no session selected) -->
+  <section id="landing" class="landing">
+    <div class="landing-content">
+      <img src="images/image.png" alt="GitHub Workshop" class="landing-image">
+      <h2>GitHub Hands-on Workshop</h2>
+      <p>GitHub Skills 기반 핸즈온 워크숍에서 참가자의 시작과 완료 이벤트를 실시간으로 수집하고, 먼저 완료한 순서대로 리더보드를 보여주는 대시보드입니다.</p>
+      <div class="landing-features">
+        <div class="landing-feature">
+          <span class="landing-icon">🎯</span>
+          <h3>세션 관리</h3>
+          <p>교육 회차별로 세션을 만들고 트랙, 시작일, 종료일을 관리합니다.</p>
+        </div>
+        <div class="landing-feature">
+          <span class="landing-icon">📡</span>
+          <h3>실시간 피드</h3>
+          <p>참가자의 시작/완료 이벤트를 SSE로 즉시 반영합니다.</p>
+        </div>
+        <div class="landing-feature">
+          <span class="landing-icon">🏆</span>
+          <h3>리더보드</h3>
+          <p>완료 시각 기준 상위 3명을 포디움 형태로 표시합니다.</p>
+        </div>
+      </div>
+      <p class="landing-cta">위에서 세션을 선택하거나 새 세션을 만들어 시작하세요.</p>
+    </div>
+  </section>
 
   <main id="dashboard" class="hidden">
     <!-- Session info bar -->
@@ -37,7 +66,8 @@
         <thead>
           <tr>
             <th>Rank</th>
-            <th>User name</th>
+            <th>GitHub ID</th>
+            <th>Repo</th>
             <th>시작 시간</th>
             <th>완료 시간</th>
             <th>상태</th>
@@ -84,6 +114,77 @@
         <p>아래 스텝을 GitHub Actions 워크플로우에 추가하세요:</p>
         <pre id="snippet-code"></pre>
         <button id="copy-snippet-btn" class="btn-primary">📋 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit session modal -->
+  <div id="edit-modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <h2>세션 수정</h2>
+      <form id="edit-session-form">
+        <label>세션 이름
+          <input type="text" id="edit-form-name" required placeholder="예: A 고객사 트랙 1 교육">
+        </label>
+        <label>트랙(Skill) 이름
+          <input type="text" id="edit-form-track" required placeholder="예: GitHub Pages">
+        </label>
+        <label>시작 날짜/시간
+          <input type="datetime-local" id="edit-form-start">
+        </label>
+        <label>종료 날짜/시간
+          <input type="datetime-local" id="edit-form-end">
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">수정</button>
+          <button type="button" id="edit-modal-cancel" class="btn-secondary">취소</button>
+        </div>
+      </form>
+
+      <!-- Post-edit snippet -->
+      <div id="edit-snippet-result" class="snippet-result hidden">
+        <h3>✅ 세션 수정 완료</h3>
+        <p>Session ID: <code id="edit-snippet-session-id"></code></p>
+        <p>아래 스텝을 GitHub Actions 워크플로우에 추가하세요:</p>
+        <pre id="edit-snippet-code"></pre>
+        <button id="edit-copy-snippet-btn" class="btn-primary">📋 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- User search modal -->
+  <div id="search-modal-overlay" class="modal-overlay hidden">
+    <div class="modal modal-wide">
+      <h2>🔍 참여 이력 검색</h2>
+      <p class="modal-desc">GitHub ID 또는 Organization 이름으로 검색하세요.</p>
+      <form id="search-user-form">
+        <div class="search-input-row">
+          <input type="text" id="search-query" required placeholder="예: octocat 또는 my-org">
+          <button type="submit" class="btn-primary">검색</button>
+        </div>
+      </form>
+      <div id="search-results" class="search-results hidden">
+        <div id="search-user-profile" class="search-user-profile"></div>
+        <table id="search-results-table">
+          <thead>
+            <tr>
+              <th>세션</th>
+              <th>트랙</th>
+              <th>GitHub ID</th>
+              <th>Repo</th>
+              <th>시작 시간</th>
+              <th>완료 시간</th>
+              <th>상태</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div id="search-empty" class="search-empty hidden">
+        검색 결과가 없습니다.
+      </div>
+      <div class="form-actions">
+        <button type="button" id="search-modal-close" class="btn-secondary">닫기</button>
       </div>
     </div>
   </div>
