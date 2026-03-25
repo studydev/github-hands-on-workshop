@@ -52,15 +52,6 @@ SWA_TOKEN=$(az staticwebapp secrets list \
 swa deploy ./frontend --deployment-token "$SWA_TOKEN" --env production
 ```
 
-## 이벤트 타입 규칙
-
-DB에 저장되는 이벤트 타입은 정규화됨:
-- `started` → `start`
-- `completed` → `end`
-- `step`은 그대로 유지
-
-통계 쿼리 시 반드시 `start`/`end`로 비교해야 함 (`started`/`completed` 사용 금지).
-
 ## Cosmos DB 컨테이너
 
 | 컨테이너 | Partition Key | Unique Key |
