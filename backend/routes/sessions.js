@@ -107,8 +107,8 @@ router.get('/:sessionId', async (req, res) => {
     const started = new Set();
     const completed = new Set();
     for (const e of events) {
-      if (e.type === 'started') started.add(e.username);
-      if (e.type === 'completed') completed.add(e.username);
+      if (e.type === 'start') started.add(e.username);
+      if (e.type === 'end') completed.add(e.username);
     }
 
     res.json({

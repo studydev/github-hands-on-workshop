@@ -4,7 +4,7 @@ const { getEvents } = require('../db/cosmos');
 
 const router = express.Router();
 
-// POST /api/events — receive started/completed event from GitHub Actions
+// POST /api/events — receive start/step/end event from GitHub Actions
 router.post('/', async (req, res) => {
   try {
     const { sessionId, type, username, repo, track, runId } = req.body;
@@ -15,9 +15,19 @@ router.post('/', async (req, res) => {
       });
     }
 
-    if (!['started', 'completed'].includes(type)) {
+    if (!['start', 'started', 'step', 'end', 'completed'].includes(type)) {
       return res.status(400).json({
-        error: 'type must be "started" or "completed"',
+        error: 'type must be "start", "step", or "end"',
+      });
+    }
+
+    // Normalize legacy type values
+    const normalizedType = type === 'started' ? 'start' : type === 'completed' ? 'end' : type;
+
+    const { step, description } = req.body;
+    if (normalizedType === 'step' && (step == null || step === '')) {
+      return res.status(400).json({
+        error: 'step (number) is required when type is "step"',
       });
     }
 
@@ -25,10 +35,12 @@ router.post('/', async (req, res) => {
       id: crypto.randomUUID(),
       sessionId,
       runId: String(runId),
-      type,
+      type: normalizedType,
       username: username.toLowerCase(),
       repo: repo || '',
       track: track || '',
+      step: normalizedType === 'step' ? Number(step) : null,
+      description: description || null,
       timestamp: new Date().toISOString(),
     };
 
@@ -41,6 +53,8 @@ router.post('/', async (req, res) => {
       sessionId: event.sessionId,
       username: event.username,
       repo: event.repo,
+      step: event.step,
+      description: event.description,
       timestamp: event.timestamp,
     });
 

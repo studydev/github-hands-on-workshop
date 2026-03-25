@@ -99,6 +99,12 @@
     <!-- Session info bar -->
     <div id="session-info" class="session-info"></div>
 
+    <!-- Live feed (moved above participants) -->
+    <section class="panel" id="feed-panel">
+      <h2>🔔 실시간 피드</h2>
+      <ul id="feed-list"></ul>
+    </section>
+
     <!-- Stats bar -->
     <div id="session-stats" class="session-stats"></div>
 
@@ -108,28 +114,17 @@
       <div id="podium-countdown" class="podium-countdown"></div>
     </section>
 
-    <!-- Participants table -->
+    <!-- Participants table (dynamic columns) -->
     <section class="panel" id="participants-panel">
       <h2>전체 참가자</h2>
-      <table id="participants-table">
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>GitHub ID</th>
-            <th>Repo</th>
-            <th>시작 시간</th>
-            <th>완료 시간</th>
-            <th>상태</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </section>
-
-    <!-- Live feed -->
-    <section class="panel" id="feed-panel">
-      <h2>🔔 실시간 피드</h2>
-      <ul id="feed-list"></ul>
+      <div class="participants-table-wrapper">
+        <table id="participants-table">
+          <thead>
+            <tr id="participants-thead-row"></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
   </main>
 
@@ -214,20 +209,37 @@
       </form>
       <div id="search-results" class="search-results hidden">
         <div id="search-user-profile" class="search-user-profile"></div>
-        <table id="search-results-table">
-          <thead>
-            <tr>
-              <th>세션</th>
-              <th>트랙</th>
-              <th>GitHub ID</th>
-              <th>Repo</th>
-              <th>시작 시간</th>
-              <th>완료 시간</th>
-              <th>상태</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        <div class="search-view-toggle">
+          <button type="button" id="search-view-summary" class="toggle-btn active">📋 요약 보기</button>
+          <button type="button" id="search-view-detail" class="toggle-btn">📊 상세 이력 보기</button>
+          <div class="search-sort-options hidden" id="search-sort-options">
+            <label>정렬:
+              <select id="search-sort-select">
+                <option value="time-asc">시간순 (오래된 순)</option>
+                <option value="time-desc" selected>시간순 (최신 순)</option>
+                <option value="track-asc">트랙 이름순 (A→Z)</option>
+                <option value="track-desc">트랙 이름순 (Z→A)</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div id="search-summary-view">
+          <table id="search-results-table">
+            <thead>
+              <tr>
+                <th>세션</th>
+                <th>트랙</th>
+                <th>GitHub ID</th>
+                <th>Repo</th>
+                <th>시작 시간</th>
+                <th>완료 시간</th>
+                <th>상태</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="search-detail-view" class="hidden"></div>
       </div>
       <div id="search-empty" class="search-empty hidden">
         검색 결과가 없습니다.

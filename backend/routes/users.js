@@ -17,7 +17,7 @@ router.get('/search', async (req, res) => {
     const { resources: events } = await getEvents().items
       .query({
         query:
-          'SELECT e.sessionId, e.username, e.type, e.timestamp, e.repo, e.track FROM e WHERE LOWER(e.username) = @q OR STARTSWITH(LOWER(e.repo), @orgPrefix)',
+          'SELECT e.sessionId, e.username, e.type, e.timestamp, e.repo, e.track, e.step, e.description FROM e WHERE LOWER(e.username) = @q OR STARTSWITH(LOWER(e.repo), @orgPrefix)',
         parameters: [
           { name: '@q', value: q },
           { name: '@orgPrefix', value: q + '/' },
@@ -41,12 +41,19 @@ router.get('/search', async (req, res) => {
           track: e.track || '',
           startedAt: null,
           completedAt: null,
+          events: [],
         });
       }
       const entry = sessionUserMap.get(key);
-      if (e.type === 'started' && !entry.startedAt) entry.startedAt = e.timestamp;
-      if (e.type === 'completed' && !entry.completedAt) entry.completedAt = e.timestamp;
+      if ((e.type === 'start' || e.type === 'started') && !entry.startedAt) entry.startedAt = e.timestamp;
+      if ((e.type === 'end' || e.type === 'completed') && !entry.completedAt) entry.completedAt = e.timestamp;
       if (e.repo) entry.repo = e.repo;
+      entry.events.push({
+        type: e.type,
+        timestamp: e.timestamp,
+        step: e.step != null ? e.step : null,
+        description: e.description || null,
+      });
     }
 
     // Collect unique session IDs to fetch session names
@@ -78,6 +85,7 @@ router.get('/search', async (req, res) => {
         status: entry.completedAt ? 'completed' : 'started',
         startedAt: entry.startedAt,
         completedAt: entry.completedAt,
+        events: entry.events.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)),
       };
     });
 
