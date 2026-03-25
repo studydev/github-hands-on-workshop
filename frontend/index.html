@@ -7,6 +7,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Sidebar -->
+  <nav id="sidebar" class="sidebar">
+    <button id="sidebar-toggle" class="sidebar-toggle" aria-label="메뉴 접기/펼치기">☰</button>
+    <div class="sidebar-content">
+      <ul class="sidebar-menu" id="sidebar-menu">
+        <li><a href="#" data-page="home" class="sidebar-link active">📊 세션 대시보드</a></li>
+        <li><a href="#" data-page="track1a" class="sidebar-link">Track 1-A</a></li>
+        <li><a href="#" data-page="track1b" class="sidebar-link">Track 1-B</a></li>
+        <li><a href="#" data-page="track2" class="sidebar-link">Track 2</a></li>
+        <li><a href="#" data-page="track3" class="sidebar-link">Track 3</a></li>
+        <li><a href="#" data-page="track4" class="sidebar-link">Track 4</a></li>
+        <li><a href="#" data-page="track5" class="sidebar-link">Track 5</a></li>
+        <li><a href="#" data-page="track6" class="sidebar-link">Track 6</a></li>
+        <li class="sidebar-divider"></li>
+        <li><a href="#" data-page="all-skills" class="sidebar-link">📋 전체 실습 목록</a></li>
+      </ul>
+      <div class="sidebar-bottom">
+        <button id="search-user-btn" class="sidebar-search-btn">🔍 참여 이력 검색</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main wrapper -->
+  <div id="main-wrapper" class="main-wrapper">
   <header>
     <h1>🏆 GitHub Skills Workshop Dashboard</h1>
     <div class="controls">
@@ -15,7 +39,6 @@
       </select>
       <button id="create-session-btn" class="btn-primary">+ 세션 만들기</button>
       <button id="edit-session-btn" class="btn-secondary hidden">✏️ 세션 수정</button>
-      <button id="search-user-btn" class="btn-secondary">🔍 참여 이력 검색</button>
     </div>
   </header>
 
@@ -94,6 +117,12 @@
       <p class="landing-cta">위에서 세션을 선택하거나 새 세션을 만들어 시작하세요.</p>
     </div>
   </section>
+
+  <!-- Track page (dynamically rendered) -->
+  <section id="track-page" class="track-page hidden"></section>
+
+  <!-- All skills page -->
+  <section id="all-skills-page" class="all-skills-page hidden"></section>
 
   <main id="dashboard" class="hidden">
     <!-- Session info bar -->
@@ -249,6 +278,8 @@
       </div>
     </div>
   </div>
+
+  </div> <!-- /main-wrapper -->
 
   <script src="app.js"></script>
 </body>
