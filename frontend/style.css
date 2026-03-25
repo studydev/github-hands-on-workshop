@@ -150,6 +150,83 @@ main { padding: 20px 24px; max-width: 1100px; margin: 0 auto; }
   font-style: italic;
 }
 
+/* Workshop Curriculum */
+.workshop-curriculum {
+  text-align: left;
+  margin: 40px auto 32px;
+  max-width: 820px;
+}
+.curriculum-title {
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin-bottom: 16px;
+  text-align: center;
+}
+.curriculum-table-wrapper {
+  overflow-x: auto;
+}
+.curriculum-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.curriculum-table thead th {
+  background: var(--surface);
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+}
+.curriculum-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.curriculum-table tbody tr:hover {
+  background: rgba(88, 166, 255, 0.06);
+}
+.curriculum-table td {
+  padding: 12px 14px;
+  vertical-align: middle;
+}
+.module-num {
+  text-align: center;
+  font-weight: 700;
+  color: var(--accent);
+  width: 50px;
+}
+.module-title {
+  font-weight: 600;
+  color: var(--text);
+}
+.module-learn {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.module-link {
+  text-align: center;
+  white-space: nowrap;
+}
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.badge-ready {
+  background: var(--green);
+  color: #fff;
+}
+.badge-ready:hover {
+  opacity: 0.85;
+}
+.badge-soon {
+  background: var(--border);
+  color: var(--text-muted);
+}
+
 /* Session info */
 .session-info {
   background: var(--surface);
