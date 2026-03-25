@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ============================================================
-# GitHub Workshop Dashboard — Azure 인프라 프로비저닝 스크립트
+# GitHub Skills Workshop Dashboard — Azure 인프라 프로비저닝 스크립트
 # ============================================================
 # 사용법:
 #   chmod +x infra/deploy.sh

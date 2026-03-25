@@ -1,4 +1,4 @@
-# GitHub Workshop Dashboard 기술 설계 문서
+# GitHub Skills Workshop Dashboard 기술 설계 문서
 
 ## 1. 목표
 

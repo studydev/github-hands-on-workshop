@@ -1,7 +1,7 @@
 {
   "name": "workshop-tracker-backend",
   "version": "1.0.0",
-  "description": "GitHub Workshop Dashboard — real-time leaderboard API",
+  "description": "GitHub Skills Workshop Dashboard — real-time leaderboard API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
