@@ -550,7 +550,7 @@
     if (eventSource) { eventSource.close(); eventSource = null; }
   }
 
-  function addFeedItem(data) {
+  function addFeedItem(data, append) {
     const li = document.createElement('li');
     const time = new Date(data.timestamp).toLocaleTimeString('ko-KR', {
       hour: '2-digit', minute: '2-digit',
@@ -565,7 +565,11 @@
     } else {
       li.innerHTML = `<span class="feed-time">${time}</span> ${avatarHtml} 🎉 <strong>${escapeHtml(data.username)}</strong> 실습을 완료했습니다!`;
     }
-    feedList.prepend(li);
+    if (append) {
+      feedList.appendChild(li);
+    } else {
+      feedList.prepend(li);
+    }
     while (feedList.children.length > 10) {
       feedList.removeChild(feedList.lastChild);
     }
@@ -612,9 +616,9 @@
 
   function renderFeedFromHistory(events) {
     feedList.innerHTML = '';
-    // events are already sorted desc (newest first), render in order
+    // events are already sorted desc (newest first), append in order
     for (const data of events) {
-      addFeedItem(data);
+      addFeedItem(data, true);
     }
   }
 
@@ -654,9 +658,10 @@
       : null;
 
     try {
+      const adminPassword = document.getElementById('form-admin-password').value;
       const result = await api('/api/sessions', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Password': adminPassword },
         body: JSON.stringify({ name, track, startDate, endDate }),
       });
 
@@ -787,9 +792,10 @@
       : null;
 
     try {
+      const adminPassword = document.getElementById('edit-form-admin-password').value;
       const result = await api(`/api/sessions/${currentSessionId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Password': adminPassword },
         body: JSON.stringify({ name, track, startDate, endDate }),
       });
 

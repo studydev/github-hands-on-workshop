@@ -4,8 +4,18 @@ const { getSessions, getEvents } = require('../db/cosmos');
 
 const router = express.Router();
 
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+function requireAdmin(req, res, next) {
+  const password = req.headers['x-admin-password'];
+  if (!password || password !== ADMIN_PASSWORD) {
+    return res.status(403).json({ error: 'Admin password required' });
+  }
+  next();
+}
+
 // POST /api/sessions — create a new session
-router.post('/', async (req, res) => {
+router.post('/', requireAdmin, async (req, res) => {
   try {
     const { name, track, startDate, endDate } = req.body;
 
@@ -47,7 +57,7 @@ router.get('/', async (_req, res) => {
 });
 
 // PUT /api/sessions/:sessionId — update a session
-router.put('/:sessionId', async (req, res) => {
+router.put('/:sessionId', requireAdmin, async (req, res) => {
   try {
     const { sessionId } = req.params;
     const { name, track, startDate, endDate } = req.body;
