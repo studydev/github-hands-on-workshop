@@ -56,39 +56,49 @@
 
   // TRACKS DATA
   var TRACKS = {
-    track1a: { title: 'Track 1-A', subtitle: '웹사이트 만들기', audience: '비개발자 / 기획·마케터', duration: '2시간', result: '나만의 퍼스널 웹사이트', story: '오늘 수업이 끝나면 명함에 넣을 수 있는 나만의 웹사이트 주소가 생깁니다.', modules: [
+    track1a: { title: 'Track 1-A', subtitle: '웹사이트 만들기', audience: '비개발자 / 기획·마케터', duration: '2.5시간', result: '나만의 퍼스널 웹사이트', story: '오늘 수업이 끝나면 명함에 넣을 수 있는 나만의 웹사이트 주소가 생깁니다.', modules: [
       { num: 1, title: '인터넷에 내 공간 선점하기', learn: 'Repository, Issue, 웹에서 파일 편집', skill: 'Introduction to GitHub', repo: 'introduction-to-github', sessionId: 'f87b3b97' },
       { num: 2, title: '내 글을 있어 보이게 만드는 비법', learn: '텍스트로 표, 강조, 이미지', skill: 'Communicate using Markdown', repo: 'communicate-using-markdown', sessionId: '3d73a707' },
       { num: 3, title: '클릭 한 번으로 내 사이트 올리기', learn: '실제 URL로 접속되는 웹사이트 완성', skill: 'GitHub Pages', repo: 'github-pages', sessionId: 'fe72e72d' },
+      { num: 4, title: 'GitHub 기능 탐색하기', learn: 'GitHub 숨겨진 기능 발견', skill: 'Connect the Dots', repo: 'connect-the-dots', sessionId: 'f0ad5989' },
     ]},
-    track1b: { title: 'Track 1-B', subtitle: 'Git 협업', audience: '개발자 입문자', duration: '4시간', result: '팀 협업 레포 + 충돌 없는 워크플로우', story: 'iPad로도 코딩하는 개발자가 됩니다.', modules: [
+    track1b: { title: 'Track 1-B', subtitle: 'Git 협업', audience: '개발자 입문자', duration: '4.5시간', result: '팀 협업 레포 + 충돌 없는 워크플로우', story: 'iPad로도 코딩하는 개발자가 됩니다.', modules: [
       { num: 1, title: '내 코드에 타임머신 달기', learn: 'git init / add / commit / push / pull', skill: 'Introduction to Git', repo: 'introduction-to-git', sessionId: 'cc895746' },
       { num: 2, title: '동료 코드, 피드백 주고받기', learn: 'PR 리뷰로 코드 품질', skill: 'Review Pull Requests', repo: 'review-pull-requests', sessionId: '348394ce' },
       { num: 3, title: '코드 충돌? 두렵지 않다', learn: '머지 충돌 해결 경험', skill: 'Resolve Merge Conflicts', repo: 'resolve-merge-conflicts', sessionId: '82934411' },
-      { num: 4, title: '팀원과 함께 프로젝트 관리하기', learn: 'Labels, Milestones, Wiki, 협업', skill: 'Intro to Repository Management', repo: 'introduction-to-repository-management', sessionId: '53ea0af7' },
-      { num: 5, title: '내 PC 없이도 코딩하기', learn: '브라우저만 있으면 되는 개발 환경', skill: 'Code with Codespaces', repo: 'code-with-codespaces', sessionId: '2536adf1' },
+      { num: 4, title: '커밋 히스토리 다시 쓰기', learn: 'rebase, amend, reset 활용', skill: 'Change Commit History', repo: 'change-commit-history', sessionId: 'ae785680' },
+      { num: 5, title: '팀원과 함께 프로젝트 관리하기', learn: 'Labels, Milestones, Wiki, 협업', skill: 'Intro to Repository Management', repo: 'introduction-to-repository-management', sessionId: '53ea0af7' },
+      { num: 6, title: '내 PC 없이도 코딩하기', learn: '브라우저만 있으면 되는 개발 환경', skill: 'Code with Codespaces', repo: 'code-with-codespaces', sessionId: '2536adf1' },
     ]},
-    track2: { title: 'Track 2', subtitle: 'AI Copilot', audience: '개발자 / AI 도입 검토팀', duration: '5시간', result: 'AI와 함께 만든 실제 앱', story: '코딩 속도가 2배 빨라진 걸 느낍니다.', modules: [
+    track2: { title: 'Track 2', subtitle: 'AI Copilot', audience: '개발자 / AI 도입 검토팀', duration: '6시간', result: 'AI와 함께 만든 실제 앱', story: '코딩 속도가 2배 빨라진 걸 느낍니다.', modules: [
       { num: 1, title: 'AI 동료 첫 출근', learn: 'Chat, Inline suggestions', skill: 'Getting Started with GitHub Copilot', repo: 'getting-started-with-github-copilot', sessionId: 'c8870da8' },
       { num: 2, title: 'AI 동료 길들이기', learn: 'Custom instructions 설정', skill: 'Customize your GitHub Copilot Experience', repo: 'customize-your-github-copilot-experience', sessionId: '91eeac6a' },
-      { num: 3, title: 'AI가 코드 검토', learn: 'PR AI 버그 찾기', skill: 'GitHub Copilot Code Review', repo: 'copilot-code-review', sessionId: '208a7c01' },
-      { num: 4, title: '이슈만 올리면 AI가 PR까지', learn: 'AI가 코딩하는 경험', skill: 'Expand your team with Copilot coding agent', repo: 'expand-your-team-with-copilot', sessionId: '864ed8b8' },
-      { num: 5, title: 'AI와 함께 앱 완성', learn: 'Agent mode 앱 빌드', skill: 'Build apps with Copilot agent mode', repo: 'build-applications-w-copilot-agent-mode', sessionId: '256272c5' },
-      { num: 6, title: 'AI에게 새로운 능력 장착', learn: 'MCP로 Copilot 확장', skill: 'Integrate MCP with GitHub Copilot', repo: 'integrate-mcp-with-copilot', sessionId: '05b8e6d2' },
-      { num: 7, title: '말로 설명하면 AI가 앱을 뚝딱', learn: '노코딩으로 앱 생성', skill: 'Turn an idea into an app with GitHub Spark', repo: 'idea-to-app-with-spark', sessionId: 'f89101e2' },
+      { num: 3, title: 'AI + Codespaces + VS Code', learn: 'Copilot과 클라우드 개발환경 통합', skill: 'Copilot + Codespaces + VS Code', repo: 'copilot-codespaces-vscode', sessionId: 'd3a5a722' },
+      { num: 4, title: 'AI가 코드 검토', learn: 'PR AI 버그 찾기', skill: 'GitHub Copilot Code Review', repo: 'copilot-code-review', sessionId: '208a7c01' },
+      { num: 5, title: '이슈만 올리면 AI가 PR까지', learn: 'AI가 코딩하는 경험', skill: 'Expand your team with Copilot coding agent', repo: 'expand-your-team-with-copilot', sessionId: '864ed8b8' },
+      { num: 6, title: 'AI와 함께 앱 완성', learn: 'Agent mode 앱 빌드', skill: 'Build apps with Copilot agent mode', repo: 'build-applications-w-copilot-agent-mode', sessionId: '256272c5' },
+      { num: 7, title: 'AI에게 새로운 능력 장착', learn: 'MCP로 Copilot 확장', skill: 'Integrate MCP with GitHub Copilot', repo: 'integrate-mcp-with-copilot', sessionId: '05b8e6d2' },
+      { num: 8, title: 'Copilot 확장 프로그램 만들기', learn: 'Copilot Extensions 개발', skill: 'Your First Extension for GitHub Copilot', repo: 'your-first-extension-for-github-copilot', sessionId: 'e8e5a0c6' },
+      { num: 9, title: 'Copilot CLI로 앱 만들기', learn: 'CLI에서 AI로 앱 생성', skill: 'Create Applications with Copilot CLI', repo: 'create-applications-with-the-copilot-cli', sessionId: '03519e38' },
+      { num: 10, title: '말로 설명하면 AI가 앱을 뚝딱', learn: '노코딩으로 앱 생성', skill: 'Turn an idea into an app with GitHub Spark', repo: 'idea-to-app-with-spark', sessionId: 'f89101e2' },
     ]},
-    track3: { title: 'Track 3', subtitle: 'CI/CD 자동화', audience: 'DevOps / 개발팀', duration: '3.5시간', result: '풀 자동화 CI/CD 파이프라인', story: '코드 올리고 커피 마시면 배포 끝.', modules: [
+    track3: { title: 'Track 3', subtitle: 'CI/CD 자동화', audience: 'DevOps / 개발팀', duration: '5시간', result: '풀 자동화 CI/CD 파이프라인', story: '코드 올리고 커피 마시면 배포 끝.', modules: [
       { num: 1, title: '첫 로봇 일꾼 고용', learn: 'Workflow YAML 구조', skill: 'Hello GitHub Actions', repo: 'hello-github-actions', sessionId: '33211bf7' },
       { num: 2, title: '실수 잡아주는 시스템', learn: 'Push 시 자동 테스트', skill: 'Test with Actions', repo: 'test-with-actions', sessionId: '215e5376' },
-      { num: 3, title: '어디서나 쓸 수 있게 포장', learn: 'Docker 이미지 배포', skill: 'Publish Docker Images', repo: 'publish-docker-images', sessionId: '6738d60f' },
-      { num: 4, title: '10개 프로젝트에 재사용', learn: '워크플로우 템플릿화', skill: 'Create and use reusable workflows', repo: 'reusable-workflows', sessionId: '4695e100' },
-      { num: 5, title: '파이프라인에 AI 두뇌', learn: 'Actions에서 AI 호출', skill: 'AI in Actions', repo: 'ai-in-actions', sessionId: 'b5af8a3b' },
+      { num: 3, title: 'JavaScript로 나만의 Action', learn: '커스텀 Action 개발', skill: 'Write JavaScript Actions', repo: 'write-javascript-actions', sessionId: 'd105b02f' },
+      { num: 4, title: '어디서나 쓸 수 있게 포장', learn: 'Docker 이미지 배포', skill: 'Publish Docker Images', repo: 'publish-docker-images', sessionId: '6738d60f' },
+      { num: 5, title: '10개 프로젝트에 재사용', learn: '워크플로우 템플릿화', skill: 'Create and use reusable workflows', repo: 'reusable-workflows', sessionId: '4695e100' },
+      { num: 6, title: '릴리스 기반 배포 전략', learn: '브랜치별 릴리스 워크플로우', skill: 'Release Based Workflow', repo: 'release-based-workflow', sessionId: '6aabf966' },
+      { num: 7, title: 'Azure에 자동 배포', learn: 'GitHub Actions to Azure 배포', skill: 'Deploy to Azure', repo: 'deploy-to-azure', sessionId: '91a8af2b' },
+      { num: 8, title: 'AI 기반 Action 만들기', learn: 'Actions에서 AI 모델 호출', skill: 'Create AI Powered Actions', repo: 'create-ai-powered-actions', sessionId: '7750b774' },
+      { num: 9, title: '파이프라인에 AI 두뇌', learn: 'Actions에서 AI 활용', skill: 'AI in Actions', repo: 'ai-in-actions', sessionId: 'b5af8a3b' },
     ]},
-    track4: { title: 'Track 4', subtitle: '보안 강화', audience: '보안 / 컴플라이언스', duration: '3시간', result: '보안 취약점 제로 레포', story: '보안 사고를 사전에 막을 수 있는 구성.', modules: [
+    track4: { title: 'Track 4', subtitle: '보안 강화', audience: '보안 / 컴플라이언스', duration: '3.5시간', result: '보안 취약점 제로 레포', story: '보안 사고를 사전에 막을 수 있는 구성.', modules: [
       { num: 1, title: '취약점 자동 찾기', learn: 'Dependabot 패치 PR', skill: 'Secure your repository supply chain', repo: 'secure-repository-supply-chain', sessionId: '14fe64be' },
       { num: 2, title: '비밀번호 유출 방지', learn: 'Secret push 차단', skill: 'Introduction to secret scanning', repo: 'introduction-to-secret-scanning', sessionId: '8e9808b7' },
       { num: 3, title: 'AI 보안 구멍 찾기', learn: 'CodeQL 취약 탐지', skill: 'Introduction to CodeQL', repo: 'introduction-to-codeql', sessionId: '7ed33e7a' },
-      { num: 4, title: '해커 입장에서 뷰어보기', learn: '보안 게임 체험', skill: 'Secure code game', repo: 'secure-code-game', sessionId: '6f903c6b' },
+      { num: 4, title: 'CodeQL 언어 매트릭스 설정', learn: '다중 언어 보안 스캔 구성', skill: 'Configure CodeQL Language Matrix', repo: 'configure-codeql-language-matrix', sessionId: '1b86cfad' },
+      { num: 5, title: '해커 입장에서 뷰어보기', learn: '보안 게임 체험', skill: 'Secure code game', repo: 'secure-code-game', sessionId: '6f903c6b' },
     ]},
     track5: { title: 'Track 5', subtitle: '레거시 현대화', audience: '레거시 시스템 보유 기업', duration: '2시간', result: 'COBOL to Node.js 전환 완료', story: '금융/공공기관 레거시 고객에게 임팩트.', modules: [
       { num: 1, title: '10년 묵은 코드 AI 번역', learn: 'COBOL to Node.js', skill: 'Modernize your legacy code with GitHub Copilot', repo: 'modernize-your-legacy-code-with-github-copilot', sessionId: '22a8b157' },
