@@ -56,25 +56,26 @@
 
   // TRACKS DATA
   var TRACKS = {
-    track1a: { title: 'Track 1-A', subtitle: '웹사이트 만들기', audience: '비개발자 / 기획·마케터', duration: '3시간', result: '나만의 퍼스널 웹사이트', story: '오늘 수업이 끝나면 명함에 넣을 수 있는 나만의 웹사이트 주소가 생깁니다.', modules: [
+    track1a: { title: 'Track 1-A', subtitle: '웹사이트 만들기', audience: '비개발자 / 기획·마케터', duration: '2시간', result: '나만의 퍼스널 웹사이트', story: '오늘 수업이 끝나면 명함에 넣을 수 있는 나만의 웹사이트 주소가 생깁니다.', modules: [
       { num: 1, title: '인터넷에 내 공간 선점하기', learn: 'Repository, Issue, 웹에서 파일 편집', skill: 'Introduction to GitHub', repo: 'introduction-to-github', sessionId: 'f87b3b97' },
       { num: 2, title: '내 글을 있어 보이게 만드는 비법', learn: '텍스트로 표, 강조, 이미지', skill: 'Communicate using Markdown', repo: 'communicate-using-markdown', sessionId: '3d73a707' },
       { num: 3, title: '클릭 한 번으로 내 사이트 올리기', learn: '실제 URL로 접속되는 웹사이트 완성', skill: 'GitHub Pages', repo: 'github-pages', sessionId: 'fe72e72d' },
-      { num: 4, title: '팀원과 함께 완성하는 내 사이트', learn: 'Labels, Milestones, Wiki, 협업', skill: 'Intro to Repository Management', repo: 'introduction-to-repository-management', sessionId: '53ea0af7' },
-      { num: 5, title: '말로 설명하면 AI가 앱을 뚝딱', learn: '노코딩으로 앱 생성', skill: 'Turn an idea into an app with GitHub Spark', repo: 'idea-to-app-with-spark', sessionId: 'f89101e2' },
     ]},
-    track1b: { title: 'Track 1-B', subtitle: 'Git 협업', audience: '개발자 입문자', duration: '3.5시간', result: '팀 협업 레포 + 충돌 없는 워크플로우', story: 'iPad로도 코딩하는 개발자가 됩니다.', modules: [
+    track1b: { title: 'Track 1-B', subtitle: 'Git 협업', audience: '개발자 입문자', duration: '4시간', result: '팀 협업 레포 + 충돌 없는 워크플로우', story: 'iPad로도 코딩하는 개발자가 됩니다.', modules: [
       { num: 1, title: '내 코드에 타임머신 달기', learn: 'git init / add / commit / push / pull', skill: 'Introduction to Git', repo: 'introduction-to-git', sessionId: 'cc895746' },
       { num: 2, title: '동료 코드, 피드백 주고받기', learn: 'PR 리뷰로 코드 품질', skill: 'Review Pull Requests', repo: 'review-pull-requests', sessionId: '348394ce' },
       { num: 3, title: '코드 충돌? 두렵지 않다', learn: '머지 충돌 해결 경험', skill: 'Resolve Merge Conflicts', repo: 'resolve-merge-conflicts', sessionId: '82934411' },
-      { num: 4, title: '내 PC 없이도 코딩하기', learn: '브라우저만 있으면 되는 개발 환경', skill: 'Code with Codespaces', repo: 'code-with-codespaces', sessionId: '2536adf1' },
+      { num: 4, title: '팀원과 함께 프로젝트 관리하기', learn: 'Labels, Milestones, Wiki, 협업', skill: 'Intro to Repository Management', repo: 'introduction-to-repository-management', sessionId: '53ea0af7' },
+      { num: 5, title: '내 PC 없이도 코딩하기', learn: '브라우저만 있으면 되는 개발 환경', skill: 'Code with Codespaces', repo: 'code-with-codespaces', sessionId: '2536adf1' },
     ]},
-    track2: { title: 'Track 2', subtitle: 'AI Copilot', audience: '개발자 / AI 도입 검토팀', duration: '4시간', result: 'AI와 함께 만든 실제 앱', story: '코딩 속도가 2배 빨라진 걸 느낍니다.', modules: [
+    track2: { title: 'Track 2', subtitle: 'AI Copilot', audience: '개발자 / AI 도입 검토팀', duration: '5시간', result: 'AI와 함께 만든 실제 앱', story: '코딩 속도가 2배 빨라진 걸 느낍니다.', modules: [
       { num: 1, title: 'AI 동료 첫 출근', learn: 'Chat, Inline suggestions', skill: 'Getting Started with GitHub Copilot', repo: 'getting-started-with-github-copilot', sessionId: 'c8870da8' },
       { num: 2, title: 'AI 동료 길들이기', learn: 'Custom instructions 설정', skill: 'Customize your GitHub Copilot Experience', repo: 'customize-your-github-copilot-experience', sessionId: '91eeac6a' },
       { num: 3, title: 'AI가 코드 검토', learn: 'PR AI 버그 찾기', skill: 'GitHub Copilot Code Review', repo: 'copilot-code-review', sessionId: '208a7c01' },
       { num: 4, title: '이슈만 올리면 AI가 PR까지', learn: 'AI가 코딩하는 경험', skill: 'Expand your team with Copilot coding agent', repo: 'expand-your-team-with-copilot', sessionId: '864ed8b8' },
       { num: 5, title: 'AI와 함께 앱 완성', learn: 'Agent mode 앱 빌드', skill: 'Build apps with Copilot agent mode', repo: 'build-applications-w-copilot-agent-mode', sessionId: '256272c5' },
+      { num: 6, title: 'AI에게 새로운 능력 장착', learn: 'MCP로 Copilot 확장', skill: 'Integrate MCP with GitHub Copilot', repo: 'integrate-mcp-with-copilot', sessionId: '05b8e6d2' },
+      { num: 7, title: '말로 설명하면 AI가 앱을 뚝딱', learn: '노코딩으로 앱 생성', skill: 'Turn an idea into an app with GitHub Spark', repo: 'idea-to-app-with-spark', sessionId: 'f89101e2' },
     ]},
     track3: { title: 'Track 3', subtitle: 'CI/CD 자동화', audience: 'DevOps / 개발팀', duration: '3.5시간', result: '풀 자동화 CI/CD 파이프라인', story: '코드 올리고 커피 마시면 배포 끝.', modules: [
       { num: 1, title: '첫 로봇 일꾼 고용', learn: 'Workflow YAML 구조', skill: 'Hello GitHub Actions', repo: 'hello-github-actions', sessionId: '33211bf7' },
@@ -89,10 +90,9 @@
       { num: 3, title: 'AI 보안 구멍 찾기', learn: 'CodeQL 취약 탐지', skill: 'Introduction to CodeQL', repo: 'introduction-to-codeql', sessionId: '7ed33e7a' },
       { num: 4, title: '해커 입장에서 뷰어보기', learn: '보안 게임 체험', skill: 'Secure code game', repo: 'secure-code-game', sessionId: '6f903c6b' },
     ]},
-    track5: { title: 'Track 5', subtitle: '레거시 현대화', audience: '레거시 시스템 보유 기업', duration: '3시간', result: 'COBOL to Node.js 전환 완료', story: '금융/공공기관 레거시 고객에게 임팩트.', modules: [
-      { num: 1, title: 'AI에게 새로운 능력 장착', learn: 'MCP로 Copilot 확장', skill: 'Integrate MCP with GitHub Copilot', repo: 'integrate-mcp-with-copilot', sessionId: '05b8e6d2' },
-      { num: 2, title: '10년 묵은 코드 AI 번역', learn: 'COBOL to Node.js', skill: 'Modernize your legacy code with GitHub Copilot', repo: 'modernize-your-legacy-code-with-github-copilot', sessionId: '22a8b157' },
-      { num: 3, title: '신입도 바로 일하는 팀', learn: 'Copilot Spaces 팀 지식 공유', skill: 'Scale institutional knowledge with Copilot Spaces', repo: 'scale-institutional-knowledge-using-copilot-spaces', sessionId: '8396f661' },
+    track5: { title: 'Track 5', subtitle: '레거시 현대화', audience: '레거시 시스템 보유 기업', duration: '2시간', result: 'COBOL to Node.js 전환 완료', story: '금융/공공기관 레거시 고객에게 임팩트.', modules: [
+      { num: 1, title: '10년 묵은 코드 AI 번역', learn: 'COBOL to Node.js', skill: 'Modernize your legacy code with GitHub Copilot', repo: 'modernize-your-legacy-code-with-github-copilot', sessionId: '22a8b157' },
+      { num: 2, title: '신입도 바로 일하는 팀', learn: 'Copilot Spaces 팀 지식 공유', skill: 'Scale institutional knowledge with Copilot Spaces', repo: 'scale-institutional-knowledge-using-copilot-spaces', sessionId: '8396f661' },
     ]},
     track6: { title: 'Track 6', subtitle: 'ADO 이전', audience: 'Azure DevOps 사용 기업', duration: '2시간', result: 'ADO to GitHub 이전 완료', story: '단독 2시간 / Track 1-B·2와 묶으면 풀데이 워크샵.', modules: [
       { num: 1, title: '하나도 안 버리고 GitHub으로 이사', learn: 'ADO to GitHub CLI 마이그레이션', skill: 'Migrate an Azure DevOps Repository', repo: 'migrate-ado-repository', sessionId: 'ec8c5f46' },
