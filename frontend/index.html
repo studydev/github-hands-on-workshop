@@ -4,136 +4,244 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GitHub Skills Workshop Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Sidebar overlay (mobile) -->
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
   <!-- Sidebar -->
   <nav id="sidebar" class="sidebar">
     <button id="sidebar-toggle" class="sidebar-toggle" aria-label="메뉴 접기/펼치기">☰</button>
     <div class="sidebar-content">
       <ul class="sidebar-menu" id="sidebar-menu">
-        <li><a href="#" data-page="home" class="sidebar-link active">📊 세션 대시보드</a></li>
-        <li><a href="#" data-page="track1a" class="sidebar-link">Track 1-A</a></li>
-        <li><a href="#" data-page="track1b" class="sidebar-link">Track 1-B</a></li>
-        <li><a href="#" data-page="track2" class="sidebar-link">Track 2</a></li>
-        <li><a href="#" data-page="track3" class="sidebar-link">Track 3</a></li>
-        <li><a href="#" data-page="track4" class="sidebar-link">Track 4</a></li>
-        <li><a href="#" data-page="track5" class="sidebar-link">Track 5</a></li>
-        <li><a href="#" data-page="track6" class="sidebar-link">Track 6</a></li>
+        <!-- 홈 -->
+        <li class="sidebar-category-label">홈</li>
+        <li><a href="#" data-page="home" class="sidebar-link active">소개</a></li>
+
+        <!-- 세션 -->
+        <li class="sidebar-category-label">세션</li>
+        <li>
+          <div class="sidebar-session-search">
+            <input type="text" id="sidebar-session-search" placeholder="세션 검색..." class="sidebar-search-input">
+          </div>
+        </li>
+        <li>
+          <ul id="sidebar-session-list" class="sidebar-session-list"></ul>
+        </li>
+
+        <li class="sidebar-divider"></li>
+
+        <!-- 교육 코스 -->
+        <li class="sidebar-category-label">교육 코스</li>
+        <li><a href="#" data-page="track1a" class="sidebar-link">Track 1-A · 웹사이트</a></li>
+        <li><a href="#" data-page="track1b" class="sidebar-link">Track 1-B · Git 협업</a></li>
+        <li><a href="#" data-page="track2" class="sidebar-link">Track 2 · AI Copilot</a></li>
+        <li><a href="#" data-page="track3" class="sidebar-link">Track 3 · CI/CD</a></li>
+        <li><a href="#" data-page="track4" class="sidebar-link">Track 4 · 보안</a></li>
+        <li><a href="#" data-page="track5" class="sidebar-link">Track 5 · 레거시</a></li>
+        <li><a href="#" data-page="track6" class="sidebar-link">Track 6 · ADO 이전</a></li>
         <li class="sidebar-divider"></li>
         <li><a href="#" data-page="all-skills" class="sidebar-link">📋 전체 실습 목록</a></li>
+
+        <li class="sidebar-divider"></li>
+
+        <!-- 관리 -->
+        <li class="sidebar-category-label">관리</li>
+        <li><a href="#" id="sidebar-create-session-btn" class="sidebar-link">➕ 세션 만들기</a></li>
+        <li><a href="#" data-page="search" class="sidebar-link">🔍 참여 이력 검색</a></li>
       </ul>
-      <div class="sidebar-bottom">
-        <button id="search-user-btn" class="sidebar-search-btn">🔍 참여 이력 검색</button>
-      </div>
     </div>
   </nav>
 
   <!-- Main wrapper -->
   <div id="main-wrapper" class="main-wrapper">
-  <header>
-    <h1>🏆 GitHub Skills Workshop Dashboard</h1>
-    <div class="controls">
-      <select id="session-select">
-        <option value="">세션을 선택하세요...</option>
-      </select>
-      <button id="create-session-btn" class="btn-primary">+ 세션 만들기</button>
-      <button id="edit-session-btn" class="btn-secondary hidden">✏️ 세션 수정</button>
+
+  <!-- Page header -->
+  <header id="page-header">
+    <div class="header-top-row">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="메뉴 열기">☰</button>
+      <h1 id="page-title">홈 - 소개</h1>
+      <div id="header-actions" class="header-actions"></div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="테마 전환">🌙</button>
     </div>
   </header>
 
-  <!-- Landing page (shown when no session selected) -->
-  <section id="landing" class="landing">
-    <div class="landing-content">
-      <img src="images/image.png" alt="GitHub Workshop" class="landing-image">
-      <h2>GitHub Hands-on Workshop</h2>
-      <p>GitHub Skills 기반 핸즈온 워크숍에서 참가자의 시작과 완료 이벤트를 실시간으로 수집하고, 먼저 완료한 순서대로 리더보드를 보여주는 대시보드입니다.</p>
-      <div class="landing-features">
-        <div class="landing-feature">
-          <span class="landing-icon">🎯</span>
-          <h3>세션 관리</h3>
-          <p>교육 회차별로 세션을 만들고 트랙, 시작일, 종료일을 관리합니다.</p>
+  <!-- PAGE: Home -->
+  <section id="page-home" class="page-section">
+    <div class="dashboard-home">
+      <!-- Hero intro -->
+      <div class="dash-hero">
+        <img src="images/image.png" alt="GitHub Workshop" class="dash-hero-image">
+        <h2>GitHub Hands-on Workshop</h2>
+        <p>GitHub Skills 기반 핸즈온 워크숍에서 참가자의 시작과 완료 이벤트를 실시간으로 수집하고, 먼저 완료한 순서대로 리더보드를 보여주는 대시보드입니다.</p>
+      </div>
+
+      <!-- Top stat cards -->
+      <div class="dash-cards">
+        <div class="dash-card dash-card-green">
+          <div class="dash-card-header">
+            <span class="dash-card-title">총 세션</span>
+            <span class="dash-card-icon">📋</span>
+          </div>
+          <div class="dash-card-value" id="home-total-sessions">-</div>
+          <div class="dash-card-desc">등록된 워크숍 세션 수</div>
         </div>
-        <div class="landing-feature">
-          <span class="landing-icon">📡</span>
-          <h3>실시간 피드</h3>
-          <p>참가자의 시작/완료 이벤트를 SSE로 즉시 반영합니다.</p>
+        <div class="dash-card dash-card-orange">
+          <div class="dash-card-header">
+            <span class="dash-card-title">총 참가자</span>
+            <span class="dash-card-icon">👥</span>
+          </div>
+          <div class="dash-card-value" id="home-total-participants">-</div>
+          <div class="dash-card-desc">실습을 시작한 참가자 수</div>
         </div>
-        <div class="landing-feature">
-          <span class="landing-icon">🏆</span>
-          <h3>리더보드</h3>
-          <p>완료 시각 기준 상위 3명을 포디움 형태로 표시합니다.</p>
+        <div class="dash-card dash-card-blue">
+          <div class="dash-card-header">
+            <span class="dash-card-title">총 수료</span>
+            <span class="dash-card-icon">🏆</span>
+          </div>
+          <div class="dash-card-value" id="home-total-completed">-</div>
+          <div class="dash-card-desc">실습을 완료한 수료자 수</div>
+        </div>
+      </div>
+
+      <!-- Two-column: Analytics + Recommend -->
+      <div class="dash-body">
+        <div class="dash-analytics">
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h3>📈 이벤트 추이</h3>
+              <span class="dash-panel-meta">최근 30일</span>
+            </div>
+            <div class="chart-wrapper">
+              <div id="home-chart-yaxis" class="chart-yaxis"></div>
+              <div id="home-chart" class="home-chart"></div>
+            </div>
+            <div class="chart-legend">
+              <span class="legend-item"><span class="legend-dot legend-start"></span> 시작</span>
+              <span class="legend-item"><span class="legend-dot legend-complete"></span> 완료</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-side">
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h3>🎯 추천 코스</h3>
+            </div>
+            <div class="recommend-list">
+              <a href="#track1a" class="recommend-item" data-page="track1a">
+                <span class="recommend-icon">🎨</span>
+                <div class="recommend-info"><strong>기획 / 마케터</strong><p>Track 1-A · 웹사이트</p></div>
+              </a>
+              <a href="#track1b" class="recommend-item" data-page="track1b">
+                <span class="recommend-icon">💻</span>
+                <div class="recommend-info"><strong>개발 입문</strong><p>Track 1-B · Git 협업</p></div>
+              </a>
+              <a href="#track2" class="recommend-item" data-page="track2">
+                <span class="recommend-icon">🤖</span>
+                <div class="recommend-info"><strong>AI / Copilot</strong><p>Track 2 · AI 코딩</p></div>
+              </a>
+              <a href="#track3" class="recommend-item" data-page="track3">
+                <span class="recommend-icon">⚙️</span>
+                <div class="recommend-info"><strong>DevOps</strong><p>Track 3 · CI/CD</p></div>
+              </a>
+              <a href="#track4" class="recommend-item" data-page="track4">
+                <span class="recommend-icon">🔒</span>
+                <div class="recommend-info"><strong>보안 담당</strong><p>Track 4 · 보안 강화</p></div>
+              </a>
+              <a href="#track5" class="recommend-item" data-page="track5">
+                <span class="recommend-icon">🔄</span>
+                <div class="recommend-info"><strong>레거시 현대화</strong><p>Track 5 · AI 코드 전환</p></div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Track page (dynamically rendered) -->
-  <section id="track-page" class="track-page hidden"></section>
-
-  <!-- All skills page -->
-  <section id="all-skills-page" class="all-skills-page hidden"></section>
-
-  <main id="dashboard" class="hidden">
-    <!-- Session info bar -->
+  <!-- PAGE: Session Dashboard -->
+  <section id="page-session" class="page-section hidden">
     <div id="session-info" class="session-info"></div>
-
-    <!-- Live feed (moved above participants) -->
     <section class="panel" id="feed-panel">
       <h2>🔔 실시간 피드</h2>
       <ul id="feed-list"></ul>
     </section>
-
-    <!-- Stats bar -->
     <div id="session-stats" class="session-stats"></div>
-
-    <!-- Podium -->
     <section id="podium-section" class="podium-section">
       <div id="podium" class="podium"></div>
       <div id="podium-countdown" class="podium-countdown"></div>
     </section>
-
-    <!-- Participants table (dynamic columns) -->
     <section class="panel" id="participants-panel">
       <h2>전체 참가자</h2>
       <div class="participants-table-wrapper">
         <table id="participants-table">
-          <thead>
-            <tr id="participants-thead-row"></tr>
-          </thead>
+          <thead><tr id="participants-thead-row"></tr></thead>
           <tbody></tbody>
         </table>
       </div>
     </section>
-  </main>
+  </section>
+
+  <!-- PAGE: Track -->
+  <section id="page-track" class="page-section hidden"></section>
+
+  <!-- PAGE: All skills -->
+  <section id="page-all-skills" class="page-section hidden"></section>
+
+  <!-- PAGE: Search -->
+  <section id="page-search" class="page-section hidden">
+    <div class="search-page">
+      <p class="search-page-desc">GitHub ID 또는 Organization 이름으로 참여 이력을 검색하세요.</p>
+      <form id="search-user-form">
+        <div class="search-input-row">
+          <input type="text" id="search-query" required placeholder="예: octocat 또는 my-org">
+          <button type="submit" class="btn-primary">검색</button>
+        </div>
+      </form>
+      <div id="search-results" class="search-results hidden">
+        <div id="search-user-profile" class="search-user-profile"></div>
+        <div class="search-view-toggle">
+          <button type="button" id="search-view-summary" class="toggle-btn active">📋 요약 보기</button>
+          <button type="button" id="search-view-detail" class="toggle-btn">📊 상세 이력 보기</button>
+          <div class="search-sort-options hidden" id="search-sort-options">
+            <label>정렬:<select id="search-sort-select">
+              <option value="time-asc">시간순 (오래된 순)</option>
+              <option value="time-desc" selected>시간순 (최신 순)</option>
+              <option value="track-asc">트랙 이름순 (A→Z)</option>
+              <option value="track-desc">트랙 이름순 (Z→A)</option>
+            </select></label>
+          </div>
+        </div>
+        <div id="search-summary-view">
+          <table id="search-results-table">
+            <thead><tr><th>세션</th><th>트랙</th><th>Repo</th><th>시작 시간</th><th>완료 시간</th><th>상태</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="search-detail-view" class="hidden"></div>
+      </div>
+      <div id="search-empty" class="search-empty hidden">검색 결과가 없습니다.</div>
+    </div>
+  </section>
 
   <!-- Create session modal -->
   <div id="modal-overlay" class="modal-overlay hidden">
     <div class="modal">
       <h2>새 세션 만들기</h2>
       <form id="create-session-form">
-        <label>관리자 비밀번호
-          <input type="password" id="form-admin-password" required placeholder="관리자 비밀번호를 입력하세요">
-        </label>
-        <label>세션 이름
-          <input type="text" id="form-name" required placeholder="예: A 고객사 트랙 1 교육">
-        </label>
-        <label>트랙(Skill) 이름
-          <input type="text" id="form-track" required placeholder="예: GitHub Pages">
-        </label>
-        <label>시작 날짜/시간
-          <input type="datetime-local" id="form-start">
-        </label>
-        <label>종료 날짜/시간
-          <input type="datetime-local" id="form-end">
-        </label>
+        <label>관리자 비밀번호<input type="password" id="form-admin-password" required placeholder="관리자 비밀번호를 입력하세요"></label>
+        <label>세션 이름<input type="text" id="form-name" required placeholder="예: A 고객사 트랙 1 교육"></label>
+        <label>트랙(Skill) 이름<input type="text" id="form-track" required placeholder="예: GitHub Pages"></label>
+        <label>시작 날짜/시간<input type="datetime-local" id="form-start"></label>
+        <label>종료 날짜/시간<input type="datetime-local" id="form-end"></label>
         <div class="form-actions">
           <button type="submit" class="btn-primary">생성</button>
           <button type="button" id="modal-cancel" class="btn-secondary">취소</button>
         </div>
       </form>
-
-      <!-- Post-creation snippet -->
       <div id="snippet-result" class="snippet-result hidden">
         <h3>✅ 세션 생성 완료</h3>
         <p>Session ID: <code id="snippet-session-id"></code></p>
@@ -149,28 +257,17 @@
     <div class="modal">
       <h2>세션 수정</h2>
       <form id="edit-session-form">
-        <label>관리자 비밀번호
-          <input type="password" id="edit-form-admin-password" required placeholder="관리자 비밀번호를 입력하세요">
-        </label>
-        <label>세션 이름
-          <input type="text" id="edit-form-name" required placeholder="예: A 고객사 트랙 1 교육">
-        </label>
-        <label>트랙(Skill) 이름
-          <input type="text" id="edit-form-track" required placeholder="예: GitHub Pages">
-        </label>
-        <label>시작 날짜/시간
-          <input type="datetime-local" id="edit-form-start">
-        </label>
-        <label>종료 날짜/시간
-          <input type="datetime-local" id="edit-form-end">
-        </label>
+        <label>관리자 비밀번호<input type="password" id="edit-form-admin-password" required placeholder="관리자 비밀번호를 입력하세요"></label>
+        <label>세션 이름<input type="text" id="edit-form-name" required placeholder="예: A 고객사 트랙 1 교육"></label>
+        <label>트랙(Skill) 이름<input type="text" id="edit-form-track" required placeholder="예: GitHub Pages"></label>
+        <label>교육일시<input type="datetime-local" id="edit-form-created"></label>
+        <label>시작 날짜/시간<input type="datetime-local" id="edit-form-start"></label>
+        <label>종료 날짜/시간<input type="datetime-local" id="edit-form-end"></label>
         <div class="form-actions">
           <button type="submit" class="btn-primary">수정</button>
           <button type="button" id="edit-modal-cancel" class="btn-secondary">취소</button>
         </div>
       </form>
-
-      <!-- Post-edit snippet -->
       <div id="edit-snippet-result" class="snippet-result hidden">
         <h3>✅ 세션 수정 완료</h3>
         <p>Session ID: <code id="edit-snippet-session-id"></code></p>
@@ -181,61 +278,9 @@
     </div>
   </div>
 
-  <!-- User search modal -->
-  <div id="search-modal-overlay" class="modal-overlay hidden">
-    <div class="modal modal-wide">
-      <h2>🔍 참여 이력 검색</h2>
-      <p class="modal-desc">GitHub ID 또는 Organization 이름으로 검색하세요.</p>
-      <form id="search-user-form">
-        <div class="search-input-row">
-          <input type="text" id="search-query" required placeholder="예: octocat 또는 my-org">
-          <button type="submit" class="btn-primary">검색</button>
-        </div>
-      </form>
-      <div id="search-results" class="search-results hidden">
-        <div id="search-user-profile" class="search-user-profile"></div>
-        <div class="search-view-toggle">
-          <button type="button" id="search-view-summary" class="toggle-btn active">📋 요약 보기</button>
-          <button type="button" id="search-view-detail" class="toggle-btn">📊 상세 이력 보기</button>
-          <div class="search-sort-options hidden" id="search-sort-options">
-            <label>정렬:
-              <select id="search-sort-select">
-                <option value="time-asc">시간순 (오래된 순)</option>
-                <option value="time-desc" selected>시간순 (최신 순)</option>
-                <option value="track-asc">트랙 이름순 (A→Z)</option>
-                <option value="track-desc">트랙 이름순 (Z→A)</option>
-              </select>
-            </label>
-          </div>
-        </div>
-        <div id="search-summary-view">
-          <table id="search-results-table">
-            <thead>
-              <tr>
-                <th>세션</th>
-                <th>트랙</th>
-                <th>GitHub ID</th>
-                <th>Repo</th>
-                <th>시작 시간</th>
-                <th>완료 시간</th>
-                <th>상태</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-        <div id="search-detail-view" class="hidden"></div>
-      </div>
-      <div id="search-empty" class="search-empty hidden">
-        검색 결과가 없습니다.
-      </div>
-      <div class="form-actions">
-        <button type="button" id="search-modal-close" class="btn-secondary">닫기</button>
-      </div>
-    </div>
-  </div>
 
-  </div> <!-- /main-wrapper -->
+
+  </div>
 
   <script src="app.js"></script>
 </body>

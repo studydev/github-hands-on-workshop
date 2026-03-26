@@ -60,7 +60,7 @@ router.get('/', async (_req, res) => {
 router.put('/:sessionId', requireAdmin, async (req, res) => {
   try {
     const { sessionId } = req.params;
-    const { name, track, startDate, endDate } = req.body;
+    const { name, track, startDate, endDate, createdAt } = req.body;
 
     if (!name || !track) {
       return res.status(400).json({ error: 'name, track are required' });
@@ -81,6 +81,7 @@ router.put('/:sessionId', requireAdmin, async (req, res) => {
       startDate: startDate || null,
       endDate: endDate || null,
     };
+    if (createdAt) updated.createdAt = createdAt;
 
     const { resource: result } = await getSessions()
       .item(sessionId, sessionId)

@@ -2,6 +2,7 @@ const { CosmosClient } = require('@azure/cosmos');
 
 let sessionsContainer;
 let eventsContainer;
+let dailyStatsContainer;
 
 async function initCosmos() {
   const endpoint = process.env.COSMOS_ENDPOINT;
@@ -30,8 +31,14 @@ async function initCosmos() {
     },
   });
 
+  const { container: dailyStats } = await database.containers.createIfNotExists({
+    id: 'dailyStats',
+    partitionKey: { paths: ['/date'] },
+  });
+
   sessionsContainer = sessions;
   eventsContainer = events;
+  dailyStatsContainer = dailyStats;
 
   console.log('Cosmos DB initialized: workshop-tracker');
 }
@@ -44,4 +51,8 @@ function getEvents() {
   return eventsContainer;
 }
 
-module.exports = { initCosmos, getSessions, getEvents };
+function getDailyStats() {
+  return dailyStatsContainer;
+}
+
+module.exports = { initCosmos, getSessions, getEvents, getDailyStats };

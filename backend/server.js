@@ -1,12 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
+const cron = require('node-cron');
 const { initCosmos } = require('./db/cosmos');
 const sessionsRouter = require('./routes/sessions');
 const eventsRouter = require('./routes/events');
 const leaderboardRouter = require('./routes/leaderboard');
 const streamRouter = require('./routes/stream');
 const usersRouter = require('./routes/users');
+const statsRouter = require('./routes/stats');
+const { backfillDailyStats, aggregateYesterday, aggregateToday } = require('./jobs/dailyStatsAggregator');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,7 +33,7 @@ app.use(express.json());
 
 const limiter = rateLimit({
   windowMs: 60 * 1000,
-  max: 60,
+  max: 600,
   standardHeaders: true,
   legacyHeaders: false,
 });
@@ -42,6 +45,7 @@ app.use('/api/events', eventsRouter);
 app.use('/api/sessions', leaderboardRouter);
 app.use('/api/stream', streamRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/stats', statsRouter);
 
 // Health check
 app.get('/api/health', (_req, res) => {
@@ -51,6 +55,20 @@ app.get('/api/health', (_req, res) => {
 // --- Start ---
 async function start() {
   await initCosmos();
+
+  // Backfill daily stats on startup (idempotent via upsert)
+  backfillDailyStats(30).catch(err => console.error('[DailyStats] Backfill error:', err.message));
+
+  // Every hour at :55 KST — aggregate today's data (upsert, so last run of the day finalizes it)
+  cron.schedule('55 * * * *', async () => {
+    console.log('[Cron] Aggregating today stats (KST)...');
+    try {
+      await aggregateToday();
+    } catch (err) {
+      console.error('[Cron] Hourly stats error:', err.message);
+    }
+  }, { timezone: 'Asia/Seoul' });
+
   app.listen(PORT, () => {
     console.log(`Workshop Tracker API listening on port ${PORT}`);
   });
