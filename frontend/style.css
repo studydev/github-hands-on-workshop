@@ -191,6 +191,10 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator { filter: invert
 .dash-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .dash-panel-header h3 { font-size: 1.05rem; color: var(--text); font-weight: 700; }
 .dash-panel-meta { font-size: 0.78rem; color: var(--text-muted); background: var(--bg); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); }
+.chart-period-selector { display: flex; gap: 4px; }
+.chart-period-btn { font-size: 0.75rem; color: var(--text-muted); background: var(--bg); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; }
+.chart-period-btn:hover { color: var(--text); border-color: var(--accent); }
+.chart-period-btn.active { color: #fff; background: var(--accent); border-color: var(--accent); }
 
 /* Chart summary stats */
 .dash-chart-summary { display: flex; gap: 32px; margin-bottom: 16px; }

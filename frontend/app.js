@@ -210,23 +210,46 @@
   }
 
   // HOME STATS
+  var allDailyEvents = null;
+  var chartPeriodDays = 7;
+
   async function loadHomeStats() {
-    var dailyEvents = null;
+    allDailyEvents = null;
     try {
       var data = await api('/api/stats/overview');
       document.getElementById('home-total-sessions').textContent = data.totalSessions.toLocaleString();
       document.getElementById('home-total-participants').textContent = data.totalParticipants.toLocaleString();
       document.getElementById('home-total-completed').textContent = data.totalCompleted.toLocaleString();
-      if (data.dailyEvents && data.dailyEvents.length > 0) dailyEvents = data.dailyEvents;
+      if (data.dailyEvents && data.dailyEvents.length > 0) allDailyEvents = data.dailyEvents;
     } catch (err) {
       console.error('Failed to load home stats, using mock data:', err);
       document.getElementById('home-total-sessions').textContent = '24';
       document.getElementById('home-total-participants').textContent = '312';
       document.getElementById('home-total-completed').textContent = '198';
     }
-    if (!dailyEvents) dailyEvents = generateMockDailyEvents();
-    renderDailyChart(dailyEvents);
+    if (!allDailyEvents) allDailyEvents = generateMockDailyEvents();
+    renderDailyChart(allDailyEvents.slice(-chartPeriodDays));
+    updatePeriodButtons();
   }
+
+  function updatePeriodButtons() {
+    var btns = document.querySelectorAll('.chart-period-btn');
+    for (var i = 0; i < btns.length; i++) {
+      if (Number(btns[i].getAttribute('data-days')) === chartPeriodDays) {
+        btns[i].classList.add('active');
+      } else {
+        btns[i].classList.remove('active');
+      }
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('chart-period-btn')) {
+      chartPeriodDays = Number(e.target.getAttribute('data-days'));
+      updatePeriodButtons();
+      if (allDailyEvents) renderDailyChart(allDailyEvents.slice(-chartPeriodDays));
+    }
+  });
 
   function generateMockDailyEvents() {
     var events = [], now = new Date();

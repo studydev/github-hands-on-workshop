@@ -112,7 +112,11 @@
           <div class="dash-panel">
             <div class="dash-panel-header">
               <h3>📈 이벤트 추이</h3>
-              <span class="dash-panel-meta">최근 30일</span>
+              <div class="chart-period-selector">
+                <button class="chart-period-btn" data-days="7">최근 7일</button>
+                <button class="chart-period-btn" data-days="14">최근 14일</button>
+                <button class="chart-period-btn" data-days="30">최근 30일</button>
+              </div>
             </div>
             <div class="chart-wrapper">
               <div id="home-chart-yaxis" class="chart-yaxis"></div>

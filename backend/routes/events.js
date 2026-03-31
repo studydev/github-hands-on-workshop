@@ -31,15 +31,44 @@ router.post('/', async (req, res) => {
       });
     }
 
+    const normalizedUsername = username.toLowerCase();
+    const normalizedStep = normalizedType === 'step' ? Number(step) : null;
+
+    // Remove previous event of the same type for this user in this session
+    // (handles restarts: user re-runs a skill, gets a new runId)
+    const dedupQuery = normalizedType === 'step'
+      ? {
+          query: 'SELECT e.id FROM e WHERE e.sessionId = @sid AND e.username = @user AND e.type = @type AND e["step"] = @step',
+          parameters: [
+            { name: '@sid', value: sessionId },
+            { name: '@user', value: normalizedUsername },
+            { name: '@type', value: normalizedType },
+            { name: '@step', value: normalizedStep },
+          ],
+        }
+      : {
+          query: 'SELECT e.id FROM e WHERE e.sessionId = @sid AND e.username = @user AND e.type = @type',
+          parameters: [
+            { name: '@sid', value: sessionId },
+            { name: '@user', value: normalizedUsername },
+            { name: '@type', value: normalizedType },
+          ],
+        };
+
+    const { resources: existing } = await getEvents().items.query(dedupQuery).fetchAll();
+    for (const old of existing) {
+      await getEvents().item(old.id, sessionId).delete();
+    }
+
     const event = {
       id: crypto.randomUUID(),
       sessionId,
       runId: String(runId),
       type: normalizedType,
-      username: username.toLowerCase(),
+      username: normalizedUsername,
       repo: repo || '',
       track: track || '',
-      step: normalizedType === 'step' ? Number(step) : null,
+      step: normalizedStep,
       description: description || null,
       timestamp: new Date().toISOString(),
     };

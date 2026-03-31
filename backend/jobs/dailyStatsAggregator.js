@@ -1,21 +1,34 @@
 const { getSessions, getEvents, getDailyStats } = require('../db/cosmos');
 
 /**
- * Aggregate stats for a single date (YYYY-MM-DD) and upsert to dailyStats container.
+ * Convert a KST date string (YYYY-MM-DD) to UTC boundary timestamps.
+ * KST midnight = UTC 15:00 of the previous day.
+ */
+function kstDateToUtcRange(dateStr) {
+  // KST is UTC+9, so KST midnight = previous day 15:00 UTC
+  const kstMidnight = new Date(dateStr + 'T00:00:00+09:00');
+  const nextDay = new Date(kstMidnight.getTime() + 24 * 60 * 60 * 1000);
+  return {
+    start: kstMidnight.toISOString(),
+    end: nextDay.toISOString(),
+  };
+}
+
+/**
+ * Aggregate stats for a single KST date (YYYY-MM-DD) and upsert to dailyStats container.
+ * Uses KST day boundaries for consistent timezone handling.
  * Also computes cumulative totals across all time.
  */
 async function aggregateDate(dateStr) {
-  const nextDate = new Date(dateStr + 'T00:00:00Z');
-  nextDate.setUTCDate(nextDate.getUTCDate() + 1);
-  const nextDateStr = nextDate.toISOString().substring(0, 10);
+  const { start, end } = kstDateToUtcRange(dateStr);
 
-  // Daily counts for this date
+  // Daily counts for this KST date
   const { resources: dayEvents } = await getEvents().items
     .query({
       query: `SELECT e.type FROM e WHERE e.timestamp >= @start AND e.timestamp < @end`,
       parameters: [
-        { name: '@start', value: dateStr + 'T00:00:00.000Z' },
-        { name: '@end', value: nextDateStr + 'T00:00:00.000Z' },
+        { name: '@start', value: start },
+        { name: '@end', value: end },
       ],
     })
     .fetchAll();
@@ -63,15 +76,14 @@ async function aggregateDate(dateStr) {
 }
 
 /**
- * Backfill last N days of daily stats.
+ * Backfill last N days of daily stats (using KST dates).
  */
 async function backfillDailyStats(days = 30) {
-  console.log(`[DailyStats] Backfilling last ${days} days...`);
-  const now = new Date();
+  console.log(`[DailyStats] Backfilling last ${days} days (KST)...`);
   for (let i = days - 1; i >= 0; i--) {
-    const d = new Date(now);
-    d.setUTCDate(d.getUTCDate() - i);
-    const dateStr = d.toISOString().substring(0, 10);
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const dateStr = d.toLocaleDateString('en-CA', { timeZone: 'Asia/Seoul' });
     try {
       await aggregateDate(dateStr);
     } catch (err) {
