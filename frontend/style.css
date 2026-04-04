@@ -369,6 +369,9 @@ tr:hover td { background: rgba(88,166,255,0.05); }
 .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-decoration: none; }
 .badge-ready { background: var(--green); color: #fff; }
 .badge-ready:hover { opacity: 0.85; }
+.badge-theory { background: rgba(136,98,234,0.85); color: #fff; }
+.badge-theory:hover { opacity: 0.85; }
+.skill-theory-link { margin-left: 8px; font-size: 0.7rem; }
 .badge-dash { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; text-decoration: none; background: rgba(88,166,255,0.12); color: var(--accent); border: 1px solid rgba(88,166,255,0.25); }
 .badge-dash:hover { background: rgba(88,166,255,0.2); }
 .badge-track { display: inline-block; background: rgba(88,166,255,0.12); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }

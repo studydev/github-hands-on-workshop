@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 — 내 글을 있어 보이게 만드는 비법</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 내 글을 있어 보이게 만드는 비법</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-markdown')">마크다운</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-heading')">헤딩</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-format')">서식</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-image')">이미지/링크</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-code')">코드 블록</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-tasklist')">작업 목록</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 흐름 + Z축 깊이 변화
+    Row 1 (y=0)    : 좌→우  z=0 근처
+    Row 2 (y=420)  : 우→좌  z=-400~-600
+    Row 3 (y=840)  : 좌→우  z=-700~-900
+    Row 4 (y=1260) : 우→좌  z=-100~-300
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: 소개 / 학습 목표 / 실습 흐름 (좌→우) ==================== -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">글쓰기의 기본기 · 모듈 #2</span>
+      </div>
+      <h1>내 글을 있어 보이게 만드는 비법</h1>
+      <p class="theory-skill">Communicate using Markdown</p>
+      <p class="theory-desc">마크다운 문법을 배워 README, Issue, PR에<br>체계적이고 보기 좋은 문서를 작성합니다.<br>헤딩, 이미지, 코드 블록, 작업 목록까지 한 번에!</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">5단계 실습</span>
+      </div>
+    </div>
+
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/heading-24.svg" alt="heading">
+          <strong>헤딩 (Heading)</strong>
+          <p>문서의 구조를 잡는 제목 — #으로 단계 구분</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/image-24.svg" alt="image">
+          <strong>이미지 & 링크</strong>
+          <p>![alt](url)로 이미지, [text](url)로 링크 삽입</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="code">
+          <strong>코드 블록</strong>
+          <p>백틱(```)으로 코드를 감싸 구문 강조 표시</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tasklist-24.svg" alt="tasklist">
+          <strong>작업 목록 (Task List)</strong>
+          <p>- [ ] 체크박스로 할 일을 추적하는 체크리스트</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>헤딩 추가</strong><p><code># ## ###</code> 사용</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>작업 목록</strong><p><code>- [ ] 할 일</code></p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>코드 예제</strong><p>백틱으로 코드 블록</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>이미지 추가</strong><p><code>![alt](url)</code></p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">5</span><div class="flow-content"><strong>PR 병합</strong><p>main에 반영</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 GitHub Actions가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: 마크다운 / 헤딩 / 서식 (우→좌) ==================== -->
+    <div id="t-markdown" class="step theory-slide" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/markdown-24.svg" alt="markdown"> 마크다운 (Markdown)</h2>
+      <p class="theory-subtitle">개발자의 글쓰기 도구 — 가볍고 강력한 텍스트 서식 언어</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>마크다운</strong>은 일반 텍스트에 간단한 기호를 더해 <em>서식 있는 문서</em>를 만드는 경량 마크업 언어입니다.</p>
+          <p>GitHub에서는 <strong>거의 모든 곳</strong>에서 마크다운을 사용합니다:</p>
+          <ul class="theory-list">
+            <li><strong>README.md</strong> — 프로젝트 소개 문서</li>
+            <li><strong>Issue & PR</strong> — 버그 리포트, 코드 리뷰 코멘트</li>
+            <li><strong>.md 파일</strong> — 문서, 가이드, 위키</li>
+            <li><strong>GitHub Pages</strong> — 정적 웹사이트 콘텐츠</li>
+          </ul>
+          <div class="theory-highlight">
+            마크다운을 배우면 GitHub 어디서든 <strong>체계적이고 보기 좋은</strong> 글을 쓸 수 있습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-heading" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/heading-24.svg" alt="heading"> 헤딩 (Heading)</h2>
+      <p class="theory-subtitle">문서의 뼈대를 세우는 제목 구조</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>헤딩은 <code>#</code> 기호를 사용해 문서의 <strong>계층 구조</strong>를 만듭니다. 1~6단계까지 지원됩니다.</p>
+          <div class="theory-code-block">
+            <code># 제목 1</code> — 가장 큰 제목 (H1)<br>
+            <code>## 제목 2</code> — 섹션 제목 (H2)<br>
+            <code>### 제목 3</code> — 하위 섹션 (H3)<br>
+            <code>#### 제목 4</code> — 더 세부 항목 (H4)
+          </div>
+          <h3>잘 쓰는 팁</h3>
+          <ul class="theory-list">
+            <li>H1은 문서 당 <strong>하나만</strong> 사용 (문서 제목)</li>
+            <li>H2로 큰 섹션, H3로 세부 항목을 나눔</li>
+            <li>GitHub은 헤딩으로 <strong>자동 목차</strong>를 생성</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 1단계에서 <code>index.md</code> 파일에 헤딩을 추가합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-format" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/bold-24.svg" alt="format"> 텍스트 서식</h2>
+      <p class="theory-subtitle">강조, 목록, 인용으로 글에 생명 불어넣기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <div class="theory-code-block">
+            <code>**볼드**</code> → <strong>볼드</strong><br>
+            <code>*이탤릭*</code> → <em>이탤릭</em><br>
+            <code>~~취소선~~</code> → <del>취소선</del><br>
+            <code>> 인용</code> → 인용문 블록
+          </div>
+          <h3>목록 (List)</h3>
+          <div class="theory-code-block">
+            순서 없는 목록:<br>
+            <code>- 항목 1</code><br>
+            <code>- 항목 2</code><br><br>
+            순서 있는 목록:<br>
+            <code>1. 첫 번째</code><br>
+            <code>2. 두 번째</code>
+          </div>
+          <div class="theory-highlight">
+            마크다운 서식은 <strong>Issue, PR 코멘트, README</strong> 어디서든 동일하게 작동합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: 이미지&링크 / 코드 블록 / 작업 목록 (좌→우) ==================== -->
+    <div id="t-image" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/image-24.svg" alt="image"> 이미지 & 링크</h2>
+      <p class="theory-subtitle">문서에 시각 자료와 참조를 추가</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h3>이미지 삽입</h3>
+          <div class="theory-code-block">
+            <code>![대체 텍스트](이미지 URL)</code><br><br>
+            예시:<br>
+            <code>![Mona](https://octodex.github.com/images/mona.jpg)</code>
+          </div>
+          <h3>링크 삽입</h3>
+          <div class="theory-code-block">
+            <code>[표시 텍스트](URL)</code><br><br>
+            예시:<br>
+            <code>[GitHub](https://github.com)</code>
+          </div>
+          <div class="theory-highlight">
+            이미지 문법은 링크 앞에 <code>!</code>만 추가하면 됩니다.<br>
+            실습 4단계에서 이미지를 추가합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-code" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="code"> 코드 블록</h2>
+      <p class="theory-subtitle">코드를 깔끔하게 보여주는 구문 강조</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h3>인라인 코드</h3>
+          <div class="theory-code-block">
+            백틱 하나로 감싸기: <code>`변수명`</code><br>
+            결과: <code>변수명</code>
+          </div>
+          <h3>코드 블록 (여러 줄)</h3>
+          <div class="theory-code-block">
+            ````javascript<br>
+            function hello() {<br>
+            &nbsp;&nbsp;console.log("Hello!");<br>
+            }<br>
+            ```<br><br>
+            언어 이름을 지정하면 <strong>구문 강조</strong>가 적용됩니다.<br>
+            지원 언어: javascript, python, bash, html, css 등
+          </div>
+          <div class="theory-highlight">
+            실습 3단계에서 코드 예제를 추가합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-tasklist" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tasklist-24.svg" alt="tasklist"> 작업 목록 (Task List)</h2>
+      <p class="theory-subtitle">체크박스로 할 일을 추적하는 체크리스트</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>작업 목록은 GitHub에서 <strong>Issue와 PR</strong>에 특히 유용한 기능입니다.</p>
+          <div class="theory-code-block">
+            <code>- [x] 완료된 항목</code><br>
+            <code>- [ ] 아직 안 한 항목</code><br>
+            <code>- [ ] 다음에 할 일</code>
+          </div>
+          <h3>GitHub에서의 특별한 기능</h3>
+          <ul class="theory-list">
+            <li>Issue에 작업 목록을 넣으면 <strong>진행률 바</strong>가 표시됨</li>
+            <li>체크박스를 <strong>클릭만으로</strong> 토글 가능 (편집 불필요)</li>
+            <li>PR 리뷰에서 <strong>리뷰 체크리스트</strong>로 활용</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 2단계에서 <code>index.md</code>에 작업 목록을 추가합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: Actions / 정리 (우→좌) ==================== -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-12" data-rotate-x="-5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: 헤딩 추가 → <strong>push 이벤트</strong> 감지 → # 문법 확인</li>
+            <li>2단계: 작업 목록 → <strong>push 이벤트</strong> 감지 → - [ ] 문법 확인</li>
+            <li>3단계: 코드 블록 → <strong>push 이벤트</strong> 감지 → ``` 문법 확인</li>
+            <li>4단계: 이미지 추가 → <strong>push 이벤트</strong> 감지 → ![]() 문법 확인</li>
+            <li>5단계: PR 병합 → <strong>pull_request closed</strong> 감지</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/heading-24.svg" alt="heading">
+          <div><strong>Heading</strong><p>#으로 구조 잡기 — H1~H6 계층</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/bold-24.svg" alt="format">
+          <div><strong>서식</strong><p>볼드, 이탤릭, 목록, 인용 — 글에 생명을</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/image-24.svg" alt="image">
+          <div><strong>이미지 & 링크</strong><p>![alt](url)로 시각 자료 삽입</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="code">
+          <div><strong>코드 블록</strong><p>```언어 — 구문 강조된 코드 표시</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tasklist-24.svg" alt="tasklist">
+          <div><strong>작업 목록</strong><p>- [ ] 체크박스로 할 일 추적</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/communicate-using-markdown" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-communicate-using-markdown">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step (arrow key로 도달 가능) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Calculate overview position from slide bounding box
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      // Overview: button toggles going to/from overview
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn,i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

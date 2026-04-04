@@ -1,0 +1,182 @@
+/* ============ THEORY SLIDES ============ */
+.theory-slide {
+  width: 1000px; padding: 30px 36px; border-radius: 16px;
+  background: rgba(13,17,23,0.95); border: 1px solid #21262d;
+  font-size: 1rem;
+  opacity: 0.15;
+  visibility: visible;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+.theory-slide.active { opacity: 1; }
+.theory-slide.present { opacity: 1; }
+/* Overview mode: show all slides */
+.impress-overview .theory-slide { opacity: 0.7 !important; visibility: visible !important; }
+/* Ensure iframe is clickable on active slide */
+.theory-slide:not(.active) .theory-video-wrap { pointer-events: none; }
+.theory-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.theory-icon { font-size: 2.5rem; }
+.theory-badge {
+  font-size: 0.72rem; font-weight: 600; padding: 3px 12px; border-radius: 10px;
+  background: rgba(240,136,62,0.12); color: #f0883e; border: 1px solid rgba(240,136,62,0.3);
+}
+.theory-slide h1 {
+  font-size: 2rem; font-weight: 800; margin-bottom: 4px;
+  background: linear-gradient(135deg, #f0883e, #58a6ff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.theory-skill { font-size: 0.9rem; color: #8b949e; margin-bottom: 16px; }
+.theory-subtitle { font-size: 0.85rem; color: #58a6ff; margin-bottom: 16px; font-weight: 500; }
+.theory-desc { font-size: 1rem; color: #c9d1d9; line-height: 1.7; margin-bottom: 20px; }
+.theory-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+.t-meta-item {
+  padding: 5px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: 600;
+  background: rgba(255,255,255,0.04); border: 1px solid #30363d; color: #8b949e;
+}
+
+/* ============ TALL / WIDE SLIDE ============ */
+.theory-slide-tall { width: 1000px; min-height: auto; }
+.theory-slide-wide { width: 1400px; }
+.theory-video-wrap {
+  margin-top: 12px; border-radius: 8px; overflow: hidden;
+  border: 1px solid #21262d; background: #000;
+  max-height: 280px;
+  position: relative; z-index: 10;
+}
+.theory-video-wrap iframe {
+  width: 100%; height: 280px; display: block;
+  pointer-events: auto;
+}
+
+/* ============ LEARNING OBJECTIVES (Cards Grid) ============ */
+.theory-slide h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; color: #e6edf3; display: flex; align-items: center; gap: 10px; }
+/* Octicons in headings */
+.th-icon { width: 28px; height: 28px; filter: invert(1); opacity: 0.8; flex-shrink: 0; }
+/* Octicons in cards */
+.tc-icon { width: 32px; height: 32px; filter: invert(1); opacity: 0.6; margin-bottom: 6px; }
+.theory-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.theory-card {
+  padding: 20px; border-radius: 12px;
+  background: rgba(255,255,255,0.03); border: 1px solid #21262d;
+}
+.theory-card .tc-icon { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+.theory-card strong { font-size: 0.95rem; color: #e6edf3; }
+.theory-card p { font-size: 0.82rem; color: #8b949e; margin-top: 4px; line-height: 1.5; }
+
+/* ============ FLOW STEPS ============ */
+.flow-steps {
+  display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 20px;
+}
+.flow-step {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px; border-radius: 12px;
+  background: rgba(255,255,255,0.03); border: 1px solid #21262d;
+  min-width: 160px;
+}
+.flow-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; font-weight: 800;
+  background: rgba(88,166,255,0.15); color: #58a6ff; border: 1px solid rgba(88,166,255,0.3);
+  flex-shrink: 0;
+}
+.flow-content strong { font-size: 0.85rem; color: #e6edf3; display: block; }
+.flow-content p { font-size: 0.72rem; color: #8b949e; margin-top: 2px; }
+.flow-content code { font-size: 0.7rem; background: rgba(88,166,255,0.08); color: #58a6ff; padding: 1px 5px; border-radius: 4px; }
+.flow-arrow { font-size: 1.2rem; color: #484f58; margin: 0 6px; }
+.flow-note { font-size: 0.82rem; color: #8b949e; text-align: center; }
+
+/* Flow step cards (horizontal: 4 columns with images) */
+.flow-steps-hz {
+  display: flex; align-items: flex-start; gap: 0;
+  margin: 14px 0 10px;
+}
+.flow-hz-arrow {
+  display: flex; align-items: center; font-size: 1rem; color: #484f58;
+  padding: 0 4px; flex-shrink: 0; min-height: 60px;
+}
+.flow-step-card {
+  flex: 1; min-width: 0;
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid #21262d; background: rgba(255,255,255,0.02);
+}
+.flow-step-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px;
+}
+.flow-step-card img {
+  width: 100%; max-height: 140px; object-fit: cover; object-position: top;
+  display: block; opacity: 0.85; transition: opacity 0.3s;
+  border-top: 1px solid #21262d;
+}
+.flow-step-card:hover img { opacity: 1; }
+
+/* ============ TWO-COL LAYOUT ============ */
+.theory-two-col { display: flex; gap: 24px; }
+.theory-col-text { flex: 1; }
+.theory-col-text p { font-size: 0.82rem; color: #c9d1d9; line-height: 1.6; margin-bottom: 8px; }
+.theory-col-text em { color: #58a6ff; font-style: normal; font-weight: 600; }
+.theory-col-text h3 { font-size: 1rem; font-weight: 700; color: #e6edf3; margin: 16px 0 8px; }
+
+.theory-list { list-style: none; padding: 0; }
+.theory-list li {
+  padding: 4px 0 4px 20px; position: relative;
+  font-size: 0.8rem; color: #c9d1d9; line-height: 1.4;
+}
+.theory-list li::before {
+  content: '•'; position: absolute; left: 4px; color: #58a6ff; font-weight: 700;
+}
+
+.theory-highlight {
+  padding: 10px 16px; border-radius: 8px; margin: 12px 0;
+  background: rgba(88,166,255,0.06); border-left: 3px solid #58a6ff;
+  font-size: 0.85rem; color: #c9d1d9;
+}
+.theory-highlight a { color: #58a6ff; text-decoration: none; }
+.theory-highlight a:hover { text-decoration: underline; }
+
+.theory-code-block {
+  padding: 14px 18px; border-radius: 8px; margin: 12px 0;
+  background: rgba(255,255,255,0.03); border: 1px solid #21262d;
+  font-size: 0.82rem; color: #c9d1d9; line-height: 1.7;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+.theory-code-block code {
+  background: rgba(88,166,255,0.1); color: #58a6ff; padding: 1px 6px; border-radius: 4px;
+}
+
+/* ============ GIT FLOW DIAGRAM ============ */
+.git-flow {
+  padding: 14px 18px; border-radius: 8px; margin: 12px 0;
+  background: rgba(255,255,255,0.03); border: 1px solid #21262d;
+  font-size: 0.82rem; color: #6e7681; line-height: 1.9;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+.git-flow .gf-main { color: #7ee787; }
+.git-flow .gf-branch { color: #58a6ff; }
+.git-flow .gf-commit { color: #f0883e; }
+.git-flow .gf-pr { color: #d2a8ff; }
+.git-flow .gf-merge { color: #f778ba; }
+.git-flow .gf-dim { color: #484f58; }
+.git-flow .gf-active { font-weight: bold; }
+.git-flow .gf-highlight {
+  background: rgba(88,166,255,0.08); padding: 1px 6px; border-radius: 3px;
+}
+
+/* ============ SUMMARY ============ */
+.theory-summary {
+  display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;
+}
+.summary-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 18px; border-radius: 10px;
+  background: rgba(255,255,255,0.02); border: 1px solid #21262d;
+}
+.summary-icon { font-size: 1.6rem; flex-shrink: 0; }
+.summary-item strong { font-size: 0.9rem; color: #e6edf3; }
+.summary-item p { font-size: 0.78rem; color: #8b949e; margin-top: 2px; }
+.summary-cta { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }

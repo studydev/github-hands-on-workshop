@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 — 클릭 한 번으로 내 사이트 올리기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 클릭 한 번으로 내 사이트 올리기</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-pages')">GitHub Pages</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-jekyll')">Jekyll</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-homepage')">홈페이지</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-config')">설정</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-blog')">블로그</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-frontmatter')">Front Matter</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 흐름 + Z축 깊이 변화
+    Row 1 (y=0)    : 좌→우  z=0 근처
+    Row 2 (y=420)  : 우→좌  z=-400~-600
+    Row 3 (y=840)  : 좌→우  z=-700~-900
+    Row 4 (y=1260) : 우→좌  z=-100~-300
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: 소개 / 학습 목표 / 실습 흐름 (좌→우) ==================== -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">오늘 바로 시작! · 모듈 #3</span>
+      </div>
+      <h1>클릭 한 번으로 내 사이트 올리기</h1>
+      <p class="theory-skill">GitHub Pages</p>
+      <p class="theory-desc">GitHub 저장소를 웹사이트로 변환합니다.<br>Jekyll 테마를 적용하고, 홈페이지를 꾸미고,<br>블로그 게시물까지 작성해 봅니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">5단계 실습</span>
+      </div>
+    </div>
+
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/globe-24.svg" alt="pages">
+          <strong>GitHub Pages</strong>
+          <p>저장소를 실제 URL로 접속되는 웹사이트로 변환</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/paintbrush-24.svg" alt="theme">
+          <strong>Jekyll 테마</strong>
+          <p>_config.yml로 사이트 디자인을 한 줄로 변경</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-24.svg" alt="homepage">
+          <strong>홈페이지 커스터마이징</strong>
+          <p>index.md를 편집해 나만의 홈페이지 완성</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/note-24.svg" alt="blog">
+          <strong>블로그 게시물</strong>
+          <p>_posts/ 폴더에 마크다운으로 블로그 작성</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>Pages 활성화</strong><p>Settings → Pages</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>홈페이지 편집</strong><p><code>index.md</code> 수정</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>사이트 구성</strong><p><code>_config.yml</code> 테마</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>블로그 작성</strong><p><code>_posts/</code> 게시물</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">5</span><div class="flow-content"><strong>PR 병합</strong><p>main에 반영</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 GitHub Actions가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: GitHub Pages / Jekyll / 홈페이지 (우→좌) ==================== -->
+    <div id="t-pages" class="step theory-slide" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/globe-24.svg" alt="pages"> GitHub Pages</h2>
+      <p class="theory-subtitle">저장소를 웹사이트로 — 무료 정적 사이트 호스팅</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>GitHub Pages</strong>는 GitHub 저장소의 파일을 자동으로 <em>웹사이트</em>로 변환해주는 무료 호스팅 서비스입니다.</p>
+          <p>별도의 서버나 도메인 없이도 <strong>실제 URL</strong>로 접속되는 사이트를 만들 수 있습니다.</p>
+          <ul class="theory-list">
+            <li><strong>포트폴리오</strong> — 개인 이력서/프로젝트 소개</li>
+            <li><strong>프로젝트 문서</strong> — API 문서, 가이드</li>
+            <li><strong>블로그</strong> — Jekyll을 활용한 정적 블로그</li>
+            <li><strong>무료</strong> — 퍼블릭 저장소에서 완전 무료</li>
+          </ul>
+          <div class="theory-highlight">
+            실습에서는 Settings → Pages에서 <strong>main 브랜치</strong>를 소스로 선택해 활성화합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-jekyll" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/paintbrush-24.svg" alt="jekyll"> Jekyll — 정적 사이트 생성기</h2>
+      <p class="theory-subtitle">마크다운을 예쁜 웹사이트로 자동 변환</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Jekyll</strong>은 마크다운 파일을 HTML 웹사이트로 변환하는 <em>정적 사이트 생성기</em>입니다. GitHub Pages에 기본 내장되어 있습니다.</p>
+          <h3>Jekyll의 장점</h3>
+          <ul class="theory-list">
+            <li><strong>설치 불필요</strong> — GitHub Pages가 자동으로 빌드</li>
+            <li><strong>테마 지원</strong> — 한 줄로 사이트 디자인 변경</li>
+            <li><strong>마크다운 지원</strong> — .md 파일만 작성하면 됨</li>
+            <li><strong>블로그 기능</strong> — _posts/ 폴더로 자동 블로그</li>
+          </ul>
+          <div class="theory-highlight">
+            실습에서는 <code>minima</code> 테마를 사용합니다. <code>_config.yml</code>에 <code>theme: minima</code> 한 줄이면 됩니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-homepage" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-24.svg" alt="homepage"> 홈페이지 (index.md)</h2>
+      <p class="theory-subtitle">사이트의 첫 화면을 마크다운으로 작성</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><code>index.md</code> 파일이 사이트의 <strong>메인 페이지</strong>가 됩니다. 마크다운 문법으로 자유롭게 내용을 편집할 수 있습니다.</p>
+          <div class="theory-code-block">
+            <code>---</code><br>
+            <code>title: Welcome to my blog</code><br>
+            <code>---</code><br><br>
+            <code># 안녕하세요! 👋</code><br>
+            <code>이것은 나의 GitHub Pages 사이트입니다.</code>
+          </div>
+          <h3>홈페이지에 넣을 수 있는 것들</h3>
+          <ul class="theory-list">
+            <li><strong>자기 소개</strong> — 이름, 관심 분야</li>
+            <li><strong>프로젝트 목록</strong> — 링크와 설명</li>
+            <li><strong>이미지</strong> — 프로필 사진, 스크린샷</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 2단계에서 <code>index.md</code>를 편집해 홈페이지를 꾸밉니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: 설정 / 블로그 / Front Matter (좌→우) ==================== -->
+    <div id="t-config" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/gear-24.svg" alt="config"> _config.yml — 사이트 설정</h2>
+      <p class="theory-subtitle">테마, 제목, 저자 정보를 한 곳에서 관리</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><code>_config.yml</code>은 Jekyll 사이트의 <strong>전체 설정</strong>을 담는 파일입니다.</p>
+          <div class="theory-code-block">
+            <code>theme: minima</code><br>
+            <code>title: "내 블로그"</code><br>
+            <code>author: "홍길동"</code><br>
+            <code>description: "GitHub Pages로 만든 블로그"</code><br>
+            <code>timezone: Asia/Seoul</code>
+          </div>
+          <h3>주요 설정 항목</h3>
+          <ul class="theory-list">
+            <li><strong>theme</strong> — 사이트 디자인 테마 선택</li>
+            <li><strong>title</strong> — 사이트 제목 (브라우저 탭에 표시)</li>
+            <li><strong>description</strong> — 사이트 설명 (SEO)</li>
+            <li><strong>timezone</strong> — 날짜 처리 시간대</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 3단계에서 <code>_config.yml</code>에 <code>theme: minima</code>를 추가합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-blog" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/note-24.svg" alt="blog"> 블로그 게시물</h2>
+      <p class="theory-subtitle">_posts/ 폴더에 마크다운으로 블로그 작성</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>Jekyll은 <code>_posts/</code> 폴더의 마크다운 파일을 자동으로 <strong>블로그 게시물</strong>로 변환합니다.</p>
+          <h3>파일 이름 규칙</h3>
+          <div class="theory-code-block">
+            <code>_posts/YYYY-MM-DD-제목.md</code><br><br>
+            예시:<br>
+            <code>_posts/2026-04-05-my-first-post.md</code>
+          </div>
+          <ul class="theory-list">
+            <li><strong>날짜</strong>는 반드시 <code>YYYY-MM-DD</code> 형식</li>
+            <li><strong>제목</strong>의 단어 사이에 하이픈(-) 사용</li>
+            <li>날짜 형식이 잘못되면 <strong>빌드 에러</strong> 발생</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 4단계에서 <code>_posts/</code> 폴더에 첫 블로그 글을 작성합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-frontmatter" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/list-unordered-24.svg" alt="frontmatter"> Front Matter</h2>
+      <p class="theory-subtitle">파일 상단의 메타데이터 — YAML 형식 설정 블록</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Front Matter</strong>는 마크다운 파일 최상단에 위치하는 <code>---</code>로 감싼 YAML 설정 블록입니다.</p>
+          <div class="theory-code-block">
+            <code>---</code><br>
+            <code>title: "내 블로그에 오신 것을 환영합니다"</code><br>
+            <code>date: 2026-04-05</code><br>
+            <code>---</code><br><br>
+            <code>여기부터 본문 내용을 작성합니다...</code>
+          </div>
+          <h3>주요 Front Matter 항목</h3>
+          <ul class="theory-list">
+            <li><strong>title</strong> — 게시물 제목 (페이지에 표시)</li>
+            <li><strong>date</strong> — 게시물 날짜 (YYYY-MM-DD)</li>
+            <li><strong>layout</strong> — 사용할 레이아웃 템플릿</li>
+          </ul>
+          <div class="theory-highlight">
+            index.md와 블로그 게시물 모두 <strong>Front Matter</strong>로 시작해야 Jekyll이 제대로 처리합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: Actions / 정리 (우→좌) ==================== -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-12" data-rotate-x="-5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: Pages 활성화 → <strong>page_build 이벤트</strong> 감지 → Pages 설정 확인</li>
+            <li>2단계: index.md 편집 → <strong>push 이벤트</strong> 감지 → 콘텐츠 확인</li>
+            <li>3단계: _config.yml 수정 → <strong>push 이벤트</strong> 감지 → 테마 설정 확인</li>
+            <li>4단계: 블로그 작성 → <strong>push 이벤트</strong> 감지 → _posts/ 파일 확인</li>
+            <li>5단계: PR 병합 → <strong>pull_request closed</strong> 감지</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/globe-24.svg" alt="pages">
+          <div><strong>GitHub Pages</strong><p>저장소 → 웹사이트 — 무료 호스팅</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/paintbrush-24.svg" alt="jekyll">
+          <div><strong>Jekyll</strong><p>마크다운 → HTML 변환 엔진</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-24.svg" alt="homepage">
+          <div><strong>index.md</strong><p>사이트 메인 페이지 — 마크다운으로 작성</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/gear-24.svg" alt="config">
+          <div><strong>_config.yml</strong><p>테마, 제목, 설정을 한 곳에서 관리</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/note-24.svg" alt="blog">
+          <div><strong>블로그</strong><p>_posts/YYYY-MM-DD-제목.md 형식</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/github-pages" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-github-pages">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step (arrow key로 도달 가능) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Calculate overview position from slide bounding box
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      // Overview: button toggles going to/from overview
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn,i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
