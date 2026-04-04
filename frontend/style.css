@@ -433,6 +433,8 @@ tr:hover td { background: rgba(88,166,255,0.05); }
 .mobile-menu-btn:hover { color: var(--text); background: rgba(255,255,255,0.06); }
 
 /* Theme toggle */
+.header-github-link { display: flex; align-items: center; justify-content: center; color: var(--text-muted); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; transition: all 0.2s; flex-shrink: 0; line-height: 1; }
+.header-github-link:hover { color: var(--text); border-color: var(--accent); }
 .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 4px 10px; font-size: 1rem; cursor: pointer; transition: all 0.2s; flex-shrink: 0; line-height: 1; }
 .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
 .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 199; }
