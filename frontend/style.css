@@ -348,18 +348,18 @@ tr:hover td { background: rgba(88,166,255,0.05); }
 @keyframes celebrationOut { 0% { opacity: 1; } 100% { opacity: 0; } }
 
 /* ============ TRACK / SKILLS PAGES ============ */
-.track-page-inner, .all-skills-page-inner { max-width: 1200px; margin: 0 auto; }
-.track-header { margin-bottom: 24px; }
-.track-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.track-page-inner, .all-skills-page-inner { max-width: 1600px; margin: 0 auto; padding: 16px 24px; }
+.track-header { margin-bottom: 28px; }
+.track-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
 .track-meta-item { font-size: 0.9rem; color: var(--text-muted); background: rgba(255,255,255,0.04); padding: 4px 12px; border-radius: 6px; border: 1px solid var(--border); }
-.track-result { font-size: 0.9rem; color: var(--green); margin-top: 8px; }
+.track-result { font-size: 0.9rem; color: var(--green); margin-top: 8px; margin-bottom: 12px; line-height: 1.6; }
 .track-story { margin-top: 20px; padding: 16px; background: rgba(88,166,255,0.06); border: 1px solid rgba(88,166,255,0.15); border-radius: 8px; font-size: 0.9rem; color: var(--text-muted); }
 .curriculum-table-wrapper { overflow-x: auto; }
 .curriculum-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.curriculum-table thead th { background: var(--surface); color: var(--text-muted); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); }
+.curriculum-table thead th { background: var(--surface); color: var(--text-muted); font-weight: 600; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--border); }
 .curriculum-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
 .curriculum-table tbody tr:hover { background: rgba(88,166,255,0.06); }
-.curriculum-table td { padding: 12px 14px; vertical-align: middle; }
+.curriculum-table td { padding: 14px 16px; vertical-align: middle; }
 .module-num { text-align: center; font-weight: 700; color: var(--accent); width: 50px; }
 .module-title { font-weight: 600; color: var(--text); }
 .module-learn { color: var(--text-muted); font-size: 0.85rem; }
@@ -372,12 +372,26 @@ tr:hover td { background: rgba(88,166,255,0.05); }
 .badge-dash { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; text-decoration: none; background: rgba(88,166,255,0.12); color: var(--accent); border: 1px solid rgba(88,166,255,0.25); }
 .badge-dash:hover { background: rgba(88,166,255,0.2); }
 .badge-track { display: inline-block; background: rgba(88,166,255,0.12); color: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+.all-skills-cat-link { text-decoration: none; }
+.all-skills-cat-link:hover .badge-track { background: rgba(88,166,255,0.25); }
+.badge-license { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; }
+.badge-license-free { background: rgba(35,134,54,0.15); color: #3fb950; border: 1px solid rgba(35,134,54,0.3); }
+.badge-license-copilot-pro { background: rgba(137,87,229,0.15); color: #a371f7; border: 1px solid rgba(137,87,229,0.3); }
+.badge-license-copilot-proplus { background: rgba(210,153,34,0.15); color: #d29922; border: 1px solid rgba(210,153,34,0.3); }
+.badge-license-ghas { background: rgba(218,54,51,0.15); color: #f85149; border: 1px solid rgba(218,54,51,0.3); }
+.light-theme .badge-license-free { background: rgba(35,134,54,0.1); color: #1a7f37; border-color: rgba(35,134,54,0.3); }
+.light-theme .badge-license-copilot-pro { background: rgba(137,87,229,0.1); color: #8250df; border-color: rgba(137,87,229,0.3); }
+.light-theme .badge-license-copilot-proplus { background: rgba(210,153,34,0.1); color: #9a6700; border-color: rgba(210,153,34,0.3); }
+.light-theme .badge-license-ghas { background: rgba(218,54,51,0.1); color: #cf222e; border-color: rgba(218,54,51,0.3); }
+.badge-time { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; background: rgba(88,166,255,0.12); color: var(--accent); border: 1px solid rgba(88,166,255,0.25); }
+.light-theme .badge-time { background: rgba(88,166,255,0.08); color: #0969da; border-color: rgba(88,166,255,0.25); }
+.dur-cell { font-weight: 600; color: var(--accent); white-space: nowrap; }
 .all-skills-desc { color: var(--text-muted); margin-bottom: 16px; font-size: 0.9rem; }
 .repo-link { color: var(--accent); text-decoration: none; font-size: 0.8rem; word-break: break-all; }
 .repo-link:hover { text-decoration: underline; }
 
 /* ============ SEARCH PAGE ============ */
-.search-page { max-width: 1200px; margin: 0 auto; }
+.search-page { max-width: 1600px; margin: 0 auto; padding: 16px 24px; }
 .search-page-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px; }
 .search-page .search-input-row { max-width: 600px; margin-bottom: 20px; }
 .search-page .search-results { overflow-x: auto; }

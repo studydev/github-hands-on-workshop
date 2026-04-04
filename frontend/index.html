@@ -33,8 +33,18 @@
 
         <li class="sidebar-divider"></li>
 
-        <!-- 교육 코스 -->
+        <!-- 교육 코스 (learn.github.com/skills 카테고리 기반) -->
         <li class="sidebar-category-label">교육 코스</li>
+        <li><a href="#" data-page="cat_first_day" class="sidebar-link">🚀 오늘 바로 시작!</a></li>
+        <li><a href="#" data-page="cat_first_week" class="sidebar-link">📚 협업 완전 정복</a></li>
+        <li><a href="#" data-page="cat_copilot" class="sidebar-link">🤖 AI 날개 달기</a></li>
+        <li><a href="#" data-page="cat_actions" class="sidebar-link">⚙️ 자동화의 마법</a></li>
+        <li><a href="#" data-page="cat_security" class="sidebar-link">🔒 내 코드 지키기</a></li>
+        <li><a href="#" data-page="cat_switch" class="sidebar-link">🔄 한 번에 이사</a></li>
+        <li class="sidebar-divider"></li>
+        <li><a href="#" data-page="all-skills" class="sidebar-link">📋 전체 실습 목록</a></li>
+        <!-- 기존 트랙 (숨김 처리 — 삭제하지 않음) -->
+        <!--
         <li><a href="#" data-page="track1a" class="sidebar-link">Track 1-A · 웹사이트</a></li>
         <li><a href="#" data-page="track1b" class="sidebar-link">Track 1-B · Git 협업</a></li>
         <li><a href="#" data-page="track2" class="sidebar-link">Track 2 · AI Copilot</a></li>
@@ -42,8 +52,7 @@
         <li><a href="#" data-page="track4" class="sidebar-link">Track 4 · 보안</a></li>
         <li><a href="#" data-page="track5" class="sidebar-link">Track 5 · 레거시</a></li>
         <li><a href="#" data-page="track6" class="sidebar-link">Track 6 · ADO 이전</a></li>
-        <li class="sidebar-divider"></li>
-        <li><a href="#" data-page="all-skills" class="sidebar-link">📋 전체 실습 목록</a></li>
+        -->
 
         <li class="sidebar-divider"></li>
 
@@ -135,29 +144,29 @@
               <h3>🎯 추천 코스</h3>
             </div>
             <div class="recommend-list">
-              <a href="#track1a" class="recommend-item" data-page="track1a">
-                <span class="recommend-icon">🎨</span>
-                <div class="recommend-info"><strong>기획 / 마케터</strong><p>Track 1-A · 웹사이트</p></div>
+              <a href="#cat_first_day" class="recommend-item" data-page="cat_first_day">
+                <span class="recommend-icon">🚀</span>
+                <div class="recommend-info"><strong>오늘 바로 시작!</strong><p>3개 실습 · 처음이라도 OK</p></div>
               </a>
-              <a href="#track1b" class="recommend-item" data-page="track1b">
-                <span class="recommend-icon">💻</span>
-                <div class="recommend-info"><strong>개발 입문</strong><p>Track 1-B · Git 협업</p></div>
+              <a href="#cat_first_week" class="recommend-item" data-page="cat_first_week">
+                <span class="recommend-icon">📚</span>
+                <div class="recommend-info"><strong>협업 완전 정복</strong><p>7개 실습 · Git & 팀 협업</p></div>
               </a>
-              <a href="#track2" class="recommend-item" data-page="track2">
+              <a href="#cat_copilot" class="recommend-item" data-page="cat_copilot">
                 <span class="recommend-icon">🤖</span>
-                <div class="recommend-info"><strong>AI / Copilot</strong><p>Track 2 · AI 코딩</p></div>
+                <div class="recommend-info"><strong>AI 날개 달기</strong><p>12개 실습 · Copilot 마스터</p></div>
               </a>
-              <a href="#track3" class="recommend-item" data-page="track3">
+              <a href="#cat_actions" class="recommend-item" data-page="cat_actions">
                 <span class="recommend-icon">⚙️</span>
-                <div class="recommend-info"><strong>DevOps</strong><p>Track 3 · CI/CD</p></div>
+                <div class="recommend-info"><strong>자동화의 마법</strong><p>9개 실습 · CI/CD 자동화</p></div>
               </a>
-              <a href="#track4" class="recommend-item" data-page="track4">
+              <a href="#cat_security" class="recommend-item" data-page="cat_security">
                 <span class="recommend-icon">🔒</span>
-                <div class="recommend-info"><strong>보안 담당</strong><p>Track 4 · 보안 강화</p></div>
+                <div class="recommend-info"><strong>내 코드 지키기</strong><p>5개 실습 · 보안 & 분석</p></div>
               </a>
-              <a href="#track5" class="recommend-item" data-page="track5">
+              <a href="#cat_switch" class="recommend-item" data-page="cat_switch">
                 <span class="recommend-icon">🔄</span>
-                <div class="recommend-info"><strong>레거시 현대화</strong><p>Track 5 · AI 코드 전환</p></div>
+                <div class="recommend-info"><strong>한 번에 이사</strong><p>1개 실습 · ADO → GitHub</p></div>
               </a>
             </div>
           </div>
@@ -214,14 +223,14 @@
             <label>정렬:<select id="search-sort-select">
               <option value="time-asc">시간순 (오래된 순)</option>
               <option value="time-desc" selected>시간순 (최신 순)</option>
-              <option value="track-asc">트랙 이름순 (A→Z)</option>
-              <option value="track-desc">트랙 이름순 (Z→A)</option>
+              <option value="track-asc">Skill 이름순 (A→Z)</option>
+              <option value="track-desc">Skill 이름순 (Z→A)</option>
             </select></label>
           </div>
         </div>
         <div id="search-summary-view">
           <table id="search-results-table">
-            <thead><tr><th>세션</th><th>트랙</th><th>Repo</th><th>시작 시간</th><th>완료 시간</th><th>상태</th></tr></thead>
+            <thead><tr><th>세션</th><th>Skill</th><th>Repo</th><th>시작 시간</th><th>완료 시간</th><th>소요</th><th>상태</th></tr></thead>
             <tbody></tbody>
           </table>
         </div>
@@ -237,8 +246,8 @@
       <h2>새 세션 만들기</h2>
       <form id="create-session-form">
         <label>관리자 비밀번호<input type="password" id="form-admin-password" required placeholder="관리자 비밀번호를 입력하세요"></label>
-        <label>세션 이름<input type="text" id="form-name" required placeholder="예: A 고객사 트랙 1 교육"></label>
-        <label>트랙(Skill) 이름<input type="text" id="form-track" required placeholder="예: GitHub Pages"></label>
+        <label>세션 이름<input type="text" id="form-name" required placeholder="예: A 고객사 Skill 교육"></label>
+        <label>Skill 이름<input type="text" id="form-track" required placeholder="예: GitHub Pages"></label>
         <label>시작 날짜/시간<input type="datetime-local" id="form-start"></label>
         <label>종료 날짜/시간<input type="datetime-local" id="form-end"></label>
         <div class="form-actions">
@@ -262,8 +271,8 @@
       <h2>세션 수정</h2>
       <form id="edit-session-form">
         <label>관리자 비밀번호<input type="password" id="edit-form-admin-password" required placeholder="관리자 비밀번호를 입력하세요"></label>
-        <label>세션 이름<input type="text" id="edit-form-name" required placeholder="예: A 고객사 트랙 1 교육"></label>
-        <label>트랙(Skill) 이름<input type="text" id="edit-form-track" required placeholder="예: GitHub Pages"></label>
+        <label>세션 이름<input type="text" id="edit-form-name" required placeholder="예: A 고객사 Skill 교육"></label>
+        <label>Skill 이름<input type="text" id="edit-form-track" required placeholder="예: GitHub Pages"></label>
         <label>교육일시<input type="datetime-local" id="edit-form-created"></label>
         <label>시작 날짜/시간<input type="datetime-local" id="edit-form-start"></label>
         <label>종료 날짜/시간<input type="datetime-local" id="edit-form-end"></label>
