@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 — 이슈만 올리면 AI가 PR까지</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 이슈만 올리면 AI가 PR까지</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-agent')">코딩 에이전트</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-collab')">협업 워크플로우</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-env')">환경 커스터마이징</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-panel')">Agents Panel</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-safety')">안전 &amp; 보안</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row 1 (y=0)   L→R : intro → learn → flow
+    Row 2 (y=420) R→L : agent → collab → env
+    Row 3 (y=840) L→R : panel → safety → actions
+    Row 4 (y=1260) R→L : summary
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">AI 날개 달기 · 모듈 #5</span>
+      </div>
+      <h1>이슈만 올리면 AI가 PR까지</h1>
+      <p class="theory-skill">Expand your team with Copilot coding agent</p>
+      <p class="theory-desc">GitHub Copilot 코딩 에이전트에게 이슈를 할당하면,<br>코드 에디터 없이도 브랜치 생성·구현·PR까지<br>자동으로 처리합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Copilot Pro</span>
+        <span class="t-meta-item">4단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="agent">
+          <strong>코딩 에이전트 활성화</strong>
+          <p>저장소에서 Copilot 코딩 에이전트를 활성화하고 이슈 할당하기</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-discussion-24.svg" alt="collab">
+          <strong>에이전트와 협업</strong>
+          <p>PR 리뷰·피드백으로 Copilot과 팀원처럼 협업하기</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/gear-24.svg" alt="env">
+          <strong>환경 커스터마이징</strong>
+          <p>지침 파일과 설정 단계로 에이전트 환경 최적화하기</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/project-roadmap-24.svg" alt="panel">
+          <strong>Agents Panel</strong>
+          <p>여러 이슈를 병렬로 위임하고 추적하기</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>에이전트 활성화</strong><p>설정 &amp; 이슈 할당</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>협업하기</strong><p>PR 리뷰 &amp; 피드백</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>환경 준비</strong><p>지침 &amp; 설정 단계</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>병렬 작업</strong><p>Agents Panel &amp; 다중 이슈</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 GitHub Actions가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- 코딩 에이전트 -->
+    <div id="t-agent" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-12" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="copilot"> Copilot 코딩 에이전트</h2>
+      <p class="theory-subtitle">코드 에디터 없이 GitHub에서 직접 동작</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Copilot 코딩 에이전트</strong>는 에디터 기반 Copilot에서 한 단계 더 발전한 형태입니다. 이슈만 할당하면 브랜치 생성부터 PR까지 자율적으로 수행합니다.</p>
+          <div class="theory-highlight">
+            이슈 할당 → 분석 · 계획 · 구현 → PR 생성 → 리뷰 요청
+          </div>
+          <h3>에디터 vs 코딩 에이전트</h3>
+          <ul class="theory-list">
+            <li><strong>인터페이스</strong> — 에디터 대신 이슈 &amp; PR</li>
+            <li><strong>작업 범위</strong> — 로컬 파일 대신 전체 저장소</li>
+            <li><strong>활성화</strong> — 코드 제안 대신 이슈 할당</li>
+            <li><strong>MCP 지원</strong> — GitHub·Playwright MCP 기본 내장</li>
+            <li><strong>커스터마이징</strong> — copilot-instructions.md로 안내</li>
+          </ul>
+          <h3>워크플로우</h3>
+          <div class="git-flow">
+            <span class="gf-main">이슈 선택</span> <span class="gf-dim">→</span>
+            <span class="gf-branch">Copilot 할당</span> <span class="gf-dim">→</span>
+            <span class="gf-commit gf-active gf-highlight">브랜치 &amp; PR 생성</span> <span class="gf-dim">→</span>
+            <span class="gf-merge">리뷰 &amp; 머지</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 협업 워크플로우 -->
+    <div id="t-collab" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-discussion-24.svg" alt="collab"> 협업 워크플로우</h2>
+      <p class="theory-subtitle">Copilot과 팀원처럼 협업하기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h3>PR 투명성 채널</h3>
+          <ul class="theory-list">
+            <li><strong>📝 PR 설명</strong> — 실시간으로 업데이트되는 작업 요약</li>
+            <li><strong>🤖 세션 로그</strong> — Copilot의 모든 결정과 단계를 실시간 확인</li>
+            <li><strong>💬 피드백</strong> — <code>@copilot</code> 멘션으로 새 코딩 세션 트리거</li>
+          </ul>
+          <div class="theory-highlight">
+            <code>@copilot</code> 멘션이 없는 댓글은 일반 댓글로 처리됩니다.<br>
+            인간 팀원을 위한 대화와 Copilot 지시를 명확히 구분할 수 있습니다.
+          </div>
+          <h3>피드백 흐름</h3>
+          <div class="git-flow">
+            <span class="gf-main">PR 댓글/리뷰</span> <span class="gf-dim">→</span>
+            <span class="gf-branch gf-active gf-highlight">@copilot 포함?</span> <span class="gf-dim">→</span>
+            <span class="gf-commit">새 코딩 세션</span>
+          </div>
+          <p>리뷰를 제출하면 Copilot이 새 세션에서 피드백을 반영합니다. 이전 세션 로그도 언제든 다시 확인할 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 환경 커스터마이징 -->
+    <div id="t-env" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="12" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/gear-24.svg" alt="env"> 환경 커스터마이징</h2>
+      <p class="theory-subtitle">지침 파일과 설정 단계로 에이전트 최적화</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h3>📝 Copilot 지침</h3>
+          <p><code>.github/copilot-instructions.md</code>에 저장소별 안내와 규칙을 작성합니다.</p>
+          <ul class="theory-list">
+            <li>프로젝트 개요·아키텍처·코딩 규칙</li>
+            <li>사용자 상호작용 가이드라인</li>
+            <li>유용한 명령어·스크립트 목록</li>
+          </ul>
+          <h3>⚙️ 설정 단계 (copilot-setup-steps.yml)</h3>
+          <p>GitHub Actions 워크플로우로 Copilot의 개발 환경을 사전 구성합니다.</p>
+          <ul class="theory-list">
+            <li>Python/Node 등 <strong>필수 도구 버전</strong> 고정</li>
+            <li>프로젝트 <strong>종속성 사전 설치</strong></li>
+            <li>DB·서비스 등 <strong>인프라 준비</strong></li>
+          </ul>
+          <div class="theory-highlight">
+            사전 설정으로 Copilot의 세션 시간을 절약하고<br>
+            일관된 환경에서 안정적인 결과를 보장합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- Agents Panel -->
+    <div id="t-panel" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/project-roadmap-24.svg" alt="panel"> Agents Panel — 미션 컨트롤</h2>
+      <p class="theory-subtitle">여러 작업을 한곳에서 위임하고 추적</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Agents Panel</strong>은 GitHub 어디서나 열 수 있는 경량 오버레이입니다. 현재 작업에서 벗어나지 않고 Copilot에 새 작업을 전달합니다.</p>
+          <h3>Agents Panel에서 할 수 있는 것</h3>
+          <ul class="theory-list">
+            <li>🛠️ 페이지 전환 없이 <strong>백그라운드 작업 할당</strong></li>
+            <li>👀 실시간 상태로 <strong>진행 중인 작업 모니터링</strong></li>
+            <li>🔗 리뷰 준비 시 <strong>PR로 바로 이동</strong></li>
+            <li>🤹 여러 이슈를 <strong>병렬로 동시 처리</strong></li>
+          </ul>
+          <div class="theory-highlight">
+            독립적인 이슈를 병렬로 작업하면 생산성이 극대화됩니다.<br>
+            단, 머지 충돌을 피하려면 이슈 간 독립성을 유지하세요!
+          </div>
+          <h3>접근 방법</h3>
+          <div class="git-flow">
+            <span class="gf-main">상단 내비</span> <span class="gf-dim">→</span>
+            <span class="gf-branch gf-active gf-highlight">Copilot Agents</span> <span class="gf-dim">또는</span>
+            <span class="gf-commit">github.com/copilot/agents</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 안전 & 보안 -->
+    <div id="t-safety" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="safety"> 안전 &amp; 보안</h2>
+      <p class="theory-subtitle">Copilot 코딩 에이전트의 보안 예방 조치</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h3>보안 제한 사항</h3>
+          <ul class="theory-list">
+            <li><strong>브랜치 제한</strong> — <code>copilot/*</code> 규칙의 자체 브랜치에서만 작업</li>
+            <li><strong>방화벽</strong> — 인터넷 접근을 제한하는 구성 가능한 방화벽</li>
+            <li><strong>권한 제어</strong> — 쓰기 권한이 있는 사용자만 이슈 할당 가능</li>
+            <li><strong>숨겨진 콘텐츠 무시</strong> — 이슈의 주석 처리된 코드 등은 무시</li>
+            <li><strong>Actions 제한</strong> — 워크플로우 트리거 시 사람의 승인 필요</li>
+          </ul>
+          <h3>규칙셋 &amp; 보호</h3>
+          <ul class="theory-list">
+            <li>브랜치 보호 규칙이 그대로 적용됨</li>
+            <li>Copilot 작업은 할당자를 <strong>공동 기여자</strong>로 커밋</li>
+            <li>기여 그래프가 안전하게 유지됨 💕</li>
+          </ul>
+          <div class="theory-highlight">
+            에이전트는 도구일 뿐, 최종 리뷰와 머지는<br>항상 사람이 판단합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions 동작 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-12" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: 코딩 에이전트 활성화 → <strong>이슈 할당</strong> 감지 → Copilot 설정 확인</li>
+            <li>2단계: PR 생성 → <strong>리뷰 &amp; 피드백</strong> 감지 → 머지 확인</li>
+            <li>3단계: 환경 준비 → <strong>push 이벤트</strong> 감지 → 지침 &amp; 설정 파일 확인</li>
+            <li>4단계: 병렬 작업 → <strong>pull_request closed</strong> 감지 → 머지 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- 핵심 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="agent">
+          <div><strong>코딩 에이전트</strong><p>이슈 할당만으로 브랜치·구현·PR까지 자동 처리</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-discussion-24.svg" alt="collab">
+          <div><strong>협업 워크플로우</strong><p>@copilot 멘션으로 피드백 전달, 세션 로그로 투명성 확보</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/gear-24.svg" alt="env">
+          <div><strong>환경 커스터마이징</strong><p>지침 파일 + setup-steps.yml로 안정적 환경 보장</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/project-roadmap-24.svg" alt="panel">
+          <div><strong>Agents Panel</strong><p>여러 이슈를 병렬 위임 &amp; 실시간 추적</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="safety">
+          <div><strong>안전 &amp; 보안</strong><p>방화벽·브랜치 제한·권한 제어로 안전하게 작업</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/expand-your-team-with-copilot" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-expand-your-team-with-copilot">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Calculate overview position from slide bounding box
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      // Overview: button toggles going to/from overview
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn,i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

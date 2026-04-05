@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 · 릴리스 기반 배포 전략</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 릴리스 기반 배포 전략</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-ghflow')">GitHub Flow</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-release')">릴리스 관리</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-semver')">시맨틱 버전</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-notes')">릴리스 노트</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-hotfix')">핫픽스</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row1 y=0    L→R  x: 0 → 1100 → 2200
+    Row2 y=420  R→L  x: 2200 → 1100 → 0
+    Row3 y=840  L→R  x: 0 → 1100 → 2200
+    Row4 y=1260 R→L  x: 2200 → 1100
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 1. 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">자동화의 마법 · 모듈 #8</span>
+      </div>
+      <h1>릴리스 기반 배포 전략</h1>
+      <p class="theory-skill">Release Based Workflow</p>
+      <p class="theory-desc">GitHub flow 위에 릴리스 기반 워크플로우를 구축합니다.<br>태그, 릴리스 노트, 시맨틱 버전닝, 핫픽스를 통해<br>프로젝트의 배포 가능한 버전을 체계적으로 관리합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">7단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 2. 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tag-24.svg" alt="tag">
+          <strong>태그 & 릴리스 (Tag & Release)</strong>
+          <p>프로젝트 히스토리의 특정 시점을 기반으로 소프트웨어를 패키징</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/milestone-24.svg" alt="semver">
+          <strong>시맨틱 버전닝 (Semantic Versioning)</strong>
+          <p>메이저·마이너·패치로 호환성을 명확히 전달하는 버전 체계</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/git-branch-24.svg" alt="branch">
+          <strong>릴리스 브랜치 (Release Branch)</strong>
+          <p>릴리스 준비를 위한 장기 브랜치 전략과 보호 규칙</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/flame-24.svg" alt="hotfix">
+          <strong>핫픽스 (Hotfix)</strong>
+          <p>프로덕션 버그를 빠르게 수정하고 패치 릴리스로 배포</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>베타 릴리스</strong><p>v0.9 프리릴리스 생성</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>기능 추가</strong><p>릴리스 브랜치에 기능 머지</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>릴리스 PR</strong><p>release → main PR 열기</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>릴리스 노트</strong><p>자동 생성 & 머지</p></div></div>
+        </div>
+      </div>
+      <div class="flow-steps-hz" style="margin-top:0.6rem;">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">5</span><div class="flow-content"><strong>릴리스 마무리</strong><p>v1.0.0 게시</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">6</span><div class="flow-content"><strong>핫픽스 커밋</strong><p>버그 수정 & 머지</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">7</span><div class="flow-content"><strong>핫픽스 릴리스</strong><p>v1.0.1 패치 배포</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 Mona(봇)가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- 4. GitHub Flow & 릴리스 -->
+    <div id="t-ghflow" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-12" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/git-merge-24.svg" alt="flow"> GitHub Flow & 릴리스</h2>
+      <p class="theory-subtitle">지속적 배포와 버전 릴리스의 차이</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><a href="https://guides.github.com/introduction/flow/" target="_blank" rel="noopener">GitHub flow</a>는 정기적으로 배포하는 프로젝트를 위한 가벼운 브랜치 기반 워크플로우입니다.</p>
+          <h3>두 가지 배포 모델</h3>
+          <ul class="theory-list">
+            <li><strong>지속적 배포 (CD)</strong> — main에 커밋할 때마다 자동 릴리스</li>
+            <li><strong>릴리스 기반</strong> — 버전과 릴리스를 위해 다른 구조에 의존</li>
+          </ul>
+          <div class="theory-highlight">
+            릴리스 기반 워크플로우는 GitHub flow 위에<br><strong>태그, 릴리스, 릴리스 브랜치</strong>를 추가합니다.
+          </div>
+          <h3>버전이란?</h3>
+          <p>업데이트된 소프트웨어의 다양한 반복입니다. 개발자들은 코드 업데이트 후 테스트를 실행하고, 보안 설정을 한 뒤, 테스트된 코드를 릴리스합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 릴리스 관리 -->
+    <div id="t-release" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-24.svg" alt="release"> 릴리스 관리 전략</h2>
+      <p class="theory-subtitle">브랜치 전략으로 릴리스를 체계적으로</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>릴리스를 관리하는 전략은 다양합니다. 이 실습에서는 <code>release-v1.0</code> 브랜치를 릴리스 버전당 하나의 장기 브랜치로 사용합니다.</p>
+          <h3>릴리스 브랜치 전략</h3>
+          <ul class="theory-list">
+            <li><strong>장기 브랜치</strong> — <code>production</code>, <code>dev</code>, <code>main</code></li>
+            <li><strong>기능 브랜치</strong> — 단순한 수명 짧은 브랜치로 릴리스</li>
+            <li><strong>릴리스 브랜치</strong> — 버전별 <code>release-v1.0</code> 패턴</li>
+          </ul>
+          <h3>보호된 브랜치</h3>
+          <p>릴리스 브랜치는 <code>main</code>과 마찬가지로 <strong>브랜치 보호 규칙</strong>을 설정할 수 있습니다. 강제 푸시나 실수로 인한 삭제를 방지합니다.</p>
+          <div class="theory-highlight">
+            가능한 한 <strong>장기 브랜치를 줄이고</strong>,<br>각 브랜치에 항상 <strong>의도적인 목적</strong>을 부여하세요.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 시맨틱 버전닝 -->
+    <div id="t-semver" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="12" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/versions-24.svg" alt="semver"> 시맨틱 버전닝</h2>
+      <p class="theory-subtitle">MAJOR.MINOR.PATCH — 호환성을 명확히 전달</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><a href="https://semver.org/" target="_blank" rel="noopener">시맨틱 버전닝</a>은 세 부분으로 구성된 버전 번호를 사용하여 호환성을 지정하는 공식 규약입니다.</p>
+          <h3>버전 규칙</h3>
+          <table class="theory-table">
+            <thead><tr><th>코드 상태</th><th>단계</th><th>예시</th></tr></thead>
+            <tbody>
+              <tr><td>첫 번째 릴리스</td><td>새 제품</td><td><strong>1.0.0</strong></td></tr>
+              <tr><td>하위 호환 수정</td><td>패치</td><td>1.0.<strong>1</strong></td></tr>
+              <tr><td>하위 호환 기능 추가</td><td>마이너</td><td>1.<strong>1</strong>.0</td></tr>
+              <tr><td>호환성 깨는 변경</td><td>메이저</td><td><strong>2</strong>.0.0</td></tr>
+            </tbody>
+          </table>
+          <div class="theory-highlight">
+            이 실습에서는 <strong>v0.9</strong>(베타) → <strong>v1.0.0</strong>(릴리스) → <strong>v1.0.1</strong>(핫픽스)<br>의 버전 흐름을 직접 경험합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- 7. 릴리스 노트 -->
+    <div id="t-notes" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/note-24.svg" alt="notes"> 릴리스 노트 자동 생성</h2>
+      <p class="theory-subtitle">변경사항을 자동으로 문서화</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><a href="https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes" target="_blank" rel="noopener">자동 생성 릴리스 노트</a>는 릴리스 내용의 개요를 빠르게 만들어줍니다.</p>
+          <h3>자동 생성되는 내용</h3>
+          <ul class="theory-list">
+            <li><strong>머지된 PR 목록</strong> — 변경사항 요약</li>
+            <li><strong>기여자 목록</strong> — 릴리스 참여자</li>
+            <li><strong>전체 변경 로그 링크</strong> — 커밋 비교</li>
+          </ul>
+          <h3>릴리스 워크플로우</h3>
+<pre class="theory-code"><code><span class="code-key">1.</span> Releases 페이지 → Draft a new release
+<span class="code-key">2.</span> 태그 버전 입력 (예: v1.0.0)
+<span class="code-key">3.</span> Target 브랜치 선택
+<span class="code-key">4.</span> Generate release notes 클릭
+<span class="code-key">5.</span> 내용 검토 및 커스터마이즈
+<span class="code-key">6.</span> Publish release 또는 Save draft</code></pre>
+          <div class="theory-highlight">
+            릴리스 노트 생성 후 <strong>사용자 지정</strong>도 가능합니다.<br>명확한 PR 설명이 좋은 릴리스 노트의 핵심입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 핫픽스 -->
+    <div id="t-hotfix" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/flame-24.svg" alt="hotfix"> 핫픽스 전략</h2>
+      <p class="theory-subtitle">프로덕션 버그를 빠르게 수정하고 배포</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>핫픽스(Hotfix)</strong>는 릴리스 후 발견된 버그를 빠르게 수정하기 위한 긴급 패치입니다.</p>
+          <h3>핫픽스 워크플로우</h3>
+          <ul class="theory-list">
+            <li><strong>핫픽스 브랜치 생성</strong> — <code>hotfix-v1.0.1</code> 브랜치에서 작업</li>
+            <li><strong>버그 수정</strong> — <code>fix-game-background</code> 같은 수정 브랜치</li>
+            <li><strong>핫픽스에 머지</strong> — 수정 PR 생성 후 핫픽스 브랜치에 머지</li>
+            <li><strong>main에 머지</strong> — 핫픽스 → main PR 생성 후 머지</li>
+            <li><strong>패치 릴리스</strong> — v1.0.1 태그로 새 릴리스 생성</li>
+          </ul>
+          <div class="theory-highlight">
+            핫픽스 후에도 <strong>브랜치를 삭제하지 않습니다.</strong><br>같은 브랜치에서 추가 수정이 필요할 수 있기 때문입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 실습의 비밀 — 자동 검증 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-12" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> 실습의 비밀 — 자동 검증</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>자동 검증 흐름</h3>
+          <ul class="theory-list">
+            <li>Step 1: 릴리스 생성 → <strong>release 이벤트</strong> → v0.9 베타 확인</li>
+            <li>Step 2: 기능 PR 머지 → <strong>pull_request closed</strong> → 릴리스 브랜치 업데이트</li>
+            <li>Step 3: 릴리스 PR 열기 → <strong>pull_request opened</strong> → base:main 확인</li>
+            <li>Step 4: 릴리스 노트 생성 → <strong>release drafted</strong> → 노트 확인</li>
+            <li>Step 5: 릴리스 마무리 → <strong>release published</strong> → v1.0.0 게시</li>
+            <li>Step 6: 핫픽스 커밋 → <strong>pull_request closed</strong> → main에 머지</li>
+            <li>Step 7: 핫픽스 릴리스 → <strong>release published</strong> → v1.0.1 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- 10. 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-12" data-rotate-x="-5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tag-24.svg" alt="tag">
+          <div><strong>Tag & Release</strong><p>프로젝트 특정 시점을 태그로 표시하고 릴리스로 패키징</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/versions-24.svg" alt="semver">
+          <div><strong>Semantic Versioning</strong><p>MAJOR.MINOR.PATCH — 호환성을 명확히 전달</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/git-branch-24.svg" alt="branch">
+          <div><strong>Release Branch</strong><p>릴리스 준비를 위한 장기 브랜치 — 보호 규칙 적용</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/note-24.svg" alt="notes">
+          <div><strong>Release Notes</strong><p>자동 생성으로 변경사항을 빠르게 문서화</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/flame-24.svg" alt="hotfix">
+          <div><strong>Hotfix</strong><p>프로덕션 버그 긴급 수정 → 패치 릴리스 배포</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/release-based-workflow" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-release-based-workflow">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview (invisible) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

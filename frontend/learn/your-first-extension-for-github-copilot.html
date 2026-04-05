@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 — Copilot 확장 프로그램 만들기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · Copilot 확장 프로그램 만들기</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-what-ext')">확장이란</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-arch')">아키텍처</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-service')">서비스 실행</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-github-app')">App 연결</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-context')">커스터마이징</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row 1 (y=0)    L→R : intro → learn → flow
+    Row 2 (y=420)  R→L : what-ext → arch → service
+    Row 3 (y=840)  L→R : github-app → context → merge(actions)
+    Row 4 (y=1260) R→L : actions → summary
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">AI 날개 달기 · 모듈 #12</span>
+      </div>
+      <h1>Copilot 확장 프로그램 만들기</h1>
+      <p class="theory-skill">Your First Extension for GitHub Copilot</p>
+      <p class="theory-desc">GitHub Copilot의 커스텀 확장을 만들어<br>업무·팀·회사에 맞는 맞춤 AI 어시스턴트를<br>직접 구축합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">5단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/codespaces-24.svg" alt="codespace">
+          <strong>개발 환경 구성</strong>
+          <p>Codespace에서 사전 구성된 확장 개발 환경 시작</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/play-24.svg" alt="run">
+          <strong>확장 서비스 실행</strong>
+          <p>템플릿 확장을 로드하고 디버거로 실행 & 테스트</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/apps-24.svg" alt="app">
+          <strong>GitHub App 연결</strong>
+          <p>GitHub App을 생성하여 Copilot과 확장을 연결</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/paintbrush-24.svg" alt="customize">
+          <strong>컨텍스트 커스터마이징</strong>
+          <p>직무 설명·학교 정보·역할을 주입해 맞춤화</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>환경 준비</strong><p>Codespace 생성 & 브랜치 만들기</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>확장 실행</strong><p>npm install → 디버거 시작 → 포트 공개</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>GitHub 연결</strong><p>GitHub App 생성 → Copilot 에이전트 설정</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>커스터마이징</strong><p>컨텍스트 파일 작성 → 프롬프트 테스트</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">5</span><div class="flow-content"><strong>병합</strong><p>PR 생성 → 리뷰 → Merge</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 GitHub Actions가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- Copilot 확장이란 -->
+    <div id="t-what-ext" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-12" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="copilot"> GitHub Copilot 확장이란?</h2>
+      <p class="theory-subtitle">Chat에 커스텀 기능을 추가하는 플러그인</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Copilot 확장</strong>은 GitHub Chat과 github.com에 <em>커스터마이징된 기능</em>을 제공하는 추가 기능입니다.</p>
+          <h3>확장으로 가능한 것</h3>
+          <ul class="theory-list">
+            <li><strong>문서 쿼리</strong> — 서드파티 문서 서비스를 쿼리해 정보 검색</li>
+            <li><strong>AI 지원 코딩</strong> — 서드파티 AI 모델로 코드 제안 제공</li>
+            <li><strong>데이터 검색</strong> — 외부 데이터 서비스에서 정보 조회</li>
+            <li><strong>작업 실행</strong> — 메시지 게시판 포스팅, 외부 시스템 업데이트</li>
+          </ul>
+          <div class="theory-highlight">
+            완성된 확장은 <strong>GitHub Marketplace</strong>에 게시하여<br>전 세계와 공유할 수 있습니다!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 아키텍처 -->
+    <div id="t-arch" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/stack-24.svg" alt="arch"> 확장의 3가지 구성 요소</h2>
+      <p class="theory-subtitle">GitHub App + Extension Service + Extension Content</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <div class="theory-grid" style="grid-template-columns:1fr;">
+            <div class="theory-card">
+              <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/apps-24.svg" alt="app">
+              <strong>1. GitHub App</strong>
+              <p>메시지 처리 & Copilot과의 통신을 가능하게 하는 게이트웨이</p>
+            </div>
+            <div class="theory-card">
+              <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/server-24.svg" alt="service">
+              <strong>2. Extension Service</strong>
+              <p>메시지를 수신하고 커스텀 작업을 수행하는 웹 서비스 (Node.js)</p>
+            </div>
+            <div class="theory-card">
+              <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-24.svg" alt="content">
+              <strong>3. Extension Content</strong>
+              <p>확장에 제공되는 컨텍스트 자료 (마크다운 파일 등)</p>
+            </div>
+          </div>
+          <div class="theory-highlight">
+            ⚠️ <strong>Copilot 확장</strong> ≠ VS Code의 <strong>Copilot 익스텐션</strong><br>
+            Copilot을 향상시키는 별도의 추가 기능입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 확장 서비스 실행 -->
+    <div id="t-service" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="12" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/play-24.svg" alt="run"> 확장 서비스 실행하기</h2>
+      <p class="theory-subtitle">Step 2 — 템플릿 확장을 Codespace에서 실행</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>확장 서비스는 <strong>3개의 엔드포인트</strong>로 구성된 웹 서비스입니다.</p>
+          <h3>필수 엔드포인트</h3>
+          <ul class="theory-list">
+            <li><code>GET /callback</code> — 인증 후 사용자에게 제공하는 확인 메시지</li>
+            <li><code>POST /copilot</code> — Copilot과 메시지를 교환하는 핵심 엔드포인트</li>
+            <li><code>GET /</code> — (선택) 브라우저에서 확장 개요를 보여주는 정보 페이지</li>
+          </ul>
+          <h3>실행 방법</h3>
+          <ul class="theory-list">
+            <li><code>cd ghc-extension-js && npm install</code></li>
+            <li>포트 <strong>3000</strong>을 <code>public</code>으로 설정</li>
+            <li>VS Code 디버거로 시작 → URL 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            Codespace 재시작 시 포트 설정이 초기화됩니다.<br>
+            반드시 <strong>가시성을 public</strong>으로 재설정하세요.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- GitHub App 연결 -->
+    <div id="t-github-app" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/apps-24.svg" alt="app"> GitHub App 만들기</h2>
+      <p class="theory-subtitle">Step 3 — 확장을 GitHub에 연결하는 핵심 단계</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>GitHub App</strong>은 사용자에게 확장을 노출하고, 리소스에 대한 권한을 부여하는 중추입니다.</p>
+          <h3>설정 흐름</h3>
+          <ul class="theory-list">
+            <li>Settings → Developer Settings → <strong>GitHub Apps</strong></li>
+            <li>앱 이름: <code>my-ghc-extension-{사용자명}</code></li>
+            <li>Homepage URL: <code>{Codespace URL}/info</code></li>
+            <li>Callback URL: <code>{Codespace URL}/callback</code></li>
+            <li>Permissions: Copilot Chat → <strong>Read Only</strong></li>
+          </ul>
+          <h3>Copilot 에이전트로 등록</h3>
+          <ul class="theory-list">
+            <li>App Type: <strong>Agent</strong> 선택</li>
+            <li>Agent URL: <code>{Codespace URL}/copilot</code></li>
+            <li><strong>Install App</strong> → 계정에 설치</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 컨텍스트 커스터마이징 -->
+    <div id="t-context" class="step theory-slide theory-slide-tall" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/paintbrush-24.svg" alt="customize"> 컨텍스트로 커스터마이징</h2>
+      <p class="theory-subtitle">Step 4 — AI에게 맞춤 정보 주입하기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>컨텍스트</strong>는 Copilot에게 제공하는 배경 정보입니다. <code>system</code> 역할의 메시지로 주입됩니다.</p>
+          <h3>3가지 컨텍스트 파일</h3>
+          <ul class="theory-list">
+            <li><code>job-description.md</code> — 확장 에이전트의 <strong>직무 설명</strong></li>
+            <li><code>school-overview.md</code> — 학교 이름·학기·학생 수 등 <strong>기본 정보</strong></li>
+            <li><code>staff-roles.md</code> — 교직원 역할별 <strong>업무 목록</strong></li>
+          </ul>
+          <div class="theory-highlight">
+            마크다운 파일만 수정하면 코드 변경 없이<br>
+            <strong>확장의 성격과 지식</strong>을 바꿀 수 있습니다.
+          </div>
+          <h3>index.js에서 메시지 주입</h3>
+          <p><code>messages.unshift({ role: "system", content: ... })</code> 로 컨텍스트를 대화 시작 부분에 삽입합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- Actions -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-12" data-rotate-x="-5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: 브랜치 <code>my-ghc-extension</code> 생성 → <strong>create 이벤트</strong> → 환경 확인</li>
+            <li>2단계: 이슈 댓글 작성 → <strong>issue_comment 이벤트</strong> → Codespace URL 확인</li>
+            <li>3단계: 이슈 댓글 작성 → <strong>issue_comment 이벤트</strong> → App 연결 확인</li>
+            <li>4단계: 코드 커밋 → <strong>push 이벤트</strong> → 컨텍스트 파일 확인</li>
+            <li>5단계: PR 병합 → <strong>pull_request 이벤트</strong> → 완료 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="ext">
+          <div><strong>Copilot 확장</strong><p>Chat에 커스텀 기능을 더하는 플러그인 시스템</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/stack-24.svg" alt="arch">
+          <div><strong>3가지 구성 요소</strong><p>GitHub App + Extension Service + Extension Content</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/play-24.svg" alt="run">
+          <div><strong>서비스 실행</strong><p>Codespace에서 디버거로 실행, 포트 3000 공개</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/apps-24.svg" alt="app">
+          <div><strong>GitHub App</strong><p>확장을 GitHub에 연결하는 핵심 게이트웨이</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/paintbrush-24.svg" alt="ctx">
+          <div><strong>컨텍스트 주입</strong><p>마크다운 파일로 AI의 성격·지식을 커스터마이징</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/your-first-extension-for-github-copilot" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-your-first-extension-for-github-copilot">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn,i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

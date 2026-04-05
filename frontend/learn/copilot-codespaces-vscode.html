@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 · AI + Codespaces + VS Code</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · AI + Codespaces + VS Code</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-devcontainer')">Codespace</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-suggestion')">코드 제안</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-completions')">제안 탭</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-comment')">주석 생성</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-workflow')">워크플로우</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row 1 (y=0)    L→R : intro → learn → flow
+    Row 2 (y=420)  R→L : devcontainer → suggestion → completions
+    Row 3 (y=840)  L→R : comment → workflow → actions
+    Row 4 (y=1260) R→L : summary
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">AI 날개 달기 · 모듈 #11</span>
+      </div>
+      <h1>AI + Codespaces + VS Code</h1>
+      <p class="theory-skill">Copilot + Codespaces + VS Code</p>
+      <p class="theory-desc">GitHub Copilot을 Codespaces 환경에서 설정하고,<br>AI 코드 제안 수락·여러 제안 탐색·주석 기반 생성까지<br>자동완성 스타일 코딩의 전 과정을 체험합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">30분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">4단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/codespaces-24.svg" alt="codespace">
+          <strong>Codespace 환경 설정</strong>
+          <p>devcontainer로 Copilot이 설치된 클라우드 개발 환경 구성</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="suggestion">
+          <strong>AI 코드 제안 수락</strong>
+          <p>함수 헤더 입력 후 Tab으로 Copilot 제안 즉시 수락</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/list-unordered-24.svg" alt="completions">
+          <strong>여러 제안 탐색</strong>
+          <p>Completions Panel에서 10가지 대안 중 최적 솔루션 선택</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-24.svg" alt="comment">
+          <strong>주석 기반 생성</strong>
+          <p>자연어 주석으로 Copilot이 전체 코드 블록 생성</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>환경 설정</strong><p>devcontainer + Copilot</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>코드 제안</strong><p>JS 함수 자동완성</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>제안 탭</strong><p>여러 대안 탐색</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>주석 생성</strong><p>자연어 → 코드</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 GitHub Actions가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- Codespace에서 Copilot 설정 -->
+    <div id="t-devcontainer" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-12" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/codespaces-24.svg" alt="codespace"> Codespace에서 Copilot 설정</h2>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>개발 컨테이너(devcontainer)를 만들어 <strong>Codespace에 Copilot을 자동 설치</strong>합니다.</p>
+          <h3>핵심 파일</h3>
+          <div class="theory-highlight">
+            <code>.devcontainer/devcontainer.json</code><br>
+            Codespace 생성 시 자동으로 Copilot 확장 설치
+          </div>
+          <h3>설정 내용</h3>
+          <ul class="theory-list">
+            <li><strong>"name"</strong> — 구성 이름 지정</li>
+            <li><strong>"customizations.vscode.extensions"</strong> — <code>"GitHub.copilot"</code> 추가</li>
+            <li>main 브랜치에 <strong>커밋</strong> → <strong>Codespace 생성</strong></li>
+          </ul>
+          <h3>확인 포인트</h3>
+          <div class="git-flow">
+            <span class="gf-main">Code 탭</span> <span class="gf-dim">→</span>
+            <span class="gf-branch">Codespaces</span> <span class="gf-dim">→</span>
+            <span class="gf-commit gf-active">Create codespace</span> <span class="gf-dim">→</span>
+            <span class="gf-branch gf-highlight">확장 프로그램 확인</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 코드 제안 수락 -->
+    <div id="t-suggestion" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="suggestion"> AI 코드 제안 수락하기</h2>
+      <p class="theory-subtitle">함수 헤더를 입력하면 Copilot이 본문을 자동 제안</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>JavaScript 파일을 만들고 함수 헤더를 입력하면 <strong>Copilot이 회색 텍스트로 전체 함수 본문</strong>을 제안합니다.</p>
+          <h3>실습 과정</h3>
+          <ul class="theory-list">
+            <li><code>skills.js</code> 파일 생성</li>
+            <li><code>function calculateNumbers(var1, var2)</code> 입력</li>
+            <li>회색 텍스트로 <strong>자동 제안</strong> 표시</li>
+            <li><strong>Tab</strong> 키로 즉시 수락</li>
+          </ul>
+          <div class="theory-highlight">
+            Copilot은 Python, JavaScript, TypeScript, Ruby, Go,<br>C#, C++에서 특히 잘 작동합니다.
+          </div>
+          <h3>코드 푸시</h3>
+          <div class="git-flow">
+            <span class="gf-branch gf-active">git add</span> <span class="gf-dim">→</span>
+            <span class="gf-commit">git commit</span> <span class="gf-dim">→</span>
+            <span class="gf-merge">git push</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copilot 제안 탭 -->
+    <div id="t-completions" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="12" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/list-unordered-24.svg" alt="completions"> Copilot 제안 탭 탐색</h2>
+      <p class="theory-subtitle">여러 대안 중 최적의 솔루션을 선택하세요</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>Copilot은 하나의 제안만 보여주는 것이 아닙니다. <strong>Completions Panel</strong>에서 약 10가지 대안을 탐색할 수 있습니다.</p>
+          <h3>사용 방법</h3>
+          <ul class="theory-list">
+            <li><code>member.js</code> 파일 생성</li>
+            <li><code>function skillsMember()</code> 입력</li>
+            <li>빨간 물결선 → <strong>…</strong> 클릭</li>
+            <li><strong>Open Completions Panel</strong> 선택</li>
+            <li>약 10가지 제안 중 <strong>Accept Solution</strong> 클릭</li>
+          </ul>
+          <div class="theory-highlight">
+            첫 번째 제안이 마음에 들지 않을 때<br><strong>Completions Panel</strong>로 더 나은 대안을 찾으세요!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- 주석으로 코드 생성 -->
+    <div id="t-comment" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-24.svg" alt="comment"> 주석으로 코드 생성하기</h2>
+      <p class="theory-subtitle">자연어 주석이 곧 코드가 됩니다</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>코드 대신 <strong>자연어 주석</strong>을 입력하면 Copilot이 의도를 파악하여 전체 코드 블록을 생성합니다.</p>
+          <h3>실습 과정</h3>
+          <ul class="theory-list">
+            <li><code>comments.js</code> 파일 생성</li>
+            <li><code>// Create web server</code> 주석 입력</li>
+            <li>Enter로 새 줄 이동 → <strong>Copilot이 코드 블록 제안</strong></li>
+            <li>Completions Panel에서 최적 솔루션 선택</li>
+          </ul>
+          <div class="theory-highlight">
+            주석을 <strong>구체적이고 명확하게</strong> 작성할수록<br>Copilot의 제안 품질이 높아집니다.
+          </div>
+          <h3>단축키</h3>
+          <div class="git-flow">
+            <span class="gf-branch gf-active">Ctrl + Enter</span> <span class="gf-dim">=</span>
+            <span class="gf-commit gf-highlight">Completions Panel 열기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 전체 개발 워크플로우 -->
+    <div id="t-workflow" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/iterations-24.svg" alt="workflow"> Copilot 개발 워크플로우</h2>
+      <p class="theory-subtitle">Codespace에서 시작하여 코드 완성까지</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <div class="git-flow">
+            <span class="gf-main">devcontainer</span> <span class="gf-dim">→</span>
+            <span class="gf-branch gf-active">Tab 제안</span> <span class="gf-dim">→</span>
+            <span class="gf-commit">제안 탭</span> <span class="gf-dim">→</span>
+            <span class="gf-branch gf-highlight">주석 생성</span> <span class="gf-dim">→</span>
+            <span class="gf-merge">Push</span>
+          </div>
+          <h3>달성하는 것</h3>
+          <ul class="theory-list">
+            <li><strong>환경 자동화</strong> — devcontainer로 Copilot 자동 설치</li>
+            <li><strong>인라인 제안</strong> — Tab 한 번으로 코드 수락</li>
+            <li><strong>대안 탐색</strong> — Completions Panel로 최적 선택</li>
+            <li><strong>자연어 코딩</strong> — 주석으로 의도 전달, AI가 구현</li>
+          </ul>
+          <div class="theory-highlight">
+            Copilot은 <strong>AI 페어 프로그래머</strong>입니다.<br>코드, 주석, 컨텍스트를 종합하여 최적의 제안을 제공합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions 동작 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-12" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: devcontainer 커밋 → <strong>push 이벤트</strong> → Codespace 설정 확인</li>
+            <li>2단계: skills.js 푸시 → <strong>push 이벤트</strong> → JS 파일 존재 확인</li>
+            <li>3단계: member.js 푸시 → <strong>push 이벤트</strong> → 제안 탭 활용 확인</li>
+            <li>4단계: comments.js 푸시 → <strong>push 이벤트</strong> → 주석 생성 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- 핵심 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/codespaces-24.svg" alt="codespace">
+          <div><strong>Codespace 환경 설정</strong><p>devcontainer.json으로 Copilot 자동 설치</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="suggestion">
+          <div><strong>AI 코드 제안 수락</strong><p>함수 헤더 입력 → Tab으로 즉시 수락</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/list-unordered-24.svg" alt="completions">
+          <div><strong>여러 제안 탐색</strong><p>Completions Panel에서 10가지 대안 비교</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-24.svg" alt="comment">
+          <div><strong>주석 기반 코드 생성</strong><p>자연어 주석으로 전체 코드 블록 생성</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/iterations-24.svg" alt="workflow">
+          <div><strong>AI 페어 프로그래밍</strong><p>devcontainer → 제안 → 탐색 → 주석 생성 파이프라인</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/copilot-codespaces-vscode" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-copilot-codespaces-vscode">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

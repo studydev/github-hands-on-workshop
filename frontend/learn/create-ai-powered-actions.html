@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 · AI 기반 Action 만들기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · AI 기반 Action 만들기</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-models')">GitHub Models</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-openai')">OpenAI SDK</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-action-meta')">메타데이터</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-structured')">구조화 출력</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-zod')">Zod 스키마</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row1 y=0   L→R  x: 0 → 1100 → 2200
+    Row2 y=420 R→L  x: 2200 → 1100 → 0
+    Row3 y=840 L→R  x: 0 → 1100 → 2200
+    Row4 y=1260 R→L x: 2200 → 1100
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 1. 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">자동화의 마법 · 모듈 #5</span>
+      </div>
+      <h1>AI 기반 Action 만들기</h1>
+      <p class="theory-skill">Create AI Powered Actions</p>
+      <p class="theory-desc">GitHub Models와 OpenAI SDK를 활용하여<br>AI 기반 JavaScript GitHub Action을 만들어 봅니다.<br>농담을 분석하고 평가하는 완전한 AI Action을 직접 구축합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">5단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 2. 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/dependabot-24.svg" alt="models">
+          <strong>GitHub Models</strong>
+          <p>하나의 API 키로 여러 AI 모델을 사용할 수 있는 GitHub 통합 플랫폼</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="sdk">
+          <strong>OpenAI SDK</strong>
+          <p>GitHub Models 엔드포인트와 통신하는 클라이언트 라이브러리 활용</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="zod">
+          <strong>구조화된 출력</strong>
+          <p>Zod 스키마로 AI 응답을 신뢰할 수 있는 JSON으로 변환</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="workflow">
+          <strong>조건부 워크플로우</strong>
+          <p>구조화된 출력을 활용한 지능적인 워크플로우 제어</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>환경 설정</strong><p>Codespace + OpenAI SDK</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>AI 로직 구현</strong><p>rateJoke + main.js</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>워크플로우 작성</strong><p>rate-joke.yml</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>구조화 출력</strong><p>Zod 스키마 적용</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">5</span><div class="flow-content"><strong>트리거 & 검증</strong><p>실제 댓글로 테스트</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 Mona(봇)가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- 4. GitHub Models -->
+    <div id="t-models" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/dependabot-24.svg" alt="models"> GitHub Models</h2>
+      <p class="theory-subtitle">하나의 API로 여러 AI 모델을 사용하기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><a href="https://github.com/features/models" target="_blank" rel="noopener">GitHub Models</a>는 하나의 API 키로 여러 주요 AI 모델에 접근할 수 있게 하여 개발자 워크플로우에 AI를 쉽게 통합합니다.</p>
+          <h3>핵심 특징</h3>
+          <ul class="theory-list">
+            <li><strong>통합 엔드포인트</strong> — <code>https://models.github.ai/inference</code></li>
+            <li><strong>다양한 모델</strong> — GPT-4.1, o-series 등 다수</li>
+            <li><strong>프로그래밍 접근</strong> — HTTP 요청 또는 SDK 사용</li>
+            <li><strong>사용량 제한</strong> — 모델마다 다른 rate limit 적용</li>
+          </ul>
+          <div class="theory-highlight">
+            <a href="https://github.com/marketplace/models" target="_blank" rel="noopener">GitHub Marketplace</a>에서 사용 가능한 모든 모델을 탐색할 수 있습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. OpenAI SDK -->
+    <div id="t-openai" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="sdk"> OpenAI SDK로 AI 호출</h2>
+      <p class="theory-subtitle">GitHub Models와 OpenAI 클라이언트로 통신하기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>OpenAI SDK를 사용하여 GitHub Models 엔드포인트와 상호작용합니다. <code>baseURL</code>만 변경하면 GitHub Models를 바로 사용할 수 있습니다.</p>
+<pre class="theory-code"><code><span class="code-key">const</span> OpenAI = require("openai");
+
+<span class="code-key">const</span> client = <span class="code-key">new</span> OpenAI({
+  baseURL: "https://models.github.ai/inference",
+  apiKey: token
+});
+
+<span class="code-key">const</span> response = <span class="code-key">await</span>
+  client.chat.completions.create({
+    messages: [
+      { role: "system", content: "..." },
+      { role: "user", content: joke }
+    ],
+    model: "openai/gpt-4.1-mini"
+  });</code></pre>
+          <div class="theory-highlight">
+            <code>npm install openai</code> 후<br>엔드포인트만 GitHub Models로 지정하면 끝!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Action 메타데이터 -->
+    <div id="t-action-meta" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-code-24.svg" alt="metadata"> Action 메타데이터</h2>
+      <p class="theory-subtitle">action.yml — Action의 인터페이스 정의</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><code>action.yml</code>은 Action의 입출력과 실행 환경을 정의하는 메타데이터 파일입니다.</p>
+<pre class="theory-code"><code><span class="code-key">name:</span> "Rate Joke Action"
+<span class="code-key">description:</span> "Rates a joke using GitHub Models"
+
+<span class="code-key">inputs:</span>
+  <span class="code-key">joke:</span>
+    <span class="code-key">description:</span> "The joke to be rated"
+    <span class="code-key">required:</span> true
+  <span class="code-key">token:</span>
+    <span class="code-key">description:</span> "PAT for GitHub Models"
+    <span class="code-key">default:</span> $&lbrace;&lbrace; github.token &rbrace;&rbrace;
+
+<span class="code-key">outputs:</span>
+  <span class="code-key">result:</span>
+    <span class="code-key">description:</span> "AI-generated joke evaluation"
+
+<span class="code-key">runs:</span>
+  <span class="code-key">using:</span> node24
+  <span class="code-key">main:</span> dist/index.js</code></pre>
+          <div class="theory-highlight">
+            <code>runs.using: node24</code> — Node.js 24 런타임에서 실행<br>
+            <code>runs.main: dist/index.js</code> — 번들링된 진입점
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- 7. 구조화된 출력 -->
+    <div id="t-structured" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="structured"> 구조화된 출력</h2>
+      <p class="theory-subtitle">자유 텍스트 대신 신뢰할 수 있는 JSON으로</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><a href="https://platform.openai.com/docs/guides/structured-outputs" target="_blank" rel="noopener">구조화된 출력</a>을 사용하면 모델이 항상 지정된 JSON Schema를 준수하는 응답을 생성합니다.</p>
+          <h3>왜 필요한가?</h3>
+          <ul class="theory-list">
+            <li><strong>일관된 형식</strong> — 매번 동일한 구조의 JSON 반환</li>
+            <li><strong>자동 유효성 검사</strong> — 스키마에 맞지 않으면 파싱 오류</li>
+            <li><strong>후속 자동화</strong> — 조건부 워크플로우 로직 가능</li>
+            <li><strong>타입 안전</strong> — 코드에서 안전하게 필드 접근</li>
+          </ul>
+          <div class="theory-highlight">
+            자유 텍스트 → JSON 스키마로 변경하면<br><strong>워크플로우에서 조건부 분기</strong>가 가능해집니다!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Zod 스키마 -->
+    <div id="t-zod" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/verified-24.svg" alt="zod"> Zod 스키마로 응답 정의</h2>
+      <p class="theory-subtitle">타입 안전한 AI 응답 스키마</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><a href="https://zod.dev/" target="_blank" rel="noopener">Zod</a>는 JSON Schema 대신 사용할 수 있는 스키마 선언 및 유효성 검사 라이브러리입니다.</p>
+<pre class="theory-code"><code><span class="code-key">const</span> JokeRatingSchema = z.object({
+  is_joke:    z.boolean(),
+  score:      z.number().min(1).max(10)
+                .nullable(),
+  humor_type: z.string().nullable(),
+  feedback:   z.string().nullable()
+});
+
+<span class="code-key">const</span> completion = <span class="code-key">await</span>
+  client.chat.completions.parse({
+    messages: [...],
+    model: "openai/gpt-4.1-mini",
+    response_format:
+      zodResponseFormat(
+        JokeRatingSchema, "joke_rating"
+      )
+  });</code></pre>
+          <div class="theory-highlight">
+            응답은 자동으로 <strong>유효성 검사 + 파싱</strong>되어<br><code>completion.choices[0].message.parsed</code>로 접근
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. (빈 슬롯 — Row3 마지막은 Actions 또는 개념) -->
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- 9. 실습 동작 원리 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-12" data-rotate-x="-5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> 실습의 비밀 — 워크플로우 연동</h2>
+      <p class="theory-subtitle">이슈 댓글 → AI 평가 → 댓글 업데이트</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 이슈 댓글을 트리거로 AI Action이 농담을 분석하고, 결과로 댓글을 자동 업데이트합니다.</p>
+          <h3>워크플로우 흐름</h3>
+          <ul class="theory-list">
+            <li>1단계: 환경 설정 — Codespace + <code>npm install openai</code></li>
+            <li>2단계: AI 로직 — <code>rateJoke.js</code> + <code>main.js</code> 구현</li>
+            <li>3단계: 워크플로우 — <code>rate-joke.yml</code> 작성</li>
+            <li>4단계: 구조화 출력 — Zod 스키마 + 조건부 로직</li>
+            <li>5단계: 검증 — 농담 / 비농담 댓글로 테스트</li>
+          </ul>
+          <div class="theory-highlight">
+            <code>models: read</code> 권한으로 <strong>GITHUB_TOKEN</strong>에<br>AI 모델 접근 권한을 부여해야 합니다!
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/dependabot-24.svg" alt="models">
+          <div><strong>GitHub Models</strong><p>단일 엔드포인트로 다양한 AI 모델 통합</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="sdk">
+          <div><strong>OpenAI SDK</strong><p>baseURL만 변경하면 GitHub Models와 바로 연동</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-code-24.svg" alt="metadata">
+          <div><strong>action.yml</strong><p>입출력·런타임을 정의하는 Action 메타데이터</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="structured">
+          <div><strong>구조화된 출력</strong><p>Zod 스키마로 JSON 응답 보장 → 조건부 워크플로우</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/verified-24.svg" alt="zod">
+          <div><strong>Zod</strong><p>타입 안전한 스키마 선언 + 자동 유효성 검사</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/create-ai-powered-actions" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-create-ai-powered-actions">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview (invisible) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

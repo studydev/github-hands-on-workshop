@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 — 코드 충돌? 두렵지 않다</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 코드 충돌? 두렵지 않다</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-conflict')">머지 충돌</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-marker')">충돌 마커</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-resolve')">해결 방법</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-editor')">웹 편집기</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-merge')">PR 머지</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: 소개 / 학습 목표 / 실습 흐름 (좌→우) ==================== -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">협업 완전 정복 · 모듈 #3</span>
+      </div>
+      <h1>코드 충돌? 두렵지 않다</h1>
+      <p class="theory-skill">Resolve Merge Conflicts</p>
+      <p class="theory-desc">두 명이 같은 파일의 같은 부분을 수정하면 충돌이 발생합니다.<br>충돌 마커를 읽고, 변경 사항을 선택하고,<br>웹 편집기에서 깔끔하게 해결하는 법을 배웁니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">30분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">3단계 실습</span>
+      </div>
+    </div>
+
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg" alt="conflict">
+          <strong>머지 충돌 (Merge Conflict)</strong>
+          <p>같은 파일의 같은 부분을 동시에 수정하면 발생</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="marker">
+          <strong>충돌 마커 (Conflict Markers)</strong>
+          <p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; / ======= / &gt;&gt;&gt;&gt;&gt;&gt;&gt; 구조</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="resolve">
+          <strong>충돌 해결 (Resolution)</strong>
+          <p>base 수용, compare 수용, 수동 결합 3가지</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/git-merge-24.svg" alt="merge">
+          <strong>역방향 머지</strong>
+          <p>충돌 해결 커밋 → compare 브랜치로 머지</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>PR 만들기</strong><p><code>my-resume</code> → main</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>충돌 해결</strong><p>웹 편집기로 마커 제거</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>PR 머지</strong><p>Merge pull request</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 GitHub Actions가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: 머지 충돌 / 충돌 마커 / 해결 방법 (우→좌) ==================== -->
+    <div id="t-conflict" class="step theory-slide" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg" alt="conflict"> 머지 충돌 (Merge Conflict)</h2>
+      <p class="theory-subtitle">두 브랜치가 같은 줄을 수정하면 Git이 멈춥니다</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>머지 충돌은 두 개의 브랜치에서 <strong>같은 파일의 같은 부분</strong>을 수정했을 때 발생합니다. Git은 어느 쪽을 선택할지 <strong>사람에게 결정을 요청</strong>합니다.</p>
+          <div class="git-flow">
+            <span class="gf-main">main</span> <span class="gf-dim">── resume.md 추가 ── 스킬 동시 업데이트</span><br>
+            <span class="gf-dim">&nbsp;&nbsp;└──</span> <span class="gf-branch gf-active gf-highlight">my-resume</span> <span class="gf-dim">── 스킬 업데이트 ──</span> <span class="gf-commit gf-active">충돌 발생!</span>
+          </div>
+          <h3>충돌이 발생하는 조건</h3>
+          <ul class="theory-list">
+            <li>같은 파일의 <strong>같은 줄</strong>을 두 브랜치에서 수정</li>
+            <li>한쪽에서 파일을 <strong>삭제</strong>하고 다른 쪽에서 수정</li>
+            <li>자동 머지가 <strong>불가능</strong>할 때만 발생</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 1단계에서 <code>my-resume</code> → <code>main</code> 방향으로 PR을 만들면 충돌을 확인할 수 있습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-marker" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="marker"> 충돌 마커 (Conflict Markers)</h2>
+      <p class="theory-subtitle">Git이 남기는 특별한 표시를 읽어보자</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>충돌이 발생하면 Git은 파일에 <strong>3개의 마커</strong>를 삽입합니다:</p>
+          <pre class="theory-code"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; my-resume
+- Contributed to open source projects
+=======
+- Built internal tools
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; main</code></pre>
+          <ul class="theory-list">
+            <li><strong>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</strong> — compare 브랜치(내 작업)의 시작</li>
+            <li><strong>=======</strong> — 두 버전의 경계선</li>
+            <li><strong>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</strong> — base 브랜치(main)의 끝</li>
+          </ul>
+          <div class="theory-highlight">
+            마커와 원하지 않는 내용을 모두 삭제한 뒤 <strong>Mark as resolved</strong>를 클릭합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-resolve" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="resolve"> 충돌 해결 — 3가지 전략</h2>
+      <p class="theory-subtitle">어떤 버전을 남길지 결정하기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>충돌을 해결하는 <strong>3가지 방법</strong>이 있습니다:</p>
+          <ul class="theory-list">
+            <li><strong>1. Base 브랜치 수용</strong> — main의 버전을 유지하고 내 변경 삭제</li>
+            <li><strong>2. Compare 브랜치 수용</strong> — 내 버전을 유지하고 main 변경 삭제</li>
+            <li><strong>3. 수동 결합</strong> — 두 버전을 합쳐서 새로운 내용 작성</li>
+          </ul>
+          <div class="git-flow">
+            <span class="gf-main">main</span> <span class="gf-dim">───────────────────────── 안정 버전</span><br>
+            <span class="gf-dim">&nbsp;&nbsp;└──</span> <span class="gf-branch">my-resume</span> <span class="gf-dim">── ●</span> <span class="gf-pr gf-active gf-highlight">충돌 해결 커밋</span> <span class="gf-dim">── 작업 계속</span>
+          </div>
+          <div class="theory-highlight">
+            충돌을 해결해도 PR이 자동으로 머지되지 않습니다. <strong>역방향 머지</strong> 커밋이 compare 브랜치에 저장됩니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: 웹 편집기 / PR 머지 / Actions (좌→우) ==================== -->
+    <div id="t-editor" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/browser-24.svg" alt="editor"> 웹 편집기로 해결하기</h2>
+      <p class="theory-subtitle">GitHub에서 바로 충돌을 수정하는 과정</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h3>단계별 해결 과정</h3>
+          <ul class="theory-list">
+            <li><strong>1.</strong> PR 하단의 <strong>Resolve conflicts</strong> 버튼 클릭</li>
+            <li><strong>2.</strong> 충돌 마커가 강조된 섹션 찾기</li>
+            <li><strong>3.</strong> 불필요한 쪽 삭제 + 마커 3줄 모두 제거</li>
+            <li><strong>4.</strong> <strong>Mark as resolved</strong> → <strong>Commit merge</strong></li>
+          </ul>
+          <pre class="theory-code"><code>✓ 해결 후:
+- Contributed to open source projects</code></pre>
+          <div class="theory-highlight">
+            실습 2단계에서 웹 편집기를 사용해 <code>resume.md</code>의 충돌을 직접 해결합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-merge" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/git-merge-24.svg" alt="merge"> PR 머지 (Merge)</h2>
+      <p class="theory-subtitle">충돌 해결 후 안전하게 병합</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>충돌을 해결하고 나면, PR의 <strong>Merge pull request</strong> 버튼이 다시 활성화됩니다.</p>
+          <div class="git-flow">
+            <span class="gf-branch">my-resume</span> <span class="gf-dim">── ● ── 충돌 해결 ──┐</span><br>
+            <span class="gf-main">main</span> <span class="gf-dim">───────────────────</span> <span class="gf-merge gf-active gf-highlight">● merge</span> <span class="gf-main">← HEAD</span>
+          </div>
+          <h3>머지 후 할 일</h3>
+          <ul class="theory-list">
+            <li><strong>Merge pull request</strong> 클릭</li>
+            <li><strong>Confirm merge</strong> 클릭</li>
+            <li>사용한 브랜치 <strong>삭제</strong> (선택 사항)</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 3단계에서 Conversation 탭 하단의 <strong>Merge pull request</strong>를 클릭해 병합을 완료합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: Actions / 정리 (우→좌) ==================== -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: PR 생성 → <strong>pull_request 이벤트</strong> 감지 → 브랜치 확인</li>
+            <li>2단계: 충돌 해결 → <strong>push 이벤트</strong> 감지 → 마커 제거 확인</li>
+            <li>3단계: PR 머지 → <strong>pull_request closed</strong> 감지 → merged 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg" alt="conflict">
+          <div><strong>Merge Conflict</strong><p>같은 파일, 같은 줄을 두 브랜치에서 수정하면 발생</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="marker">
+          <div><strong>충돌 마커</strong><p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; / ======= / &gt;&gt;&gt;&gt;&gt;&gt;&gt; 구조 읽기</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="resolve">
+          <div><strong>3가지 해결 전략</strong><p>base 수용 · compare 수용 · 수동 결합</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/browser-24.svg" alt="editor">
+          <div><strong>웹 편집기</strong><p>Resolve conflicts → Mark as resolved → Commit merge</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/git-merge-24.svg" alt="merge">
+          <div><strong>PR 머지</strong><p>충돌 해결 후 안전하게 병합 완료</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/resolve-merge-conflicts" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-resolve-merge-conflicts">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2; var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w; if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h; if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId); return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      var buttons = document.querySelectorAll('#theory-nav .pres-nav-cat-btn:not(#btn-overview)');
+      var stepIds = []; buttons.forEach(function(b) { var fn = b.getAttribute('onclick'); var m = fn && fn.match(/'(t-[^']+)'/); if (m) stepIds.push(m[1]); });
+      document.getElementById('impress').addEventListener('impress:stepenter', function(e) {
+        var id = e.target.id;
+        buttons.forEach(function(b, i) { b.classList.toggle('active', stepIds[i] === id); });
+        document.getElementById('btn-overview').classList.toggle('active', id === 't-ov-auto');
+      });
+
+      var bar = document.getElementById('pres-progress');
+      var allSteps = document.querySelectorAll('.step');
+      var total = allSteps.length;
+      document.getElementById('impress').addEventListener('impress:stepenter', function(e) {
+        var idx = Array.prototype.indexOf.call(allSteps, e.target);
+        bar.style.width = ((idx + 1) / total * 100) + '%';
+      });
+    });
+  </script>
+</body>
+</html>

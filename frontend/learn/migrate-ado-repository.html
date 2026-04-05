@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 · 하나도 안 버리고 GitHub으로 이사</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 하나도 안 버리고 GitHub으로 이사</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-gei')">GEI</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-pat')">PAT 인증</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-cli')">ado2gh CLI</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-data')">데이터</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-integrate')">통합</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">한 번에 이사 · 모듈 #1</span>
+      </div>
+      <h1>하나도 안 버리고 GitHub으로 이사</h1>
+      <p class="theory-skill">Migrate an Azure DevOps Repository</p>
+      <p class="theory-desc">GitHub Enterprise Importer를 사용해<br>Azure DevOps 저장소를 커밋 히스토리, PR, 브랜치 정책까지<br>통째로 GitHub으로 마이그레이션합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">4단계 실습</span>
+      </div>
+    </div>
+
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/repo-push-24.svg" alt="migrate">
+          <strong>저장소 마이그레이션</strong>
+          <p>Azure DevOps에서 GitHub으로 Git 소스·히스토리·PR을 보존하며 이전</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/key-24.svg" alt="auth">
+          <strong>인증 구성</strong>
+          <p>AzDO PAT와 GitHub PAT로 양쪽 플랫폼 인증 설정</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/terminal-24.svg" alt="cli">
+          <strong>ado2gh CLI</strong>
+          <p>GitHub 공식 마이그레이션 CLI 확장으로 원클릭 마이그레이션</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/link-24.svg" alt="integrate">
+          <strong>ADO-GitHub 통합</strong>
+          <p>Azure Boards·Pipelines를 GitHub 저장소에 연동하는 하이브리드 워크플로우</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>ADO 환경 설정</strong><p>Terraform으로 모의 프로젝트 생성</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>마이그레이션 도구 설정</strong><p><code>gh ado2gh</code> 설치 & 권한 구성</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>저장소 마이그레이션</strong><p>ADO → GitHub 전체 데이터 이전</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>Boards·Pipelines 통합</strong><p>하이브리드 워크플로우 구성</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 GitHub Actions가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <div id="t-gei" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/arrow-switch-24.svg" alt="GEI"> GitHub Enterprise Importer</h2>
+      <p class="theory-subtitle">Azure DevOps → GitHub 공식 마이그레이션 도구</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>GitHub Enterprise Importer (GEI)</strong>는 Azure DevOps에서 GitHub Enterprise Cloud로 높은 충실도의 마이그레이션을 제공하는 <em>공식 도구</em>입니다.</p>
+          <h3>왜 GEI를 사용하나요?</h3>
+          <ul class="theory-list">
+            <li><strong>Git 히스토리 100% 보존</strong> — 모든 커밋, 브랜치, 태그 유지</li>
+            <li><strong>PR 메타데이터 이전</strong> — 리뷰, 댓글, 작업 항목 링크까지</li>
+            <li><strong>브랜치 정책 변환</strong> — ADO 보호 규칙을 GitHub 규칙으로</li>
+            <li><strong>CLI 기반</strong> — 스크립트로 대규모 일괄 마이그레이션 가능</li>
+          </ul>
+          <div class="theory-highlight">
+            <code>git clone --mirror</code>보다 훨씬 많은 데이터를 안전하게 옮깁니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-pat" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/key-24.svg" alt="PAT"> Personal Access Token 인증</h2>
+      <p class="theory-subtitle">양쪽 플랫폼을 안전하게 연결하는 열쇠</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>마이그레이션에는 <strong>두 개의 PAT</strong>이 필요합니다 — Azure DevOps(소스)와 GitHub(대상).</p>
+          <h3>Azure DevOps PAT 범위</h3>
+          <ul class="theory-list">
+            <li><strong>Project and Team</strong> — Read, write & manage</li>
+            <li><strong>Code</strong> — Read, write & manage</li>
+            <li><strong>Work Items</strong> — Read & write</li>
+            <li><strong>Build</strong> — Read & execute</li>
+            <li><strong>Identity</strong> — Read</li>
+          </ul>
+          <h3>GitHub PAT 범위</h3>
+          <ul class="theory-list">
+            <li><code>repo</code>, <code>admin:org</code>, <code>workflow</code></li>
+            <li>조직 <strong>소유자(Owner)</strong> 권한 필요</li>
+          </ul>
+          <div class="theory-highlight">
+            PAT은 실습 후 반드시 삭제하세요 — 만료 기간을 <strong>1일</strong>로 설정하는 것을 권장합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-cli" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/terminal-24.svg" alt="CLI"> ado2gh CLI 확장</h2>
+      <p class="theory-subtitle">GitHub CLI에 마이그레이션 능력을 더하다</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><code>gh ado2gh</code>는 GitHub CLI의 <strong>확장(extension)</strong>으로, ADO 저장소를 GitHub으로 마이그레이션하는 명령어를 제공합니다.</p>
+          <h3>설치 및 사용</h3>
+<pre class="theory-code"><code><span class="code-comment"># CLI 확장 설치</span>
+$ gh extension install github/gh-ado2gh
+
+<span class="code-comment"># 저장소 마이그레이션 실행</span>
+$ gh ado2gh migrate-repo \
+  --ado-org my-org \
+  --ado-team-project my-project \
+  --ado-repo my-repo \
+  --github-org my-gh-org \
+  --github-repo migrated-repo</code></pre>
+          <h3>핵심 명령어</h3>
+          <ul class="theory-list">
+            <li><code>grant-migrator-role</code> — migrator 역할 부여</li>
+            <li><code>migrate-repo</code> — 저장소 마이그레이션 실행</li>
+            <li><code>revoke-migrator-role</code> — migrator 역할 회수</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <div id="t-data" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/database-24.svg" alt="data"> 마이그레이션되는 데이터</h2>
+      <p class="theory-subtitle">하나도 안 버리고 통째로 옮기기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>GitHub Enterprise Importer는 다음 데이터의 마이그레이션을 지원합니다:</p>
+          <ul class="theory-list">
+            <li><strong>Git 소스</strong> — 커밋 히스토리 전체</li>
+            <li><strong>Pull Request</strong> — 리뷰, 댓글, 상태</li>
+            <li><strong>사용자 히스토리</strong> — PR 작성자, 리뷰어 매핑</li>
+            <li><strong>작업 항목 링크</strong> — <code>AB#&lt;id&gt;</code> 참조 보존</li>
+            <li><strong>첨부 파일</strong> — PR에 붙은 이미지·문서</li>
+            <li><strong>브랜치 정책</strong> — 보호 규칙 변환</li>
+          </ul>
+          <div class="theory-highlight">
+            마이그레이션 후 자동 생성되는 <strong>마이그레이션 로그 Issue</strong>에서 경고·오류를 확인하세요.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-integrate" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/link-24.svg" alt="integrate"> Azure DevOps ↔ GitHub 통합</h2>
+      <p class="theory-subtitle">두 플랫폼의 장점을 동시에</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>마이그레이션 후에도 <strong>Azure Boards</strong>와 <strong>Azure Pipelines</strong>를 GitHub 저장소에 연동하여 하이브리드 워크플로우를 구성할 수 있습니다.</p>
+          <h3>Azure Boards 통합</h3>
+          <ul class="theory-list">
+            <li>커밋·PR에 <code>AB#&lt;id&gt;</code>로 작업 항목 자동 연결</li>
+            <li><code>fixes AB#&lt;id&gt;</code>로 머지 시 작업 항목 자동 완료</li>
+            <li>작업 항목에서 직접 GitHub 브랜치 생성</li>
+          </ul>
+          <h3>Azure Pipelines 통합</h3>
+          <ul class="theory-list">
+            <li>GitHub 저장소 변경으로 Azure Pipelines 자동 트리거</li>
+            <li>PR에서 빌드 상태 직접 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            GitHub의 <strong>AI 기능</strong> + Azure DevOps의 <strong>프로젝트 관리·CI/CD</strong> — 최고의 조합!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: ADO 환경 설정 → <strong>bootstrap 스크립트</strong> 완료 감지</li>
+            <li>2단계: 마이그레이션 도구 설정 → <strong>config.yml push</strong> 감지</li>
+            <li>3단계: 저장소 마이그레이션 → <strong>issue_comment</strong> 감지 → 마이그레이션 완료 확인</li>
+            <li>4단계: ADO 통합 → <strong>issue_comment</strong> 감지 → 통합 테스트 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/arrow-switch-24.svg" alt="GEI">
+          <div><strong>GitHub Enterprise Importer</strong><p>공식 마이그레이션 도구 — 높은 충실도 보장</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/key-24.svg" alt="PAT">
+          <div><strong>PAT 인증</strong><p>ADO PAT + GitHub PAT — 양쪽 연결 열쇠</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/terminal-24.svg" alt="CLI">
+          <div><strong>ado2gh CLI</strong><p>한 줄 명령어로 저장소 통째 마이그레이션</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/database-24.svg" alt="data">
+          <div><strong>마이그레이션 데이터</strong><p>Git 소스·PR·브랜치 정책·작업 항목 링크</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/link-24.svg" alt="integrate">
+          <div><strong>ADO-GitHub 통합</strong><p>Boards + Pipelines 하이브리드 워크플로우</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/migrate-ado-repository" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-migrate-ado-repository">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        var impressRoot = document.getElementById('impress');
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

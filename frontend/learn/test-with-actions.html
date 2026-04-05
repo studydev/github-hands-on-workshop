@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 · 실수 잡아주는 시스템</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 실수 잡아주는 시스템</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-ci')">CI</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-components')">구성 요소</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-pytest')">pytest</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-coverage')">커버리지</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-protection')">보호</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row1 y=0   L→R  x: 0 → 1100 → 2200
+    Row2 y=420 R→L  x: 2200 → 1100 → 0
+    Row3 y=840 L→R  x: 0 → 1100 → 2200
+    Row4 y=1260      x: 1100
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 1. 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">자동화의 마법 · 모듈 #2</span>
+      </div>
+      <h1>실수 잡아주는 시스템</h1>
+      <p class="theory-skill">Test with Actions</p>
+      <p class="theory-desc">자동화된 단위 테스트와 커버리지 리포트로 코드를 보호하세요.<br>GitHub Actions로 테스트 워크플로우를 만들고,<br>브랜치 보호 규칙으로 프로덕션 코드를 지킵니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">4단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 2. 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/sync-24.svg" alt="ci">
+          <strong>지속적 통합 (CI)</strong>
+          <p>커밋마다 자동으로 테스트를 실행해 품질을 유지하는 개발 방식</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/beaker-24.svg" alt="test">
+          <strong>테스트 자동화 (pytest)</strong>
+          <p>Python 테스트 프레임워크로 단위 테스트를 작성하고 실행</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/graph-24.svg" alt="coverage">
+          <strong>커버리지 리포트</strong>
+          <p>코드의 몇 %가 테스트되는지 측정하고 PR에 리포트를 게시</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="protection">
+          <strong>브랜치 보호</strong>
+          <p>Rulesets으로 테스트 통과 없이는 main에 병합할 수 없게 보호</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>프로젝트 실행</strong><p>Codespace에서 테스트 실행</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>워크플로우 추가</strong><p>테스트 &amp; 커버리지 워크플로우</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>PR 트리거</strong><p>Pull Request로 워크플로우 실행</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>보호 &amp; 수정</strong><p>브랜치 보호, 테스트 수정</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 Mona(봇)가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- 4. 지속적 통합 (CI) -->
+    <div id="t-ci" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/sync-24.svg" alt="ci"> 지속적 통합 (CI)</h2>
+      <p class="theory-subtitle">커밋할 때마다 자동으로 품질을 확인</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>CI(Continuous Integration)</strong>는 코드 변경을 저장소에 통합할 때마다 자동으로 빌드와 테스트를 실행하는 개발 방식입니다.</p>
+          <div class="theory-highlight">
+            목표: <code>main</code> 브랜치에 <strong>깨진 코드가 들어가지 않도록</strong> 방지하는 것!
+          </div>
+          <h3>CI의 핵심 원칙</h3>
+          <ul class="theory-list">
+            <li><strong>자동 테스트</strong> — 커밋마다 테스트 자동 실행</li>
+            <li><strong>빠른 피드백</strong> — PR에 결과 즉시 표시</li>
+            <li><strong>공유 책임</strong> — 팀 전체가 품질 유지</li>
+            <li><strong>작은 변경</strong> — 자주, 조금씩 통합</li>
+          </ul>
+          <p>이 실습에서는 <strong>Python pytest</strong>와 <strong>커버리지</strong>를 GitHub Actions로 자동화합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 워크플로우 구성 요소 -->
+    <div id="t-components" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="workflow"> 워크플로우 구성 요소</h2>
+      <p class="theory-subtitle">워크플로우 → 잡 → 스텝 → 액션</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>GitHub Actions 워크플로우는 <strong>계층 구조</strong>로 구성됩니다.</p>
+          <ul class="theory-list">
+            <li><strong>워크플로우</strong> — 전체 자동화 단위 (<code>.yml</code> 파일)</li>
+            <li><strong>잡 (Job)</strong> — 격리된 환경에서 실행되는 작업 그룹</li>
+            <li><strong>스텝 (Step)</strong> — 잡 안의 개별 명령 (<code>run:</code> 또는 <code>uses:</code>)</li>
+            <li><strong>액션 (Action)</strong> — 재사용 가능한 자동화 조각</li>
+          </ul>
+<pre class="theory-code"><code><span class="code-key">name:</span> Python Package
+<span class="code-key">on:</span>
+  <span class="code-key">pull_request:</span>
+    <span class="code-key">branches:</span> ["main"]
+<span class="code-key">jobs:</span>
+  <span class="code-key">build:</span>
+    <span class="code-key">runs-on:</span> ubuntu-latest
+    <span class="code-key">steps:</span>
+      - <span class="code-key">uses:</span> actions/checkout@v4
+      - <span class="code-key">run:</span> pytest --verbose</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 테스트 자동화 (pytest) -->
+    <div id="t-pytest" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/beaker-24.svg" alt="test"> 테스트 자동화 (pytest)</h2>
+      <p class="theory-subtitle">Python의 강력한 테스트 프레임워크</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>pytest</strong>는 Python에서 가장 인기 있는 테스트 프레임워크입니다. 간결한 문법으로 단위 테스트를 작성할 수 있습니다.</p>
+          <h3>테스트 작성 패턴</h3>
+          <ul class="theory-list">
+            <li><strong>Arrange</strong> — 테스트 데이터 준비</li>
+            <li><strong>Act</strong> — 함수 실행</li>
+            <li><strong>Assert</strong> — 결과 검증</li>
+          </ul>
+<pre class="theory-code"><code><span class="code-key">def</span> test_get_nth_fibonacci_ten():
+    <span class="code-comment"># Arrange</span>
+    n = 10
+    <span class="code-comment"># Act</span>
+    result = get_nth_fibonacci(n)
+    <span class="code-comment"># Assert</span>
+    <span class="code-key">assert</span> result == 55</code></pre>
+          <div class="theory-highlight">
+            <code>pytest --verbose</code>로 상세한 테스트 결과를 확인하세요!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- 7. 커버리지 리포트 -->
+    <div id="t-coverage" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/graph-24.svg" alt="coverage"> 커버리지 리포트</h2>
+      <p class="theory-subtitle">코드의 몇 %가 테스트되고 있는가?</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>코드 커버리지</strong>는 테스트가 실행하는 코드의 비율을 측정합니다. <code>coverage</code> + <code>pytest-cov</code>로 리포트를 생성합니다.</p>
+          <h3>워크플로우에서 커버리지 활용</h3>
+          <ul class="theory-list">
+            <li><code>pytest --cov=src</code>로 커버리지 측정</li>
+            <li><strong>PR 댓글</strong>에 커버리지 리포트 자동 게시</li>
+            <li><strong>최소 기준</strong> 설정 (예: 90% 이상)</li>
+            <li>기준 미달 시 <strong>워크플로우 실패</strong> 처리</li>
+          </ul>
+<pre class="theory-code"><code><span class="code-key">- name:</span> Run tests
+  <span class="code-key">run:</span> pytest --cov=src
+<span class="code-key">- name:</span> Coverage comment
+  <span class="code-key">uses:</span> py-cov-action/python-coverage-
+        comment-action@v3
+<span class="code-key">- name:</span> Fail if below threshold
+  <span class="code-key">run:</span> coverage report --fail-under=90</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 브랜치 보호 -->
+    <div id="t-protection" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="protection"> 브랜치 보호 &amp; Rulesets</h2>
+      <p class="theory-subtitle">테스트 없이는 병합할 수 없다!</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>워크플로우가 실행되더라도 <strong>테스트 실패를 무시하고 병합</strong>할 수 있다면 의미가 없습니다. <strong>Rulesets</strong>으로 이를 방지합니다.</p>
+          <h3>Ruleset 설정 방법</h3>
+          <ul class="theory-list">
+            <li><strong>Settings → Rules → Rulesets</strong>으로 이동</li>
+            <li>대상 브랜치: <code>main</code></li>
+            <li><strong>Require status checks to pass</strong> 활성화</li>
+            <li>필수 체크: <code>python-coverage</code> 워크플로우</li>
+          </ul>
+          <div class="theory-highlight">
+            테스트 실패 시 <strong>Merge 버튼이 비활성화</strong>됩니다!<br>깨진 코드가 프로덕션에 도달하는 것을 차단합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 실습의 비밀 — 자동 검증 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> 실습의 비밀 — 자동 검증</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>자동 검증 흐름</h3>
+          <ul class="theory-list">
+            <li>1단계: Codespace에서 테스트 실행 → <strong>이슈 댓글</strong> → Mona 확인</li>
+            <li>2단계: 워크플로우 파일 추가 → <strong>push 이벤트</strong> → YAML 구조 확인</li>
+            <li>3단계: PR 생성 → <strong>pull_request</strong> → 워크플로우 실행 확인</li>
+            <li>4단계: 테스트 수정 &amp; 커버리지 90% → <strong>병합</strong> 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260 ==================== -->
+
+    <!-- 10. 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/sync-24.svg" alt="ci">
+          <div><strong>CI</strong><p>커밋마다 자동 테스트 — 품질 유지의 핵심</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="workflow">
+          <div><strong>Workflow</strong><p>워크플로우 → 잡 → 스텝 → 액션 구조</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/beaker-24.svg" alt="test">
+          <div><strong>pytest</strong><p>Arrange-Act-Assert 패턴의 단위 테스트</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/graph-24.svg" alt="coverage">
+          <div><strong>Coverage</strong><p>코드 커버리지 측정 &amp; PR 댓글 리포트</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="protection">
+          <div><strong>Branch Protection</strong><p>Rulesets로 테스트 통과 필수화</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/test-with-actions" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-test-with-actions">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview (invisible) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

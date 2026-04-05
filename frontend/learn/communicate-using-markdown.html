@@ -140,12 +140,10 @@
       <div class="theory-two-col">
         <div class="theory-col-text">
           <p>헤딩은 <code>#</code> 기호를 사용해 문서의 <strong>계층 구조</strong>를 만듭니다. 1~6단계까지 지원됩니다.</p>
-          <div class="theory-code-block">
-            <code># 제목 1</code> — 가장 큰 제목 (H1)<br>
-            <code>## 제목 2</code> — 섹션 제목 (H2)<br>
-            <code>### 제목 3</code> — 하위 섹션 (H3)<br>
-            <code>#### 제목 4</code> — 더 세부 항목 (H4)
-          </div>
+          <pre class="theory-code"><code># 제목 1 — 가장 큰 제목 (H1)
+## 제목 2 — 섹션 제목 (H2)
+### 제목 3 — 하위 섹션 (H3)
+#### 제목 4 — 더 세부 항목 (H4)</code></pre>
           <h3>잘 쓰는 팁</h3>
           <ul class="theory-list">
             <li>H1은 문서 당 <strong>하나만</strong> 사용 (문서 제목)</li>
@@ -164,21 +162,18 @@
       <p class="theory-subtitle">강조, 목록, 인용으로 글에 생명 불어넣기</p>
       <div class="theory-two-col">
         <div class="theory-col-text">
-          <div class="theory-code-block">
-            <code>**볼드**</code> → <strong>볼드</strong><br>
-            <code>*이탤릭*</code> → <em>이탤릭</em><br>
-            <code>~~취소선~~</code> → <del>취소선</del><br>
-            <code>> 인용</code> → 인용문 블록
-          </div>
+          <pre class="theory-code"><code>**볼드** → <strong>볼드</strong>
+*이탤릭* → <em>이탤릭</em>
+~~취소선~~ → <del>취소선</del>
+> 인용 → 인용문 블록</code></pre>
           <h3>목록 (List)</h3>
-          <div class="theory-code-block">
-            순서 없는 목록:<br>
-            <code>- 항목 1</code><br>
-            <code>- 항목 2</code><br><br>
-            순서 있는 목록:<br>
-            <code>1. 첫 번째</code><br>
-            <code>2. 두 번째</code>
-          </div>
+          <pre class="theory-code"><code>순서 없는 목록:
+- 항목 1
+- 항목 2
+
+순서 있는 목록:
+1. 첫 번째
+2. 두 번째</code></pre>
           <div class="theory-highlight">
             마크다운 서식은 <strong>Issue, PR 코멘트, README</strong> 어디서든 동일하게 작동합니다.
           </div>
@@ -193,17 +188,15 @@
       <div class="theory-two-col">
         <div class="theory-col-text">
           <h3>이미지 삽입</h3>
-          <div class="theory-code-block">
-            <code>![대체 텍스트](이미지 URL)</code><br><br>
-            예시:<br>
-            <code>![Mona](https://octodex.github.com/images/mona.jpg)</code>
-          </div>
+          <pre class="theory-code"><code>![대체 텍스트](이미지 URL)
+
+예시:
+![Mona](https://octodex.github.com/images/mona.jpg)</code></pre>
           <h3>링크 삽입</h3>
-          <div class="theory-code-block">
-            <code>[표시 텍스트](URL)</code><br><br>
-            예시:<br>
-            <code>[GitHub](https://github.com)</code>
-          </div>
+          <pre class="theory-code"><code>[표시 텍스트](URL)
+
+예시:
+[GitHub](https://github.com)</code></pre>
           <div class="theory-highlight">
             이미지 문법은 링크 앞에 <code>!</code>만 추가하면 됩니다.<br>
             실습 4단계에서 이미지를 추가합니다.
@@ -218,20 +211,17 @@
       <div class="theory-two-col">
         <div class="theory-col-text">
           <h3>인라인 코드</h3>
-          <div class="theory-code-block">
-            백틱 하나로 감싸기: <code>`변수명`</code><br>
-            결과: <code>변수명</code>
-          </div>
+          <pre class="theory-code"><code>백틱 하나로 감싸기: `변수명`
+결과: 변수명</code></pre>
           <h3>코드 블록 (여러 줄)</h3>
-          <div class="theory-code-block">
-            ````javascript<br>
-            function hello() {<br>
-            &nbsp;&nbsp;console.log("Hello!");<br>
-            }<br>
-            ```<br><br>
-            언어 이름을 지정하면 <strong>구문 강조</strong>가 적용됩니다.<br>
-            지원 언어: javascript, python, bash, html, css 등
-          </div>
+          <pre class="theory-code"><code>```javascript
+function hello() {
+&nbsp;&nbsp;console.log("Hello!");
+}
+```
+
+언어 이름을 지정하면 <strong>구문 강조</strong>가 적용됩니다.
+지원 언어: javascript, python, bash, html, css 등</code></pre>
           <div class="theory-highlight">
             실습 3단계에서 코드 예제를 추가합니다.
           </div>
@@ -245,11 +235,9 @@
       <div class="theory-two-col">
         <div class="theory-col-text">
           <p>작업 목록은 GitHub에서 <strong>Issue와 PR</strong>에 특히 유용한 기능입니다.</p>
-          <div class="theory-code-block">
-            <code>- [x] 완료된 항목</code><br>
-            <code>- [ ] 아직 안 한 항목</code><br>
-            <code>- [ ] 다음에 할 일</code>
-          </div>
+          <pre class="theory-code"><code>- [x] 완료된 항목
+- [ ] 아직 안 한 항목
+- [ ] 다음에 할 일</code></pre>
           <h3>GitHub에서의 특별한 기능</h3>
           <ul class="theory-list">
             <li>Issue에 작업 목록을 넣으면 <strong>진행률 바</strong>가 표시됨</li>

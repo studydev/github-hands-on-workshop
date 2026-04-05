@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 — CodeQL 언어 매트릭스 설정</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · CodeQL 언어 매트릭스 설정</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-matrix')">언어 매트릭스</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-strategy')">Strategy 구성</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-init')">Init & Analyze</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-autobuild')">Autobuild</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-conditional')">조건부 실행</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 흐름 + Z축 깊이 변화
+    Row 1 (y=0)    : 좌→우  z=0 근처
+    Row 2 (y=420)  : 우→좌  z=-400~-600
+    Row 3 (y=840)  : 좌→우  z=-700~-900
+    Row 4 (y=1260) : 우→좌  z=-100~-300
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: 소개 / 학습 목표 / 실습 흐름 (좌→우) ==================== -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">내 코드 지키기 · 모듈 #4</span>
+      </div>
+      <h1>CodeQL 언어 매트릭스 설정</h1>
+      <p class="theory-skill">Configure CodeQL Language Matrix</p>
+      <p class="theory-desc">언어 매트릭스를 사용하여 CodeQL 워크플로우를 구성하고,<br>여러 프로그래밍 언어를 단일 워크플로우에서<br>스캔하는 방법을 배웁니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">30분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">2단계 실습</span>
+      </div>
+    </div>
+
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/list-unordered-24.svg" alt="matrix">
+          <strong>언어 매트릭스 구성</strong>
+          <p>단일 워크플로우에서 여러 언어를 관리하는 매트릭스 설정</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="autobuild">
+          <strong>Autobuild 액션</strong>
+          <p>컴파일 언어를 자동 빌드하여 CodeQL 분석 지원</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="expression">
+          <strong>컨텍스트 표현식</strong>
+          <p>조건부 실행으로 필요한 언어에만 autobuild 적용</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="pipeline">
+          <strong>보안 파이프라인</strong>
+          <p>프로젝트 맞춤형 코드 스캐닝 파이프라인 구축</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>언어 매트릭스</strong><p>codeql.yml에 strategy 추가</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>Autobuild</strong><p>컴파일 언어 조건부 빌드</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">codeql.yml 워크플로우 파일을 수정하여 여러 언어를 매트릭스로 스캔하고, 컴파일 언어에 autobuild를 적용합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: 언어 매트릭스 / Strategy / Init&Analyze (우→좌) ==================== -->
+    <div id="t-matrix" class="step theory-slide" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/list-unordered-24.svg" alt="matrix"> CodeQL 언어 매트릭스란?</h2>
+      <p class="theory-subtitle">단일 워크플로우로 여러 언어를 동시에 스캔</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>언어 매트릭스</strong>는 하나의 CodeQL 워크플로우 파일에서 여러 프로그래밍 언어를 관리하는 GitHub Actions 전략입니다.</p>
+          <h3>매트릭스 사용의 이점</h3>
+          <ul class="theory-list">
+            <li><strong>간결성</strong> — 각 언어별 별도 워크플로우 불필요, 단일 파일로 관리</li>
+            <li><strong>유연성</strong> — 언어 추가/제거가 매트릭스 배열 수정만으로 가능</li>
+            <li><strong>일관성</strong> — 모든 언어에 동일한 스캐닝 정책 자동 적용</li>
+          </ul>
+          <h3>지원 언어</h3>
+          <pre class="theory-code"><code>c-cpp · csharp · go · java-kotlin
+javascript-typescript · python · ruby · swift</code></pre>
+          <div class="theory-highlight">
+            잘 구성된 CodeQL 설정은 안전하고 신뢰할 수 있는 코드베이스를 유지하는 핵심입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-strategy" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="strategy"> Strategy 매트릭스 구성</h2>
+      <p class="theory-subtitle">codeql.yml의 strategy 섹션에 언어 배열 정의</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>CodeQL 워크플로우의 <code>jobs</code> 섹션에 <strong>strategy.matrix</strong>를 추가하여 스캔할 언어를 정의합니다.</p>
+          <h3>YAML 구성</h3>
+          <pre class="theory-code"><code>strategy:
+&nbsp;&nbsp;fail-fast: false
+&nbsp;&nbsp;matrix:
+&nbsp;&nbsp;&nbsp;&nbsp;language:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 'go'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 'java-kotlin'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 'javascript-typescript'
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 'python'</code></pre>
+          <h3>핵심 포인트</h3>
+          <ul class="theory-list">
+            <li><strong>fail-fast: false</strong> — 하나의 언어 실패가 다른 언어 스캔을 중단시키지 않음</li>
+            <li><strong>language 배열</strong> — 프로젝트에서 사용하는 언어만 선택</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 1단계에서 steps 섹션 위에 strategy 블록을 추가합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-init" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/codescan-24.svg" alt="init"> Init & Analyze에 매트릭스 적용</h2>
+      <p class="theory-subtitle">CodeQL 액션에 matrix.language 변수 연결</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>매트릭스를 정의한 후, <strong>CodeQL init</strong>과 <strong>analyze</strong> 액션에 언어 변수를 전달해야 합니다.</p>
+          <h3>Initialize CodeQL</h3>
+          <pre class="theory-code"><code>- uses: github/codeql-action/init@v3
+&nbsp;&nbsp;with:
+&nbsp;&nbsp;&nbsp;&nbsp;languages: <span style="color:#7ee787">${{ matrix.language }}</span></code></pre>
+          <h3>Perform CodeQL Analysis</h3>
+          <pre class="theory-code"><code>- uses: github/codeql-action/analyze@v3
+&nbsp;&nbsp;with:
+&nbsp;&nbsp;&nbsp;&nbsp;category: <span style="color:#7ee787">${{ matrix.language }}</span></code></pre>
+          <ul class="theory-list">
+            <li><strong>languages</strong> — 해당 매트릭스 항목의 언어로 CodeQL DB 초기화</li>
+            <li><strong>category</strong> — 분석 결과를 언어별로 구분하여 저장</li>
+          </ul>
+          <div class="theory-highlight">
+            매트릭스의 각 언어에 대해 별도의 잡이 병렬로 실행되어 스캔 속도가 향상됩니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: Autobuild / 조건부 / Actions (좌→우) ==================== -->
+    <div id="t-autobuild" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="autobuild"> CodeQL Autobuild</h2>
+      <p class="theory-subtitle">컴파일 언어를 자동으로 빌드하여 분석 가능하게</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Autobuild</strong>는 저장소의 빌드 시스템을 자동 감지하고 적절한 명령을 실행하여 컴파일 언어를 빌드합니다.</p>
+          <h3>왜 필요한가?</h3>
+          <ul class="theory-list">
+            <li><strong>컴파일 언어</strong>(Java, C/C++ 등)는 분석 전에 빌드가 필요</li>
+            <li><strong>인터프리터 언어</strong>(Python, JS 등)는 빌드 없이 바로 분석 가능</li>
+            <li>Autobuild가 빌드 시스템을 감지하여 <strong>자동 컴파일</strong></li>
+          </ul>
+          <h3>Autobuild 단계 추가</h3>
+          <pre class="theory-code"><code>- name: Autobuild
+&nbsp;&nbsp;uses: github/codeql-action/autobuild@v3</code></pre>
+          <div class="theory-highlight">
+            Initialize CodeQL과 Perform CodeQL Analysis 사이에 autobuild 단계를 배치합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-conditional" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="conditional"> 조건부 실행 (if 표현식)</h2>
+      <p class="theory-subtitle">컴파일 언어에만 autobuild를 실행하는 조건 분기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>모든 언어에 autobuild를 실행하면 불필요한 시간이 소모됩니다. <strong>조건부 표현식</strong>으로 필요한 언어에만 적용합니다.</p>
+          <h3>조건부 Autobuild</h3>
+          <pre class="theory-code"><code>- if: ${{ contains(matrix.language, 'java-kotlin') }}
+&nbsp;&nbsp;name: Autobuild
+&nbsp;&nbsp;uses: github/codeql-action/autobuild@v3</code></pre>
+          <h3>동작 방식</h3>
+          <ul class="theory-list">
+            <li><strong>contains()</strong> — 매트릭스 언어에 'java-kotlin'이 포함되는지 확인</li>
+            <li>조건이 <strong>true</strong>인 잡에서만 autobuild 단계가 실행됨</li>
+            <li>Python, JS 등 인터프리터 언어 잡에서는 <strong>건너뜀</strong></li>
+          </ul>
+          <div class="theory-highlight">
+            실습 2단계에서 Autobuild 단계에 if 조건을 추가하여 java-kotlin에만 실행되도록 합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 보안 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: codeql.yml에 <strong>strategy.matrix</strong> 추가 → 매트릭스 구성 검증</li>
+            <li>2단계: <strong>autobuild + if 조건</strong> 추가 → 조건부 실행 검증</li>
+          </ul>
+          <h3>최종 워크플로우 구조</h3>
+          <pre class="theory-code"><code>strategy → matrix → language[]
+↓ Initialize CodeQL (languages: matrix.language)
+↓ Autobuild (if: java-kotlin)
+↓ Perform CodeQL Analysis (category: matrix.language)</code></pre>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: 정리 (우→좌) ==================== -->
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/list-unordered-24.svg" alt="matrix">
+          <div><strong>언어 매트릭스</strong><p>단일 워크플로우에서 여러 언어를 동시에 스캔</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="strategy">
+          <div><strong>Strategy 구성</strong><p>fail-fast: false + language 배열로 유연한 매트릭스</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/codescan-24.svg" alt="init">
+          <div><strong>Init & Analyze</strong><p>matrix.language로 언어별 병렬 분석 실행</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="autobuild">
+          <div><strong>Autobuild</strong><p>컴파일 언어 자동 빌드로 분석 지원</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="conditional">
+          <div><strong>조건부 실행</strong><p>contains() 표현식으로 필요한 언어에만 적용</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/configure-codeql-language-matrix" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-configure-codeql-language-matrix">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

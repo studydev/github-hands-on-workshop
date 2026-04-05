@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 · 어디서나 쓸 수 있게 포장</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐳</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 어디서나 쓸 수 있게 포장</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-ghcr')">GHCR</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-dockerfile')">Dockerfile</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-docker-actions')">Docker Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-metadata')">메타데이터</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-lifecycle')">라이프사이클</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row1 y=0   L→R  x: 0 → 1100 → 2200
+    Row2 y=420 R→L  x: 2200 → 1100 → 0
+    Row3 y=840 L→R  x: 0 → 1100 → 2200
+    Row4 y=1260 R→L x: 2200 → 1100
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 1. 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">자동화의 마법 · 모듈 #6</span>
+      </div>
+      <h1>어디서나 쓸 수 있게 포장</h1>
+      <p class="theory-skill">Publish Docker Images</p>
+      <p class="theory-desc">GitHub Actions를 사용하여 Docker 이미지를 빌드하고<br>GitHub Container Registry에 자동으로 게시합니다.<br>기본 명령어부터 전문 Docker 액션까지 단계별로 진행합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">4단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 2. 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-24.svg" alt="packages">
+          <strong>GitHub Packages</strong>
+          <p>GitHub Container Registry(ghcr.io)에 Docker 이미지를 호스팅하고 관리</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/container-24.svg" alt="docker">
+          <strong>Docker 빌드 & 게시</strong>
+          <p>Dockerfile로 애플리케이션을 패키징하고 레지스트리에 자동 푸시</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/cpu-24.svg" alt="multiplatform">
+          <strong>멀티 플랫폼 빌드</strong>
+          <p>QEMU + Buildx로 linux/amd64, linux/arm64 동시 지원</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tag-24.svg" alt="tagging">
+          <strong>동적 태깅</strong>
+          <p>metadata-action으로 브랜치·PR·릴리스에 맞는 태그 자동 생성</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>기본 워크플로우</strong><p>Docker 빌드 & 게시</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>Docker Actions</strong><p>QEMU · Buildx · build-push</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>동적 태깅</strong><p>metadata-action 적용</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>릴리스 사이클</strong><p>PR → 병합 → 릴리스</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 Mona(봇)가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- 4. GitHub Packages & Container Registry -->
+    <div id="t-ghcr" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-24.svg" alt="packages"> GitHub Packages &amp; GHCR</h2>
+      <p class="theory-subtitle">코드와 함께 패키지를 관리하는 플랫폼</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>GitHub Packages</strong>는 컨테이너와 의존성을 호스팅하고 관리하는 플랫폼입니다. Docker, npm, Maven, NuGet 등 다양한 레지스트리를 지원합니다.</p>
+          <h3>Container Registry (ghcr.io)</h3>
+          <ul class="theory-list">
+            <li><strong>ghcr.io</strong> — GitHub의 Docker 이미지 전용 레지스트리</li>
+            <li><strong>GITHUB_TOKEN</strong>으로 자동 인증 — 별도 시크릿 불필요</li>
+            <li><strong>packages: write</strong> 권한만 설정하면 즉시 사용</li>
+            <li>공개 저장소에서 <strong>무료</strong></li>
+          </ul>
+          <div class="theory-highlight">
+            패키지는 저장소가 아닌 <strong>계정(사용자/조직)</strong>에 연결됩니다.<br>여러 저장소에서 동일한 패키지를 재사용할 수 있습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Dockerfile 기본 -->
+    <div id="t-dockerfile" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-code-24.svg" alt="dockerfile"> Dockerfile &amp; 기본 빌드</h2>
+      <p class="theory-subtitle">애플리케이션을 컨테이너로 패키징하는 첫 걸음</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Dockerfile</strong>은 Docker 이미지를 만드는 레시피입니다. 워크플로우에서 <code>docker build</code>로 이미지를 만들고 <code>docker push</code>로 레지스트리에 게시합니다.</p>
+          <h3>기본 워크플로우 구조</h3>
+<pre class="theory-code"><code><span class="code-key">name:</span> Docker Publish
+<span class="code-key">on:</span>
+  <span class="code-key">push:</span>
+    <span class="code-key">branches:</span> [main]
+<span class="code-key">permissions:</span>
+  <span class="code-key">contents:</span> read
+  <span class="code-key">packages:</span> write
+<span class="code-key">jobs:</span>
+  <span class="code-key">build-and-push:</span>
+    <span class="code-key">runs-on:</span> ubuntu-latest
+    <span class="code-key">steps:</span>
+      - <span class="code-key">uses:</span> actions/checkout@v6
+      - <span class="code-key">uses:</span> docker/login-action@v3
+      - <span class="code-key">run:</span> docker build &amp; push</code></pre>
+          <div class="theory-highlight">
+            <code>docker/login-action</code>으로 ghcr.io에 인증하고<br><code>GITHUB_TOKEN</code>을 비밀번호로 사용합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 전문 Docker Actions -->
+    <div id="t-docker-actions" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/rocket-24.svg" alt="actions"> 전문 Docker Actions</h2>
+      <p class="theory-subtitle">커뮤니티가 만든 고급 빌드 도구</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>직접 <code>docker</code> 명령어 대신 <strong>공식 Docker Actions</strong>를 사용하면 멀티 플랫폼 빌드, 캐싱, 고급 기능을 쉽게 활용할 수 있습니다.</p>
+          <h3>핵심 Docker Actions</h3>
+          <ul class="theory-list">
+            <li><strong><code>docker/login-action</code></strong> — ghcr.io 인증</li>
+            <li><strong><code>docker/setup-qemu-action</code></strong> — ARM64 등 다른 아키텍처 에뮬레이션</li>
+            <li><strong><code>docker/setup-buildx-action</code></strong> — BuildKit 기반 고급 빌드 엔진</li>
+            <li><strong><code>docker/build-push-action</code></strong> — 멀티 플랫폼 빌드 & 푸시</li>
+          </ul>
+<pre class="theory-code"><code><span class="code-key">- uses:</span> docker/setup-qemu-action@v3
+<span class="code-key">- uses:</span> docker/setup-buildx-action@v3
+<span class="code-key">- uses:</span> docker/build-push-action@v6
+  <span class="code-key">with:</span>
+    <span class="code-key">platforms:</span> linux/amd64,linux/arm64</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- 7. 메타데이터 & 동적 태깅 -->
+    <div id="t-metadata" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tag-24.svg" alt="metadata"> 메타데이터 &amp; 동적 태깅</h2>
+      <p class="theory-subtitle">Git 컨텍스트에 따라 자동으로 태그 생성</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong><code>docker/metadata-action</code></strong>은 워크플로우를 트리거한 Git 컨텍스트(브랜치, 태그, PR)에 따라 Docker 태그를 <strong>자동 생성</strong>합니다.</p>
+          <h3>이벤트별 태그 매핑</h3>
+          <ul class="theory-list">
+            <li><strong>브랜치 푸시</strong> → <code>main</code></li>
+            <li><strong>Pull Request</strong> → <code>pr-2</code></li>
+            <li><strong>태그 푸시</strong> → <code>v1.2.3</code>, <code>latest</code></li>
+            <li><strong>workflow_dispatch</strong> → <code>main</code></li>
+          </ul>
+<pre class="theory-code"><code><span class="code-key">- name:</span> Extract metadata
+  <span class="code-key">id:</span> meta
+  <span class="code-key">uses:</span> docker/metadata-action@v5
+  <span class="code-key">with:</span>
+    <span class="code-key">images:</span> ghcr.io/OWNER/APP
+<span class="code-key">- uses:</span> docker/build-push-action@v6
+  <span class="code-key">with:</span>
+    <span class="code-key">tags:</span> ${{ steps.meta.outputs.tags }}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 라이프사이클 기반 게시 -->
+    <div id="t-lifecycle" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/iterations-24.svg" alt="lifecycle"> 라이프사이클 기반 게시</h2>
+      <p class="theory-subtitle">개발 사이클에 맞춘 자동 버전 관리</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>실제 소프트웨어 개발에서는 <strong>다양한 단계</strong>에서 Docker 이미지를 게시합니다. 다중 트리거로 전체 라이프사이클을 자동화할 수 있습니다.</p>
+          <h3>트리거 & 태깅 전략</h3>
+          <ul class="theory-list">
+            <li><strong>새 커밋 (push)</strong> — 브랜치명 + SHA 태그</li>
+            <li><strong>Pull Request</strong> — <code>pr-N</code> 태그로 테스트 빌드</li>
+            <li><strong>버전 릴리스 (tag)</strong> — <code>v1.0.0</code> + <code>latest</code></li>
+            <li><strong>수동 실행</strong> — <code>workflow_dispatch</code> 지원</li>
+          </ul>
+<pre class="theory-code"><code><span class="code-key">on:</span>
+  <span class="code-key">push:</span>
+    <span class="code-key">branches:</span> [main]
+    <span class="code-key">tags:</span> ["v*"]
+  <span class="code-key">pull_request:</span>
+    <span class="code-key">branches:</span> [main]
+  <span class="code-key">workflow_dispatch:</span></code></pre>
+          <div class="theory-highlight">
+            하나의 워크플로우로 <strong>개발 → 테스트 → 릴리스</strong><br>전체 파이프라인을 자동화할 수 있습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 실습의 비밀 — 자동 검증 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-12" data-rotate-x="-5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> 실습의 비밀 — 자동 검증</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>자동 검증 흐름</h3>
+          <ul class="theory-list">
+            <li>1단계: <strong>기본 워크플로우</strong> 생성 → push 이벤트 → YAML 구조 확인</li>
+            <li>2단계: <strong>Docker Actions</strong> 적용 → push 이벤트 → 멀티 플랫폼 빌드 확인</li>
+            <li>3단계: <strong>메타데이터 액션</strong> 추가 → push 이벤트 → 동적 태깅 확인</li>
+            <li>4단계: <strong>릴리스 생성</strong> → tag 이벤트 → 버전 태그 이미지 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- 10. 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-24.svg" alt="ghcr">
+          <div><strong>GitHub Packages</strong><p>ghcr.io — GITHUB_TOKEN으로 인증, 공개 무료</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-code-24.svg" alt="dockerfile">
+          <div><strong>Dockerfile</strong><p>앱을 컨테이너로 패키징하는 빌드 레시피</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/rocket-24.svg" alt="actions">
+          <div><strong>Docker Actions</strong><p>QEMU + Buildx + build-push — 멀티 플랫폼 빌드</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tag-24.svg" alt="metadata">
+          <div><strong>metadata-action</strong><p>Git 컨텍스트 → Docker 태그 자동 생성</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/iterations-24.svg" alt="lifecycle">
+          <div><strong>라이프사이클</strong><p>push · PR · 릴리스 — 전체 파이프라인 자동화</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/publish-docker-images" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-publish-docker-images">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview (invisible) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

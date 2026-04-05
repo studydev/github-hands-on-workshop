@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 — AI 보안 구멍 찾기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · AI 보안 구멍 찾기</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-codescan')">코드 스캐닝</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-codeql')">CodeQL</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-vuln')">취약점 탐지</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-alert')">알림 분류</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-fix')">취약점 수정</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 흐름 + Z축 깊이 변화
+    Row 1 (y=0)    : 좌→우  z=0 근처
+    Row 2 (y=420)  : 우→좌  z=-400~-600
+    Row 3 (y=840)  : 좌→우  z=-700~-900
+    Row 4 (y=1260) : 우→좌  z=-100~-300
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: 소개 / 학습 목표 / 실습 흐름 (좌→우) ==================== -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">내 코드 지키기 · 모듈 #2</span>
+      </div>
+      <h1>AI 보안 구멍 찾기</h1>
+      <p class="theory-skill">Introduction to CodeQL</p>
+      <p class="theory-desc">CodeQL을 사용한 코드 스캐닝으로<br>SQL 인젝션 같은 보안 취약점을 자동 탐지하고,<br>알림을 검토·분류하며 수정하는 방법을 배웁니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">30분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">4단계 실습</span>
+      </div>
+    </div>
+
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="scanning">
+          <strong>코드 스캐닝 활성화</strong>
+          <p>GHAS와 CodeQL로 저장소 보안 스캔을 설정</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/search-24.svg" alt="detect">
+          <strong>취약점 탐지</strong>
+          <p>PR에서 SQL 인젝션 등 보안 문제를 자동 발견</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/bell-24.svg" alt="alert">
+          <strong>알림 검토 & 분류</strong>
+          <p>CWE/CVE 기반으로 알림을 확인하고 대응</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/check-circle-24.svg" alt="fix">
+          <strong>취약점 수정</strong>
+          <p>코드 수정 후 알림 해결까지 완료</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>코드 스캐닝</strong><p>CodeQL 활성화</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>취약점 탐지</strong><p>PR에서 SQL 인젝션</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>알림 분류</strong><p>검토 · 해제 · 재오픈</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>취약점 수정</strong><p>코드 패치 & 검증</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">Settings → Security → Code scanning에서 CodeQL을 활성화하고 진행합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: 코드 스캐닝 / CodeQL / 취약점 탐지 (우→좌) ==================== -->
+    <div id="t-codescan" class="step theory-slide" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="scanning"> GitHub 코드 스캐닝</h2>
+      <p class="theory-subtitle">개발 프로세스에 직접 통합되는 보안 테스트</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>코드 스캐닝</strong>은 <a href="https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security" target="_blank" rel="noopener">GitHub Advanced Security (GHAS)</a> 제품군의 일부로, SAST·컨테이너·IaC 등을 지원합니다.</p>
+          <h3>주요 특징</h3>
+          <ul class="theory-list">
+            <li><strong>결과가 코드 바로 옆에</strong> — 컨텍스트 전환 없이 GitHub에서 확인</li>
+            <li><strong>공개 저장소 무료</strong> — 비공개는 GHAS 유료 라이선스 필요</li>
+            <li><strong>PR 통합</strong> — 머지 전에 취약점을 잡아냄</li>
+          </ul>
+          <h3>설정 방법</h3>
+          <pre class="theory-code"><code>Settings → Security → Advanced Security
+→ Code scanning → CodeQL → <strong>Set up → Default</strong>
+→ <strong>Enable CodeQL</strong> 클릭</code></pre>
+          <div class="theory-highlight">
+            실습 1단계에서 Settings → Code scanning에서 CodeQL 기본 설정을 활성화합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-codeql" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/codescan-24.svg" alt="codeql"> CodeQL 분석 엔진</h2>
+      <p class="theory-subtitle">코드를 데이터처럼 쿼리하는 정적 분석 도구</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>CodeQL</strong>은 코드를 데이터베이스로 변환한 뒤, SQL과 유사한 쿼리 언어로 보안 패턴을 검색하는 정적 분석 도구입니다.</p>
+          <h3>탐지 가능한 취약점</h3>
+          <ul class="theory-list">
+            <li><strong>SQL 인젝션</strong> — 사용자 입력이 쿼리에 직접 삽입</li>
+            <li><strong>크로스 사이트 스크립팅 (XSS)</strong> — 악성 스크립트 주입</li>
+            <li><strong>코드 인젝션</strong> — 외부 입력으로 임의 코드 실행</li>
+          </ul>
+          <h3>쿼리 스위트</h3>
+          <pre class="theory-code"><code><strong>Default</strong> — 일반적인 보안 패턴
+<strong>Extended</strong> — 더 많은 패턴 포함
+<strong>Custom</strong> — GitHub Actions로 직접 구성</code></pre>
+          <div class="theory-highlight">
+            보안 전문가 팀이 사전 구성한 스위트를 활용하면 별도 설정 없이도 강력한 분석이 가능합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-vuln" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg" alt="vuln"> PR에서 취약점 탐지</h2>
+      <p class="theory-subtitle">머지 전에 보안 문제를 잡아내는 자동 검사</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>Pull Request를 생성하면 CodeQL이 자동으로 코드 변경사항을 분석합니다.</p>
+          <h3>SQL 인젝션 예시</h3>
+          <pre class="theory-code"><code>- "SELECT * FROM books WHERE name LIKE '%s'" % name
++ "SELECT * FROM books WHERE name LIKE '%" + name + "%'"
+<span style="color:#f0883e;">⚠ 사용자 입력이 쿼리에 직접 삽입 → SQL 인젝션!</span></code></pre>
+          <h3>PR 체크 결과</h3>
+          <ul class="theory-list">
+            <li>PR 하단 Checks에서 <strong>CodeQL</strong> 체크 확인</li>
+            <li>취약점 발견 시 <strong>댓글로 알림</strong> + 수정 제안</li>
+            <li><strong>Show paths</strong> 링크로 소스→싱크 흐름 추적</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 2단계에서 routes.py에 SQL 인젝션 취약점을 도입하고 PR 체크 결과를 확인합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: 알림 분류 / 취약점 수정 / Actions (좌→우) ==================== -->
+    <div id="t-alert" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/bell-24.svg" alt="alert"> 알림 검토 및 분류</h2>
+      <p class="theory-subtitle">Security 탭에서 알림 관리 — 해제, 재오픈, 감사 추적</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>머지 후 <strong>Security → Code scanning</strong>에서 열린 알림을 확인하고 관리합니다.</p>
+          <h3>알림 정보 구성</h3>
+          <ul class="theory-list">
+            <li><strong>해결 상태</strong> — Open / Dismissed / Fixed</li>
+            <li><strong>영향받는 브랜치</strong> — main, feature 등</li>
+            <li><strong>심각도</strong> — Critical, High, Medium, Low</li>
+            <li><strong>CWE</strong> — 소프트웨어 약점 분류 체계</li>
+            <li><strong>CVE</strong> — 공개 취약점 식별 번호</li>
+          </ul>
+          <h3>분류 워크플로우</h3>
+          <pre class="theory-code"><code>알림 확인 → <strong>Dismiss alert</strong> (사유 선택)
+→ 설명 입력 → 감사 추적에 기록
+→ 필요 시 <strong>Reopen alert</strong>로 재오픈</code></pre>
+          <div class="theory-highlight">
+            실습 3단계에서 알림을 해제(Dismiss)하고 다시 열어(Reopen) 감사 추적을 확인합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-fix" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/check-circle-24.svg" alt="fix"> 보안 취약점 수정</h2>
+      <p class="theory-subtitle">파라미터화된 쿼리로 SQL 인젝션 방지</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>CodeQL이 제안하는 수정 방법을 참고하여 코드를 패치합니다.</p>
+          <h3>수정 전 vs 수정 후</h3>
+          <pre class="theory-code"><code>- "SELECT * FROM books WHERE name LIKE '%" + name + "%'"
++ "SELECT * FROM books WHERE name LIKE %s", name
+<span style="color:#3fb950;">✓ 파라미터 바인딩으로 인젝션 방지</span></code></pre>
+          <h3>수정 후 확인</h3>
+          <ul class="theory-list">
+            <li>main 브랜치에 직접 커밋 → CodeQL 재스캔</li>
+            <li>Security 탭에서 열린 알림 <strong>0개</strong> 확인</li>
+            <li>닫힌 알림의 <strong>감사 추적</strong>에서 자동 수정 기록 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            실습 4단계에서 routes.py를 수정하고 CodeQL 재스캔으로 알림이 해결되었는지 확인합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 보안 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: CodeQL 활성화 → <strong>설정 변경 감지</strong> → 스캐닝 시작</li>
+            <li>2단계: 취약 코드 PR → <strong>CodeQL 체크</strong> → 알림 생성</li>
+            <li>3단계: 알림 분류 → <strong>Dismiss/Reopen</strong> → 감사 기록</li>
+            <li>4단계: 코드 수정 → <strong>재스캔</strong> → 알림 자동 해결</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: 정리 (우→좌) ==================== -->
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="scanning">
+          <div><strong>코드 스캐닝</strong><p>GHAS + CodeQL로 저장소 보안 자동화</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/codescan-24.svg" alt="codeql">
+          <div><strong>CodeQL</strong><p>코드를 DB로 변환 → 쿼리로 취약점 검색</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg" alt="detect">
+          <div><strong>취약점 탐지</strong><p>PR 체크로 SQL 인젝션 등 머지 전 발견</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/bell-24.svg" alt="alert">
+          <div><strong>알림 분류</strong><p>CWE/CVE 기반 분류 · 해제 · 재오픈 관리</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/check-circle-24.svg" alt="fix">
+          <div><strong>취약점 수정</strong><p>파라미터 바인딩으로 인젝션 방지 & 검증</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/introduction-to-codeql" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-introduction-to-codeql">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

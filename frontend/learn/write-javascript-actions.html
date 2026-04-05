@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 · JavaScript로 나만의 Action</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · JavaScript로 나만의 Action</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-toolkit')">툴킷</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-source')">소스</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-bundle')">번들링</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-metadata')">메타데이터</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-workflow')">워크플로우</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row1 y=0   L→R  x: 0 → 1100 → 2200
+    Row2 y=420 R→L  x: 2200 → 1100 → 0
+    Row3 y=840 L→R  x: 0 → 1100 → 2200
+    Row4 y=1260 R→L x: 2200 → 1100
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 1. 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">자동화의 마법 · 모듈 #4</span>
+      </div>
+      <h1>JavaScript로 나만의 Action</h1>
+      <p class="theory-skill">Write JavaScript Actions</p>
+      <p class="theory-desc">커스텀 JavaScript 기반 GitHub Action을 만들고,<br>배포용으로 번들링하고, 워크플로우에서 사용하는 방법을 배웁니다.<br>랜덤 아재 개그를 가져오는 Dad Jokes Action을 직접 만들어 봅니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">6단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 2. 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="toolkit">
+          <strong>Actions 툴킷</strong>
+          <p>@actions/core 등 GitHub Actions Toolkit으로 런타임과 상호작용</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-24.svg" alt="bundle">
+          <strong>번들링</strong>
+          <p>@vercel/ncc로 코드와 의존성을 하나의 파일로 결합</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-code-24.svg" alt="metadata">
+          <strong>액션 메타데이터</strong>
+          <p>action.yml로 액션의 입력, 출력, 실행 방식을 정의</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="workflow">
+          <strong>워크플로우 통합</strong>
+          <p>커스텀 액션을 워크플로우에서 사용하고 출력 활용</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>프로젝트 설정</strong><p>npm init, 의존성 설치</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>소스 작성</strong><p>joke.js + main.js</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>번들링</strong><p>ncc → dist/index.js</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>메타데이터</strong><p>action.yml 생성</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">5</span><div class="flow-content"><strong>워크플로우</strong><p>joke-action.yml</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">6</span><div class="flow-content"><strong>테스트</strong><p>/joke 댓글로 실행</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 Mona(봇)가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- 4. Actions 툴킷 -->
+    <div id="t-toolkit" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-12" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="toolkit"> Actions 툴킷</h2>
+      <p class="theory-subtitle">JavaScript Actions를 빌드하기 위한 패키지 모음</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>GitHub Actions Toolkit</strong>은 JavaScript Actions를 빌드하기 위한 공식 패키지 모음입니다. 런타임 환경과 상호작용하고, 입력을 받고, 출력을 생성합니다.</p>
+          <h3>핵심 라이브러리</h3>
+          <ul class="theory-list">
+            <li><strong><code>@actions/core</code></strong> — 입력/출력, 로깅, 시크릿 마스킹</li>
+            <li><strong><code>@actions/github</code></strong> — GitHub API 클라이언트</li>
+            <li><strong><code>@actions/artifact</code></strong> — 아티팩트 업/다운로드</li>
+            <li><strong><code>@actions/cache</code></strong> — 캐시 관리</li>
+          </ul>
+<pre class="theory-code"><code><span class="code-key">import</span> * <span class="code-key">as</span> core <span class="code-key">from</span> "@actions/core";
+
+<span class="code-comment">// 입력 읽기</span>
+<span class="code-key">const</span> name = core.getInput("name");
+<span class="code-comment">// 출력 설정</span>
+core.setOutput("joke", joke);
+<span class="code-comment">// 로깅</span>
+core.info("Success!");</code></pre>
+          <div class="theory-highlight">
+            <code>@actions/core</code>는 <strong>모든 JS Action의 필수 의존성</strong>입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 소스 파일 작성 -->
+    <div id="t-source" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="source"> 소스 파일 작성</h2>
+      <p class="theory-subtitle">API 호출 + 액션 출력의 구조</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>Dad Jokes 액션은 <strong>두 파일</strong>로 구성됩니다. 관심사 분리를 통해 재사용성과 테스트 용이성을 높입니다.</p>
+          <h3>src/joke.js — API 호출</h3>
+<pre class="theory-code"><code><span class="code-key">import</span> request <span class="code-key">from</span> "request-promise";
+
+<span class="code-key">async function</span> getJoke() {
+  <span class="code-key">const</span> res = <span class="code-key">await</span> request({
+    uri: "https://icanhazdadjoke.com/",
+    headers: { Accept: "application/json" },
+    json: <span class="code-key">true</span>
+  });
+  <span class="code-key">return</span> res.joke;
+}</code></pre>
+          <h3>src/main.js — 진입점</h3>
+<pre class="theory-code"><code><span class="code-key">import</span> getJoke <span class="code-key">from</span> "./joke.js";
+<span class="code-key">import</span> * <span class="code-key">as</span> core <span class="code-key">from</span> "@actions/core";
+
+<span class="code-key">const</span> joke = <span class="code-key">await</span> getJoke();
+core.setOutput("joke", joke);</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 번들링 -->
+    <div id="t-bundle" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="12" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-24.svg" alt="bundle"> 액션 번들링</h2>
+      <p class="theory-subtitle">node_modules 없이 배포하는 방법</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>GitHub Actions는 실행 시 저장소를 다운로드합니다. <code>node_modules</code>를 커밋하면 수천 개 파일이 포함되어 저장소가 비대해집니다.</p>
+          <h3>@vercel/ncc</h3>
+          <p><strong>ncc</strong>는 Node.js 프로젝트를 모든 의존성 포함 <strong>단일 파일</strong>로 컴파일합니다.</p>
+<pre class="theory-code"><code><span class="code-comment">// package.json</span>
+"scripts": {
+  "build": "ncc build src/main.js -o dist"
+}
+
+<span class="code-comment">$ npm run build</span>
+<span class="code-comment">→ dist/index.js (모든 의존성 포함)</span></code></pre>
+          <div class="theory-highlight">
+            <code>node_modules</code>는 <code>.gitignore</code>에,<br><code>dist/</code>는 <strong>반드시 커밋</strong>해야 합니다.
+          </div>
+          <h3>장점</h3>
+          <ul class="theory-list">
+            <li><strong>빠른 실행</strong> — 단일 파일 로드</li>
+            <li><strong>깔끔한 저장소</strong> — node_modules 불필요</li>
+            <li><strong>확정적 빌드</strong> — 빌드 시점의 의존성 고정</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- 7. 액션 메타데이터 -->
+    <div id="t-metadata" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-code-24.svg" alt="metadata"> 액션 메타데이터</h2>
+      <p class="theory-subtitle">action.yml — 액션의 사용 설명서</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>모든 GitHub Action에는 <code>action.yml</code> 메타데이터 파일이 필요합니다. 액션의 실행 방식과 매개변수를 정의합니다.</p>
+          <h3>핵심 매개변수</h3>
+          <ul class="theory-list">
+            <li><strong><code>name</code></strong> — 액션의 이름 (필수)</li>
+            <li><strong><code>description</code></strong> — 액션 설명 (필수)</li>
+            <li><strong><code>inputs</code></strong> — 액션이 받을 데이터</li>
+            <li><strong><code>outputs</code></strong> — 하위 단계에서 사용할 데이터</li>
+            <li><strong><code>runs</code></strong> — 실행 방법: <code>using</code> + <code>main</code> (필수)</li>
+          </ul>
+<pre class="theory-code"><code><span class="code-key">name:</span> "Joke Action"
+<span class="code-key">description:</span> "Fetches a random joke"
+<span class="code-key">outputs:</span>
+  <span class="code-key">joke:</span>
+    <span class="code-key">description:</span> "The fetched joke text"
+<span class="code-key">runs:</span>
+  <span class="code-key">using:</span> node24
+  <span class="code-key">main:</span> dist/index.js</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 워크플로우 & 출력 -->
+    <div id="t-workflow" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="workflow"> 워크플로우 & 출력 활용</h2>
+      <p class="theory-subtitle">커스텀 액션을 워크플로우에서 사용하기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>만든 액션을 <code>uses: ./</code>로 로컬 참조하거나, 다른 저장소에서 <code>uses: owner/repo@tag</code>로 사용합니다.</p>
+<pre class="theory-code"><code><span class="code-key">name:</span> Joke Action
+<span class="code-key">on:</span>
+  <span class="code-key">issue_comment:</span>
+    <span class="code-key">types:</span> [created]
+<span class="code-key">jobs:</span>
+  <span class="code-key">joke:</span>
+    <span class="code-key">if:</span> startsWith(github.event.comment.body, '/joke')
+    <span class="code-key">runs-on:</span> ubuntu-latest
+    <span class="code-key">steps:</span>
+      - <span class="code-key">uses:</span> actions/checkout@v5
+      - <span class="code-key">name:</span> Get Joke
+        <span class="code-key">id:</span> get-joke
+        <span class="code-key">uses:</span> ./
+      - <span class="code-key">name:</span> Post Comment
+        <span class="code-key">uses:</span> peter-evans/create-or-update-comment@v5
+        <span class="code-key">with:</span>
+          <span class="code-key">body:</span> ${{ steps.get-joke.outputs.joke }}</code></pre>
+          <div class="theory-highlight">
+            <code>steps.&lt;id&gt;.outputs.&lt;name&gt;</code>으로<br><strong>스텝 간 데이터를 전달</strong>합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 실습 동작 원리 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-12" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> 실습의 비밀 — 자동 검증</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>자동 검증 흐름</h3>
+          <ul class="theory-list">
+            <li>1단계: 프로젝트 초기화 → <strong>push 이벤트</strong> → package.json 확인</li>
+            <li>2단계: 소스 작성 → <strong>push 이벤트</strong> → src/ 파일 확인</li>
+            <li>3단계: 번들링 → <strong>push 이벤트</strong> → dist/index.js 확인</li>
+            <li>4단계: 메타데이터 → <strong>push 이벤트</strong> → action.yml 확인</li>
+            <li>5단계: 워크플로우 → <strong>push 이벤트</strong> → YAML 구조 확인</li>
+            <li>6단계: 테스트 → <strong>issue_comment</strong> → /joke 실행 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- 10. 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/tools-24.svg" alt="toolkit">
+          <div><strong>Actions Toolkit</strong><p>@actions/core로 입력·출력·로깅을 처리</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="source">
+          <div><strong>소스 구조</strong><p>로직(joke.js) + 진입점(main.js) 분리</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-24.svg" alt="bundle">
+          <div><strong>번들링</strong><p>ncc → dist/index.js 단일 파일 배포</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/file-code-24.svg" alt="metadata">
+          <div><strong>action.yml</strong><p>name, outputs, runs로 액션 정의</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="workflow">
+          <div><strong>Workflow</strong><p>uses: ./ 로 로컬 액션 사용 + 출력 전달</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/write-javascript-actions" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-write-javascript-actions">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview (invisible) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

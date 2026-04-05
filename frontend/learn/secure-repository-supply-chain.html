@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 · 취약점 자동 찾기</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · 취약점 자동 찾기</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-supply-chain')">공급망</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-dep-graph')">의존성 그래프</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-dep-alerts')">경고</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-dep-security')">보안 업데이트</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-dep-versions')">버전 업데이트</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row1 y=0    L→R  x: 0 → 1100 → 2200
+    Row2 y=420  R→L  x: 2200 → 1100 → 0
+    Row3 y=840  L→R  x: 0 → 1100 → 2200
+    Row4 y=1260 R→L  x: 2200 → 1100
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 1. 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">내 코드 지키기 · 모듈 #1</span>
+      </div>
+      <h1>취약점 자동 찾기</h1>
+      <p class="theory-skill">Secure your repository supply chain</p>
+      <p class="theory-desc">공급망을 보호하고, 환경의 의존성을 이해하고,<br>해당 의존성의 취약점을 파악하여 자동으로 패치합니다.<br>Dependency Graph부터 Dependabot까지 전체 흐름을 경험합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">4단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 2. 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-dependencies-24.svg" alt="dependency">
+          <strong>의존성 그래프</strong>
+          <p>저장소의 모든 의존성을 시각적으로 확인하고 관리하는 방법</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg" alt="alert">
+          <strong>Dependabot 경고</strong>
+          <p>취약한 의존성이 발견되면 자동으로 알림을 받는 시스템</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="security">
+          <strong>보안 업데이트</strong>
+          <p>취약점이 발견되면 자동으로 수정 PR을 생성하는 기능</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/versions-24.svg" alt="versions">
+          <strong>버전 업데이트</strong>
+          <p>의존성을 항상 최신 버전으로 유지하는 자동화 설정</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>의존성 그래프</strong><p>의존성 추가 &amp; 확인</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>Dependabot 경고</strong><p>경고 활성화 &amp; PR 생성</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>보안 업데이트</strong><p>자동 수정 PR 활성화</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>버전 업데이트</strong><p>dependabot.yml 설정</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 Mona(봇)가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- 4. 공급망 보안 개요 -->
+    <div id="t-supply-chain" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-lock-24.svg" alt="supply-chain"> 공급망 보안이란?</h2>
+      <p class="theory-subtitle">오픈소스 의존성이 만드는 보안 위험</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>대부분의 프로젝트는 <strong>수백 개의 오픈소스 의존성</strong>에 의존합니다. 이 의존성에 취약점이 있다면 <strong>공급망 공격</strong>의 위험에 노출됩니다.</p>
+          <h3>GitHub의 공급망 보안 기능</h3>
+          <ul class="theory-list">
+            <li><strong>의존성 그래프</strong> — 저장소의 모든 의존성 시각화</li>
+            <li><strong>의존성 검토</strong> — PR에서 의존성 변경 확인</li>
+            <li><strong>Dependabot 경고</strong> — 취약점 알림</li>
+            <li><strong>Dependabot 보안 업데이트</strong> — 자동 수정 PR</li>
+            <li><strong>Dependabot 버전 업데이트</strong> — 최신 버전 유지</li>
+          </ul>
+          <div class="theory-highlight">
+            사용 중인 의존성의 취약점을 <strong>파악하고 패치</strong>하는 것이<br>공급망 보안의 핵심입니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 의존성 그래프 -->
+    <div id="t-dep-graph" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-dependencies-24.svg" alt="graph"> 의존성 그래프</h2>
+      <p class="theory-subtitle">저장소가 어떤 패키지에 의존하는지 한눈에 파악</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>의존성 그래프</strong>는 매니페스트 및 잠금 파일을 분석하여 저장소의 모든 의존성을 요약합니다.</p>
+          <h3>보여주는 정보</h3>
+          <ul class="theory-list">
+            <li><strong>Dependencies</strong> — 저장소가 의존하는 생태계와 패키지</li>
+            <li><strong>Dependents</strong> — 해당 저장소에 의존하는 다른 저장소</li>
+          </ul>
+          <h3>실습에서 하는 일</h3>
+          <ul class="theory-list">
+            <li>Settings에서 Dependency Graph 활성화 확인</li>
+            <li><code>package-lock.json</code>에 <code>follow-redirects</code> 의존성 추가</li>
+            <li>Insights → Dependency graph에서 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            모든 공개 저장소에 <strong>기본 활성화</strong> — 바로 사용할 수 있습니다!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Dependabot 경고 -->
+    <div id="t-dep-alerts" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg" alt="alerts"> Dependabot 경고</h2>
+      <p class="theory-subtitle">취약한 의존성을 자동으로 감지</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Dependabot 경고</strong>는 코드가 안전하지 않은 패키지에 의존하고 있음을 알려줍니다. <a href="https://github.com/advisories" target="_blank" rel="noopener">GitHub Advisory Database</a>를 참조합니다.</p>
+          <h3>경고 카테고리</h3>
+          <ul class="theory-list">
+            <li><strong>GitHub 검토 권고</strong> — GitHub가 검증한 보안 취약점</li>
+            <li><strong>미검토 권고</strong> — 커뮤니티가 보고한 취약점</li>
+          </ul>
+          <h3>실습에서 하는 일</h3>
+          <ul class="theory-list">
+            <li>GitHub Advisory Database에서 <code>follow-redirects</code> 검색</li>
+            <li>Settings → Dependabot 경고 활성화</li>
+            <li>"Prototype Pollution in minimist" 경고에서 PR 생성</li>
+          </ul>
+          <div class="theory-highlight">
+            경고가 많다 = <strong>의존성이 활발히 유지보수</strong>되고 있다는 신호!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- 7. Dependabot 보안 업데이트 -->
+    <div id="t-dep-security" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="security"> Dependabot 보안 업데이트</h2>
+      <p class="theory-subtitle">취약점 발견 → 자동으로 수정 PR 생성</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>보안 업데이트</strong>가 활성화되면, Dependabot이 취약한 의존성을 <em>감지</em>하고 자동으로 PR을 열어 <em>수정</em>합니다.</p>
+          <h3>수동 vs 자동</h3>
+          <ul class="theory-list">
+            <li><strong>수동</strong> — 경고 확인 → PR 직접 생성 (2단계에서 경험)</li>
+            <li><strong>자동</strong> — Dependabot이 직접 PR 생성 (3단계에서 활성화)</li>
+          </ul>
+          <h3>주의할 점</h3>
+          <p>하나의 의존성(예: axios) 업데이트가 다른 전이적 의존성도 함께 해결할 수 있습니다. Dependabot은 불필요해진 PR을 <strong>자동으로 닫습니다</strong>.</p>
+          <div class="theory-highlight">
+            한꺼번에 모든 PR을 머지하지 마세요!<br><strong>Dependabot이 알아서 정리</strong>합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Dependabot 버전 업데이트 -->
+    <div id="t-dep-versions" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/versions-24.svg" alt="versions"> Dependabot 버전 업데이트</h2>
+      <p class="theory-subtitle">최신 버전을 자동으로 유지하는 설정 파일</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>버전 업데이트</strong>는 <code>dependabot.yml</code> 설정 파일로 의존성을 항상 최신 릴리스로 유지합니다.</p>
+          <h3>설정 예시</h3>
+<pre class="theory-code"><code><span class="code-key">version:</span> 2
+<span class="code-key">updates:</span>
+  - <span class="code-key">package-ecosystem:</span> "github-actions"
+    <span class="code-key">directory:</span> "/"
+    <span class="code-key">schedule:</span>
+      <span class="code-key">interval:</span> "monthly"
+  - <span class="code-key">package-ecosystem:</span> "nuget"
+    <span class="code-key">directory:</span> "/code/"
+    <span class="code-key">schedule:</span>
+      <span class="code-key">interval:</span> "weekly"</code></pre>
+          <div class="theory-highlight">
+            <strong>보안 업데이트</strong>는 취약점 수정,<br><strong>버전 업데이트</strong>는 최신 버전 유지 — 목적이 다릅니다!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 실습 동작 원리 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> 실습의 비밀 — 자동 검증</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>자동 검증 흐름</h3>
+          <ul class="theory-list">
+            <li>1단계: <code>package-lock.json</code>에 의존성 추가 → <strong>push</strong> → 의존성 그래프 확인</li>
+            <li>2단계: Dependabot 경고 활성화 → <strong>경고 기반 PR</strong> → 머지</li>
+            <li>3단계: 보안 업데이트 활성화 → <strong>자동 PR 생성</strong> → axios PR 머지</li>
+            <li>4단계: <code>dependabot.yml</code> 커밋 → <strong>버전 업데이트</strong> 트리거</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- 10. 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-12" data-rotate-x="-5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-lock-24.svg" alt="supply-chain">
+          <div><strong>공급망 보안</strong><p>오픈소스 의존성의 취약점을 파악하고 패치하는 것이 핵심</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/package-dependencies-24.svg" alt="graph">
+          <div><strong>의존성 그래프</strong><p>저장소의 모든 의존성을 한눈에 시각화</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg" alt="alerts">
+          <div><strong>Dependabot 경고</strong><p>Advisory Database 기반 취약점 자동 알림</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/shield-check-24.svg" alt="security">
+          <div><strong>보안 업데이트</strong><p>취약점 감지 → 자동 수정 PR 생성</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/versions-24.svg" alt="versions">
+          <div><strong>버전 업데이트</strong><p>dependabot.yml로 최신 버전 자동 유지</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/secure-repository-supply-chain" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-secure-repository-supply-chain">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview (invisible) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn, i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

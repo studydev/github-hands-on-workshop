@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>이론 — AI 동료 첫 출근</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>G</text></svg>">
+  <link rel="stylesheet" href="../presentation.css">
+  <link rel="stylesheet" href="../learn.css">
+</head>
+<body class="impress-not-supported">
+
+  <div class="fallback-message">
+    <p>최신 브라우저가 필요합니다.</p>
+    <p><a href="../presentation.html">Self Study Map으로 돌아가기</a></p>
+  </div>
+
+  <nav id="pres-nav">
+    <a href="../presentation.html" class="pres-nav-link" title="Self Study Map">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+    </a>
+    <span class="pres-nav-title">이론 · AI 동료 첫 출근</span>
+    <div class="pres-nav-cats" id="theory-nav">
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-intro')">소개</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-learn')">학습 목표</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-flow')">실습 흐름</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-copilot')">Copilot이란</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-chat')">Chat</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-inline')">인라인 제안</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-agent')">Agent 모드</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-plan')">Plan Agent</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-pr')">PR 리뷰</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-actions')">Actions</button>
+      <button class="pres-nav-cat-btn" onclick="impress().goto('t-summary')">정리</button>
+      <button class="pres-nav-cat-btn" id="btn-overview">전체 보기</button>
+    </div>
+  </nav>
+
+  <!--
+    LAYOUT: 지그재그 3D
+    Row 1 (y=0)   L→R : intro → learn → flow
+    Row 2 (y=420) R→L : copilot → chat → inline
+    Row 3 (y=840) L→R : agent → plan → pr
+    Row 4 (y=1260) R→L : actions → summary
+  -->
+
+  <div id="impress" data-transition-duration="700" data-width="1050" data-height="700">
+
+    <!-- ==================== Row 1: y=0, L→R ==================== -->
+
+    <!-- 소개 -->
+    <div id="t-intro" class="step theory-slide" data-x="0" data-y="0" data-z="0" data-scale="1.2" data-rotate-z="-2">
+      <div class="theory-header">
+        <span class="theory-badge">AI 날개 달기 · 모듈 #1</span>
+      </div>
+      <h1>AI 동료 첫 출근</h1>
+      <p class="theory-skill">Getting Started with GitHub Copilot</p>
+      <p class="theory-desc">GitHub Copilot의 다양한 상호작용 모드를 배우고,<br>코드 설명·작성·계획·디버깅까지<br>AI 페어 프로그래밍을 직접 경험합니다.</p>
+      <div class="theory-meta">
+        <span class="t-meta-item">60분</span>
+        <span class="t-meta-item">Free</span>
+        <span class="t-meta-item">5단계 실습</span>
+      </div>
+    </div>
+
+    <!-- 학습 목표 -->
+    <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
+      <h2>이 실습에서 배우는 것</h2>
+      <div class="theory-grid">
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-discussion-24.svg" alt="chat">
+          <strong>Copilot Chat</strong>
+          <p>Ask 모드로 프로젝트를 탐색하고 코드에 대해 질문하기</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="inline">
+          <strong>인라인 제안 & 채팅</strong>
+          <p>코드 완성 제안을 받고, 인라인 채팅으로 코드를 편집하기</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/dependabot-24.svg" alt="agent">
+          <strong>Agent 모드</strong>
+          <p>다단계 코딩 작업을 자율적으로 수행하는 AI 동료</p>
+        </div>
+        <div class="theory-card">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/project-roadmap-24.svg" alt="plan">
+          <strong>Plan Agent</strong>
+          <p>코드 변경 전 구현 계획을 세우고 검토하기</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 실습 흐름 -->
+    <div id="t-flow" class="step theory-slide" data-x="2200" data-y="0" data-z="-200" data-scale="1" data-rotate-z="2">
+      <h2>실습 흐름 요약</h2>
+      <div class="flow-steps-hz">
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">1</span><div class="flow-content"><strong>Copilot 만나기</strong><p>Codespace 시작 &amp; Chat 탐색</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">2</span><div class="flow-content"><strong>Copilot 작업</strong><p>버그 수정 &amp; 데이터 생성</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">3</span><div class="flow-content"><strong>Agent 모드</strong><p>기능 추가 &amp; 등록 취소</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">4</span><div class="flow-content"><strong>Plan Agent</strong><p>테스트 계획 &amp; 구현</p></div></div>
+        </div>
+        <div class="flow-hz-arrow">→</div>
+        <div class="flow-step-card">
+          <div class="flow-step-header"><span class="flow-num">5</span><div class="flow-content"><strong>PR 리뷰</strong><p>요약 &amp; 코드 리뷰 &amp; 병합</p></div></div>
+        </div>
+      </div>
+      <p class="flow-note">각 단계를 완료하면 GitHub Actions가 자동으로 다음 단계의 안내를 시작합니다.</p>
+    </div>
+
+    <!-- ==================== Row 2: y=420, R→L ==================== -->
+
+    <!-- Copilot이란 -->
+    <div id="t-copilot" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-10" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="copilot"> GitHub Copilot — AI 코딩 어시스턴트</h2>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>GitHub Copilot</strong>은 더 빠르고 적은 노력으로 코드를 작성할 수 있도록 도와주는 <em>AI 코딩 어시스턴트</em>입니다.</p>
+          <p>문제 해결과 협업에 더 많은 에너지를 집중할 수 있게 해줍니다.</p>
+          <div class="theory-highlight">
+            Copilot은 <strong>컨텍스트</strong>(배경) + <strong>프롬프트</strong>(방향) + <strong>모델</strong>(경험)로 동작합니다.
+          </div>
+          <h3>Copilot 상호작용 모드</h3>
+          <ul class="theory-list">
+            <li><strong>⚡ 인라인 제안</strong> — 입력 중 나타나는 코드 완성</li>
+            <li><strong>💭 인라인 채팅</strong> — 특정 코드 블록에 대한 타겟 도움</li>
+            <li><strong>💬 Ask 모드</strong> — 코드베이스에 대한 질문과 탐색</li>
+            <li><strong>🤖 Agent 모드</strong> — 자율적 다단계 코딩 작업</li>
+            <li><strong>🧭 Plan Agent</strong> — 구현 전 계획 수립</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat & Ask 모드 -->
+    <div id="t-chat" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-discussion-24.svg" alt="chat"> Copilot Chat — 대화형 코딩</h2>
+      <p class="theory-subtitle">프로젝트를 탐색하고 코드에 대해 질문하기</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Ask 모드</strong>는 코드베이스와 기술 개념에 대한 질문에 답하도록 최적화되어 있습니다.</p>
+          <h3>Chat으로 할 수 있는 것</h3>
+          <ul class="theory-list">
+            <li><code>@workspace</code>로 <strong>프로젝트 구조</strong> 파악</li>
+            <li>코드가 <strong>어떻게 동작하는지</strong> 설명 요청</li>
+            <li>터미널에서 <strong>잊어버린 명령어</strong> 도움 받기</li>
+            <li>아이디어 <strong>브레인스토밍</strong>과 학습</li>
+          </ul>
+          <div class="theory-highlight">
+            실습에서는 <code>@workspace</code>로 프로젝트를 소개받고,<br>터미널 인라인 채팅으로 Git 브랜치를 만듭니다.
+          </div>
+          <h3>프롬프트 예시</h3>
+          <div class="git-flow">
+            <span class="gf-branch gf-active gf-highlight">@workspace</span> <span class="gf-dim">Please briefly explain the structure of this project.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 인라인 제안 & 인라인 채팅 -->
+    <div id="t-inline" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="code"> 인라인 제안 & 인라인 채팅</h2>
+      <p class="theory-subtitle">코드 흐름을 끊지 않는 AI 제안</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h3>⚡ 인라인 제안 (Ghost Text)</h3>
+          <p>주석이나 코드를 입력하면 Copilot이 <strong>그림자 텍스트</strong>로 완성 제안을 보여줍니다.</p>
+          <div class="git-flow">
+            <span class="gf-dim"># Validate student is not already signed up</span><br>
+            <span class="gf-commit gf-active gf-highlight">if email in activity["participants"]:</span> <span class="gf-commit">← Tab으로 수락!</span>
+          </div>
+          <h3>💭 인라인 채팅 (Cmd+I / Ctrl+I)</h3>
+          <p>코드를 선택하고 <strong>인라인 채팅</strong>을 열어 해당 블록만 타겟으로 편집할 수 있습니다.</p>
+          <ul class="theory-list">
+            <li>선택한 코드에 대해 <strong>설명·리팩터·확장</strong> 요청</li>
+            <li>결과를 <strong>Keep / Discard</strong>로 빠르게 판단</li>
+            <li>커밋 메시지도 <strong>✨ 아이콘</strong>으로 자동 생성</li>
+          </ul>
+          <div class="theory-highlight">
+            실습에서는 인라인 제안으로 버그를 수정하고,<br>인라인 채팅으로 샘플 데이터를 추가합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 3: y=840, L→R ==================== -->
+
+    <!-- Agent 모드 -->
+    <div id="t-agent" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/dependabot-24.svg" alt="agent"> Agent 모드 — 자율적 AI 동료</h2>
+      <p class="theory-subtitle">다단계 코딩 작업을 자율적으로 수행</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Agent 모드</strong>는 AI 지원 코딩의 차세대 진화입니다. 자율적인 동료 프로그래머로서 다단계 코딩 작업을 수행합니다.</p>
+          <h3>Agent 모드의 특징</h3>
+          <ul class="theory-list">
+            <li>높은 수준의 요청을 <strong>다단계 작업으로 분해</strong></li>
+            <li>관련 파일을 <strong>자동 탐색</strong>하고 컨텍스트 수집</li>
+            <li>도구를 <strong>자동 선택·호출</strong> (터미널, 테스트 등)</li>
+            <li>오류에 반응하여 <strong>자동 수정</strong> 루프 실행</li>
+            <li>민감한 작업은 <strong>승인 게이트</strong>로 안전 확보</li>
+          </ul>
+          <div class="theory-highlight">
+            <code>#codebase</code> 도구로 프로젝트 전체를 탐색하고,<br>참가자 표시·등록 취소 기능을 Agent가 구현합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan Agent -->
+    <div id="t-plan" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/project-roadmap-24.svg" alt="plan"> Plan Agent — 설계 먼저, 코딩은 나중에</h2>
+      <p class="theory-subtitle">코드 변경 전 구현 계획을 수립하고 검토</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p><strong>Plan Agent</strong>는 코드를 변경하기 전에 솔루션을 설계하도록 도와줍니다.</p>
+          <h3>Plan Agent 워크플로우</h3>
+          <div class="git-flow">
+            <span class="gf-main">프롬프트</span> <span class="gf-dim">→</span> <span class="gf-branch">리서치</span> <span class="gf-dim">→</span> <span class="gf-branch">질문</span> <span class="gf-dim">→</span> <span class="gf-commit gf-active gf-highlight">계획 초안</span> <span class="gf-dim">→</span> <span class="gf-merge">Start Implementation</span>
+          </div>
+          <ul class="theory-list">
+            <li>읽기 전용 리서치로 <strong>요구 사항 파악</strong></li>
+            <li>명확한 <strong>질문</strong> → 답변으로 계획 보완</li>
+            <li>후속 프롬프트로 <strong>계획 개선</strong> 가능</li>
+            <li>승인 후 <strong>Agent 모드로 핸드오프</strong></li>
+          </ul>
+          <div class="theory-highlight">
+            실습에서는 pytest 기반 백엔드 테스트를<br>계획 → 개선 → 구현하는 전체 흐름을 경험합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PR에서 Copilot -->
+    <div id="t-pr" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/git-pull-request-24.svg" alt="PR"> PR에서 GitHub Copilot</h2>
+      <p class="theory-subtitle">코드 리뷰와 PR 요약을 AI가 도와줍니다</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h3>Copilot PR 요약</h3>
+          <p>PR 설명 도구 모음에서 <strong>Copilot 아이콘</strong>을 클릭하면, 변경 사항을 기반으로 자동 요약을 생성합니다.</p>
+          <h3>Copilot 코드 리뷰</h3>
+          <p>Reviewers에서 <strong>Copilot 리뷰</strong>를 요청하면, 일반적인 실수를 잡아내는 첫 번째 리뷰어 역할을 합니다.</p>
+          <ul class="theory-list">
+            <li><strong>PR 요약</strong> — 모든 변경 사항을 한눈에 파악</li>
+            <li><strong>코드 리뷰</strong> — 일반적인 버그·보안 문제 탐지</li>
+            <li>동료 리뷰 <strong>전에</strong> 빠른 사전 검토</li>
+            <li>리뷰 <strong>코멘트에 대한 수정</strong>도 Copilot으로</li>
+          </ul>
+          <div class="theory-highlight">
+            실습에서는 <code>accelerate-with-copilot → main</code> PR을 만들고,<br>Copilot 요약 &amp; 리뷰 후 병합합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== Row 4: y=1260, R→L ==================== -->
+
+    <!-- Actions 동작 -->
+    <div id="t-actions" class="step theory-slide" data-x="2200" data-y="1260" data-z="-300" data-scale="1" data-rotate-y="-12" data-rotate-x="-5">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/workflow-24.svg" alt="actions"> GitHub Actions — 실습의 비밀</h2>
+      <p class="theory-subtitle">뒤에서 자동으로 돌아가는 검증 시스템</p>
+      <div class="theory-two-col">
+        <div class="theory-col-text">
+          <p>이 실습은 <strong>GitHub Actions</strong>를 사용해 여러분의 진행을 자동으로 확인합니다.</p>
+          <h3>동작 원리</h3>
+          <ul class="theory-list">
+            <li>1단계: 브랜치 생성 → <strong>create 이벤트</strong> 감지 → <code>accelerate-with-copilot</code> 확인</li>
+            <li>2단계: 코드 푸시 → <strong>push 이벤트</strong> 감지 → <code>app.py</code> 수정 확인</li>
+            <li>3단계: Agent 기능 추가 → <strong>push 이벤트</strong> 감지 → 참가자 표시 확인</li>
+            <li>4단계: 테스트 추가 → <strong>push 이벤트</strong> 감지 → pytest 통과 확인</li>
+            <li>5단계: PR 병합 → <strong>pull_request closed</strong> 감지 → merged 확인</li>
+          </ul>
+          <div class="theory-highlight">
+            각 단계를 완료하면 <strong>Mona(봇)</strong>가 자동으로 다음 단계 안내 코멘트를 남깁니다.
+          </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- 핵심 정리 -->
+    <div id="t-summary" class="step theory-slide" data-x="1100" data-y="1260" data-z="-100" data-scale="1" data-rotate-y="-5" data-rotate-x="3">
+      <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="summary"> 핵심 정리</h2>
+      <div class="theory-summary">
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg" alt="copilot">
+          <div><strong>GitHub Copilot</strong><p>컨텍스트 + 프롬프트 + 모델로 동작하는 AI 어시스턴트</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/comment-discussion-24.svg" alt="chat">
+          <div><strong>Chat &amp; Ask</strong><p>@workspace로 프로젝트 탐색, 코드 질문, 학습</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="inline">
+          <div><strong>인라인 제안 &amp; 채팅</strong><p>Ghost Text로 코드 완성, Cmd+I로 타겟 편집</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/dependabot-24.svg" alt="agent">
+          <div><strong>Agent 모드</strong><p>자율적 다단계 작업 — 기능 추가·버그 수정·리팩터</p></div>
+        </div>
+        <div class="summary-item">
+          <img class="tc-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/project-roadmap-24.svg" alt="plan">
+          <div><strong>Plan Agent</strong><p>설계 먼저 → 승인 후 Agent 모드로 핸드오프</p></div>
+        </div>
+      </div>
+      <div class="summary-cta">
+        <a class="mod-link" href="https://github.com/skills-kr/getting-started-with-github-copilot" target="_blank" rel="noopener">실습 시작하기 →</a>
+        <a class="mod-link mod-link-theory" href="../presentation.html#mod-getting-started-with-github-copilot">← Self Study Map</a>
+      </div>
+    </div>
+
+    <!-- Overview step (arrow key로 도달 가능) -->
+    <div id="t-ov-auto" class="step" data-x="1100" data-y="630" data-z="0" data-scale="6" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" style="width:1px;height:1px;background:none;border:none;"></div>
+
+  </div>
+
+  <div class="hint"><p>← → 또는 Space 로 이동</p></div>
+  <div id="pres-progress"></div>
+
+  <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Calculate overview position from slide bounding box
+      function calcOverview() {
+        var steps = document.querySelectorAll('.step.theory-slide');
+        var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        steps.forEach(function(s) {
+          var x = parseFloat(s.getAttribute('data-x')) || 0;
+          var y = parseFloat(s.getAttribute('data-y')) || 0;
+          var sc = parseFloat(s.getAttribute('data-scale')) || 1;
+          var w = 1000 * sc / 2;
+          var h = 800 * sc / 2;
+          if (x - w < minX) minX = x - w;
+          if (x + w > maxX) maxX = x + w;
+          if (y - h < minY) minY = y - h;
+          if (y + h > maxY) maxY = y + h;
+        });
+        var ov = document.getElementById('t-ov-auto');
+        ov.setAttribute('data-x', (minX + maxX) / 2);
+        ov.setAttribute('data-y', (minY + maxY) / 2);
+        ov.setAttribute('data-scale', Math.max((maxX - minX) / 1050, (maxY - minY) / 700) * 1.05);
+      }
+
+      var impressRoot = document.getElementById('impress');
+      calcOverview();
+      impress().init();
+
+      // Overview: button toggles going to/from overview
+      var savedStepId = null;
+      document.getElementById('btn-overview').addEventListener('click', function() {
+        if (document.querySelector('.step.active') && document.querySelector('.step.active').id === 't-ov-auto') {
+          if (savedStepId) impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (document.querySelector('.step.active') || {}).id || 't-intro';
+        impress().goto('t-ov-auto');
+      });
+      document.addEventListener('impress:stepenter', function(e) {
+        var isOverview = e.target.id === 't-ov-auto';
+        if (isOverview) {
+          impressRoot.classList.add('impress-overview');
+        } else {
+          impressRoot.classList.remove('impress-overview');
+        }
+        var all = document.querySelectorAll('.step.theory-slide');
+        var idx = Array.prototype.indexOf.call(all, e.target);
+        var bar = document.getElementById('pres-progress');
+        if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+        document.querySelectorAll('#theory-nav .pres-nav-cat-btn').forEach(function(btn,i) {
+          if (btn.id === 'btn-overview') {
+            btn.classList.toggle('active', isOverview);
+          } else {
+            btn.classList.toggle('active', i === idx);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

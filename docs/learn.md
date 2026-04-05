@@ -251,7 +251,38 @@ t-ov-auto  : x=1100, y=630,  z=0,    scale=6 (자동 계산)
 
 ---
 
-## 5. Git Flow 다이어그램 (일관된 진행 표현)
+## 5. 코드 블록 (YAML / Shell / 프로그래밍 코드)
+
+YAML 워크플로우, 셸 명령어, 프로그래밍 코드 등 **여러 줄의 코드**는 반드시 `<pre class="theory-code">` 블록으로 감싼다.
+
+### HTML 패턴
+```html
+<pre class="theory-code"><code><span class="code-key">name:</span> Python Package
+<span class="code-key">on:</span>
+  <span class="code-key">pull_request:</span>
+    <span class="code-key">branches:</span> ["main"]
+<span class="code-key">jobs:</span>
+  <span class="code-key">build:</span>
+    <span class="code-key">runs-on:</span> ubuntu-latest
+    <span class="code-key">steps:</span>
+      - <span class="code-key">uses:</span> actions/checkout@v4
+      - <span class="code-key">run:</span> pytest --verbose</code></pre>
+```
+
+### 구문 강조 클래스
+| 클래스 | 색상 | 용도 |
+|--------|------|------|
+| `.code-key` | `#79c0ff` (파랑) | YAML 키, 언어 키워드 (`def`, `assert`, `import`) |
+| `.code-comment` | `#8b949e` (회색) | 주석 (`# ...`, `// ...`) |
+
+### 규칙
+- 한 줄짜리 명령은 문장 안에서 `<code>` 인라인 태그로 충분
+- **2줄 이상**의 코드는 반드시 `<pre class="theory-code"><code>` 블록 사용
+- `<div class="theory-code-block">` 패턴은 **레거시** — 새 페이지에서는 `<pre>` 사용
+
+---
+
+## 6. Git Flow 다이어그램 (일관된 진행 표현)
 
 브랜치→커밋→PR→병합 슬라이드에 **동일한 다이어그램을 점진적으로 업데이트**하여 표시한다.
 
@@ -305,7 +336,7 @@ main ──────── ● merge commit ──▶ main (업데이트!)
 
 ---
 
-## 6. 아이콘 사용 규칙
+## 7. 아이콘 사용 규칙
 
 ### GitHub Octicons (공식 SVG)
 ```
@@ -333,7 +364,7 @@ https://raw.githubusercontent.com/primer/octicons/main/icons/{name}-24.svg
 
 ---
 
-## 7. 네비게이션 바
+## 8. 네비게이션 바
 
 ### 구조
 ```html
@@ -356,7 +387,7 @@ https://raw.githubusercontent.com/primer/octicons/main/icons/{name}-24.svg
 
 ---
 
-## 8. 전체 보기 (Overview) 기능
+## 9. 전체 보기 (Overview) 기능
 
 ### HTML — overview 스텝
 마지막 content 슬라이드 **바로 뒤에** 선언 (화살표 키 순서에 포함):
@@ -396,7 +427,7 @@ function calcOverview() {
 
 ---
 
-## 9. CSS 클래스 요약 (learn.css)
+## 10. CSS 클래스 요약 (learn.css)
 
 | 클래스 | 용도 |
 |--------|------|
@@ -412,7 +443,10 @@ function calcOverview() {
 | `.theory-col-img` | 이미지 컬럼 |
 | `.theory-list` | 파랑 불릿 리스트 |
 | `.theory-highlight` | 왼쪽 파랑 보더 하이라이트 박스 |
-| `.theory-code-block` | 코드/명령어 블록 |
+| `.theory-code-block` | 코드/명령어 블록 (레거시, 인라인 code 태그) |
+| `pre.theory-code` | 코드 블록 (신규 권장, 구문 강조 지원) |
+| `.code-key` | 코드 블록 내 키워드 (파랑) |
+| `.code-comment` | 코드 블록 내 주석 (회색, 이탤릭) |
 | `.theory-video-wrap` | YouTube iframe 컨테이너 |
 | `.git-flow` | Git 흐름 다이어그램 컨테이너 |
 | `.flow-steps-hz` | 가로 실습 흐름 카드 |
@@ -421,7 +455,7 @@ function calcOverview() {
 
 ---
 
-## 10. 체크리스트 (새 theory 페이지 생성 시)
+## 11. 체크리스트 (새 theory 페이지 생성 시)
 
 ### 콘텐츠 준비
 - [ ] skills-kr 레포에서 실습 단계 확인 (README.md, .github/steps/)
