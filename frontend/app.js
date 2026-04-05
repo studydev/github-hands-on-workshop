@@ -594,9 +594,14 @@
 
   // THEME TOGGLE
   var themeToggleBtn = document.getElementById('theme-toggle');
+  function updateHeroImage(light) {
+    var img = document.getElementById('dash-hero-image');
+    if (img) img.src = light ? 'images/workshop-hero-light.png' : 'images/workshop-hero-dark.png';
+  }
   function applyTheme(light) {
     if (light) { document.body.classList.add('light-theme'); themeToggleBtn.textContent = '☀️'; }
     else { document.body.classList.remove('light-theme'); themeToggleBtn.textContent = '🌙'; }
+    updateHeroImage(light);
   }
   var savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'light') applyTheme(true);
@@ -604,5 +609,6 @@
     var isLight = document.body.classList.toggle('light-theme');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
     themeToggleBtn.textContent = isLight ? '☀️' : '🌙';
+    updateHeroImage(isLight);
   });
 })();

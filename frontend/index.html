@@ -85,7 +85,10 @@
     <div class="dashboard-home">
       <!-- Hero intro -->
       <div class="dash-hero">
-        <img src="images/image.png" alt="GitHub Workshop" class="dash-hero-image">
+        <picture>
+          <source srcset="images/workshop-hero-light.png" media="(prefers-color-scheme: light)">
+          <img id="dash-hero-image" src="images/workshop-hero-dark.png" alt="GitHub Skills Workshop" class="dash-hero-image">
+        </picture>
         <h2>GitHub Hands-on Workshop</h2>
         <p>GitHub Skills 기반 핸즈온 워크숍에서 참가자의 시작과 완료 이벤트를 실시간으로 수집하고, 먼저 완료한 순서대로 리더보드를 보여주는 대시보드입니다.</p>
       </div>
