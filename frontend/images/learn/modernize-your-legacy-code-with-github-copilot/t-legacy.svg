@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="52" y="92" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Legacy Modernization</text>
+  <text x="52" y="130" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">이해, 테스트, 변환을 거치며 COBOL을 현대 스택으로 옮깁니다</text>
+  <rect x="74" y="238" width="168" height="118" rx="18" fill="#111827" stroke="#58a6ff" stroke-width="2" />
+  <rect x="316" y="214" width="168" height="166" rx="18" fill="#111d2f" stroke="#f0883e" stroke-width="2" />
+  <rect x="558" y="238" width="168" height="118" rx="18" fill="#0f1724" stroke="#3fb950" stroke-width="2" />
+  <text x="130" y="286" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">COBOL</text>
+  <text x="354" y="280" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Docs +</text>
+  <text x="348" y="312" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Test Plan</text>
+  <text x="612" y="286" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Node.js</text>
+  <path d="M242 296h48" stroke="#58a6ff" stroke-width="10" stroke-linecap="round" />
+  <path d="M484 296h48" stroke="#f0883e" stroke-width="10" stroke-linecap="round" />
+  <path d="M276 282l14 14-14 14" fill="none" stroke="#58a6ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M518 282l14 14-14 14" fill="none" stroke="#f0883e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="106" y="430" width="588" height="86" rx="18" fill="#111827" stroke="#30363d" />
+  <text x="138" y="480" font-size="18" fill="#8b949e" font-family="Arial, sans-serif">문서와 테스트를 먼저 만들면 비즈니스 로직을 잃지 않고 현대화할 수 있습니다.</text>
+</svg>

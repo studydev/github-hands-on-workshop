@@ -51,7 +51,9 @@
       <div class="theory-header">
         <span class="theory-badge">협업 완전 정복 · 모듈 #4</span>
       </div>
-      <h1>내 코드에 타임머신 달기</h1>
+            <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h1>내 코드에 타임머신 달기</h1>
       <p class="theory-skill">Introduction to Git</p>
       <p class="theory-desc">커맨드 라인(CLI)과 VS Code를 사용하여<br>게임 프로젝트에 Git 버전 관리를 적용해 봅니다.<br>init, add, commit, log, diff, branch, merge까지!</p>
       <div class="theory-meta">
@@ -59,7 +61,12 @@
         <span class="t-meta-item">Free</span>
         <span class="t-meta-item">6단계 실습</span>
       </div>
-    </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="../images/learn/introduction-to-git/main.png" alt="introduction-to-git" style="max-width:340px;border-radius:12px;">
+        </div>
+      </div>
+</div>
 
     <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
       <h2>이 실습에서 배우는 것</h2>
@@ -139,6 +146,10 @@
           <div class="theory-highlight">
             실습 1단계에서 Codespace 환경에서 <code>git --version</code>으로 Git을 확인하고 사용자 정보를 설정합니다.
           </div>
+        
+        </div>
+        <div class="theory-col-img">
+          <img src="https://docs.github.com/assets/cb-2058/mw-1440/images/help/branches/pr-retargeting-diagram1.webp" alt="Branch" style="max-width:220px;border-radius:8px;">
         </div>
       </div>
     </div>
@@ -163,7 +174,7 @@
             <code>git add</code>로 스테이징, <code>git commit</code>으로 히스토리에 기록합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <div id="t-commit" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
@@ -184,7 +195,7 @@ git status — 현재 상태 확인</code></pre>
             실습 2단계에서 게임 파일을 <code>git init</code>으로 초기화하고 첫 커밋을 합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!-- ==================== Row 3: 히스토리 / Diff / 브랜치 (좌→우) ==================== -->
@@ -204,7 +215,7 @@ git checkout &lt;commit-id&gt; — 과거 버전으로 이동</code></pre>
             실습 3단계에서 <code>git log</code>로 히스토리를 탐색하고 <code>git checkout</code>으로 과거 버전을 확인합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <div id="t-diff" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
@@ -215,6 +226,7 @@ git checkout &lt;commit-id&gt; — 과거 버전으로 이동</code></pre>
           <p>Git은 기호와 색상으로 파일 변경 사항을 보여줍니다:</p>
           <pre class="theory-code"><code>+ 이것은 추가된 줄입니다 (녹색)
 - 이것은 삭제된 줄입니다 (빨간색)</code></pre>
+          <img src="https://docs.github.com/assets/cb-109516/mw-1440/images/help/pull_requests/diff-settings-menu.webp" alt="Diff settings" style="max-width:90%;max-height:160px;border-radius:8px;margin:8px 0;">
           <h3>핵심 명령어</h3>
           <pre class="theory-code"><code>git diff — 작업 디렉토리 vs 스테이징
 git diff --staged — 스테이징 vs 마지막 커밋
@@ -223,7 +235,7 @@ git diff HEAD~1 — 현재 vs 이전 커밋</code></pre>
             실습 4단계에서 게임 코드를 수정하고 <code>git diff</code>로 변경 사항을 확인합니다. VS Code의 Diff 뷰도 실습합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <div id="t-branch" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">
@@ -236,6 +248,7 @@ git diff HEAD~1 — 현재 vs 이전 커밋</code></pre>
             <span class="gf-main">main</span> <span class="gf-dim">── ● ── ●</span> <span class="gf-dim">────────────</span> <span class="gf-merge gf-active gf-highlight">● merge</span> <span class="gf-main">← HEAD</span><br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="gf-dim">└──</span> <span class="gf-branch gf-active">feature</span> <span class="gf-dim">── ●── ● ──┘</span>
           </div>
+          <img src="https://docs.github.com/assets/cb-2581/mw-1440/images/help/branches/pr-retargeting-diagram2.webp" alt="Merge diagram" style="max-width:90%;max-height:140px;border-radius:8px;margin:8px 0;">
           <h3>핵심 명령어</h3>
           <pre class="theory-code"><code>git branch feature — 새 브랜치 생성
 git checkout feature — 브랜치 전환
@@ -245,7 +258,7 @@ git branch --delete feature — 브랜치 삭제</code></pre>
             실습 5단계에서 기능 브랜치를 만들고 게임에 최고 점수, 레벨 기능을 추가한 뒤 머지합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!-- ==================== Row 4: Actions / 정리 (우→좌) ==================== -->

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="520" viewBox="0 0 320 520" fill="none">
+  <rect width="320" height="520" rx="28" fill="#FFF7ED"/>
+  <rect x="30" y="30" width="260" height="84" rx="20" fill="#7C2D12"/>
+  <text x="52" y="62" fill="#FED7AA" font-family="Arial, sans-serif" font-size="14">issue_comment</text>
+  <text x="52" y="90" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="22" font-weight="700">"Tell me a joke"</text>
+  <path d="M160 114V154" stroke="#EA580C" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 10"/>
+  <rect x="52" y="154" width="216" height="72" rx="18" fill="#FFEDD5" stroke="#FB923C" stroke-width="3"/>
+  <text x="72" y="186" fill="#9A3412" font-family="Arial, sans-serif" font-size="18" font-weight="700">rate-joke.yml</text>
+  <text x="72" y="210" fill="#9A3412" font-family="Arial, sans-serif" font-size="14">permissions: models: read</text>
+  <path d="M160 226V268" stroke="#EA580C" stroke-width="8" stroke-linecap="round"/>
+  <rect x="42" y="268" width="236" height="86" rx="22" fill="#FDE68A"/>
+  <text x="62" y="300" fill="#92400E" font-family="Arial, sans-serif" font-size="18" font-weight="700">Action runtime</text>
+  <text x="62" y="324" fill="#92400E" font-family="Arial, sans-serif" font-size="14">main.js + rateJoke.js</text>
+  <circle cx="160" cy="400" r="42" fill="#FDBA74"/>
+  <text x="130" y="406" fill="#7C2D12" font-family="Arial, sans-serif" font-size="20" font-weight="700">AI</text>
+  <path d="M160 354V360" stroke="#C2410C" stroke-width="8" stroke-linecap="round"/>
+  <path d="M160 442V448" stroke="#C2410C" stroke-width="8" stroke-linecap="round"/>
+  <rect x="42" y="448" width="236" height="44" rx="16" fill="#7C2D12"/>
+  <text x="62" y="476" fill="#FFF7ED" font-family="Arial, sans-serif" font-size="15">댓글 업데이트: 점수 + 피드백</text>
+</svg>

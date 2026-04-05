@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="520" viewBox="0 0 320 520" fill="none">
+  <rect width="320" height="520" rx="28" fill="#FFF7ED"/>
+  <rect x="34" y="28" width="252" height="74" rx="18" fill="#9A3412"/>
+  <text x="58" y="58" fill="#FED7AA" font-family="Arial, sans-serif" font-size="14">write-javascript-actions</text>
+  <text x="58" y="86" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="21" font-weight="700">Action Checkpoints</text>
+  <rect x="50" y="132" width="220" height="54" rx="16" fill="#FFEDD5"/>
+  <text x="90" y="166" fill="#9A3412" font-family="Arial, sans-serif" font-size="16" font-weight="700">1. package.json</text>
+  <path d="M160 186V212" stroke="#EA580C" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="212" width="220" height="54" rx="16" fill="#FED7AA"/>
+  <text x="98" y="246" fill="#9A3412" font-family="Arial, sans-serif" font-size="16" font-weight="700">2. src written</text>
+  <path d="M160 266V292" stroke="#EA580C" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="292" width="220" height="54" rx="16" fill="#FDBA74"/>
+  <text x="88" y="326" fill="#7C2D12" font-family="Arial, sans-serif" font-size="16" font-weight="700">3. dist bundled</text>
+  <path d="M160 346V372" stroke="#EA580C" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="372" width="220" height="88" rx="18" fill="#7C2D12"/>
+  <text x="84" y="406" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">4. action.yml ready</text>
+  <text x="84" y="432" fill="#FED7AA" font-family="Arial, sans-serif" font-size="14">5. issue comment triggers /joke</text>
+</svg>

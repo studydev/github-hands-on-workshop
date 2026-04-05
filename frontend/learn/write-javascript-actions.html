@@ -52,7 +52,9 @@
       <div class="theory-header">
         <span class="theory-badge">자동화의 마법 · 모듈 #4</span>
       </div>
-      <h1>JavaScript로 나만의 Action</h1>
+            <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h1>JavaScript로 나만의 Action</h1>
       <p class="theory-skill">Write JavaScript Actions</p>
       <p class="theory-desc">커스텀 JavaScript 기반 GitHub Action을 만들고,<br>배포용으로 번들링하고, 워크플로우에서 사용하는 방법을 배웁니다.<br>랜덤 아재 개그를 가져오는 Dad Jokes Action을 직접 만들어 봅니다.</p>
       <div class="theory-meta">
@@ -60,7 +62,12 @@
         <span class="t-meta-item">Free</span>
         <span class="t-meta-item">6단계 실습</span>
       </div>
-    </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="../images/learn/write-javascript-actions/main.png" alt="write-javascript-actions" style="max-width:340px;border-radius:12px;">
+        </div>
+      </div>
+</div>
 
     <!-- 2. 학습 목표 -->
     <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
@@ -147,6 +154,10 @@ core.info("Success!");</code></pre>
           <div class="theory-highlight">
             <code>@actions/core</code>는 <strong>모든 JS Action의 필수 의존성</strong>입니다.
           </div>
+        
+        </div>
+        <div class="theory-col-img">
+          <img src="https://images.ctfassets.net/8aevphvgewt8/5kVxaacutdvGyusbgk64iw/23fa8c76260945d6a8f28327e9910397/actions-river-breakout.webp?w=1440&fm=webp&q=90" alt="Actions Marketplace" style="max-width:200px;border-radius:12px;">
         </div>
       </div>
     </div>
@@ -265,7 +276,7 @@ core.setOutput("joke", joke);</code></pre>
             <code>steps.&lt;id&gt;.outputs.&lt;name&gt;</code>으로<br><strong>스텝 간 데이터를 전달</strong>합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!-- 9. 실습 동작 원리 -->
@@ -289,7 +300,7 @@ core.setOutput("joke", joke);</code></pre>
           </div>
         </div>
         <div class="theory-col-img">
-          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+          <img src="../images/learn/write-javascript-actions/t-actions.svg" alt="JavaScript action validation flow" style="max-width:240px;border-radius:12px;">
         </div>
       </div>
     </div>

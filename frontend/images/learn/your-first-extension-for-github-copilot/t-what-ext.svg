@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="52" y="92" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Copilot Extension Architecture</text>
+  <text x="52" y="130" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">GitHub App, service, content가 함께 Chat 기능을 확장합니다</text>
+  <rect x="74" y="236" width="176" height="122" rx="18" fill="#111827" stroke="#58a6ff" stroke-width="2" />
+  <rect x="312" y="214" width="176" height="166" rx="18" fill="#111d2f" stroke="#f0883e" stroke-width="2" />
+  <rect x="550" y="236" width="176" height="122" rx="18" fill="#0f1724" stroke="#3fb950" stroke-width="2" />
+  <text x="110" y="286" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">GitHub App</text>
+  <text x="344" y="278" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Extension</text>
+  <text x="368" y="310" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Service</text>
+  <text x="588" y="286" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Content</text>
+  <path d="M250 297h46" stroke="#58a6ff" stroke-width="10" stroke-linecap="round" />
+  <path d="M488 297h46" stroke="#f0883e" stroke-width="10" stroke-linecap="round" />
+  <path d="M282 283l14 14-14 14" fill="none" stroke="#58a6ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M520 283l14 14-14 14" fill="none" stroke="#f0883e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="142" y="430" width="516" height="82" rx="18" fill="#111827" stroke="#30363d" />
+  <text x="170" y="480" font-size="18" fill="#8b949e" font-family="Arial, sans-serif">사용자는 Chat에서 확장을 보지만, 실제 동작은 App과 서비스가 뒤에서 연결합니다.</text>
+</svg>

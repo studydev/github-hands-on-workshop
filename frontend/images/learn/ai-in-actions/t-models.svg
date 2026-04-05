@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="54" y="92" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">GitHub Models in Actions</text>
+  <text x="54" y="130" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">GITHUB_TOKEN으로 인증하고 워크플로우에서 바로 호출</text>
+  <rect x="76" y="224" width="176" height="112" rx="20" fill="#111d2f" stroke="#58a6ff" stroke-width="2" />
+  <rect x="312" y="200" width="176" height="160" rx="20" fill="#1b1f27" stroke="#f0883e" stroke-width="2" />
+  <rect x="548" y="224" width="176" height="112" rx="20" fill="#0f1724" stroke="#3fb950" stroke-width="2" />
+  <text x="118" y="270" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Token</text>
+  <text x="116" y="302" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">models: read</text>
+  <text x="336" y="260" font-size="24" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">GitHub</text>
+  <text x="340" y="294" font-size="24" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Models</text>
+  <text x="338" y="326" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">prompt</text>
+  <text x="340" y="348" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">system prompt</text>
+  <text x="590" y="270" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Action</text>
+  <text x="578" y="302" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">comment update</text>
+  <path d="M252 280h44" stroke="#58a6ff" stroke-width="10" stroke-linecap="round" />
+  <path d="M488 280h44" stroke="#f0883e" stroke-width="10" stroke-linecap="round" />
+  <path d="M282 266l14 14-14 14" fill="none" stroke="#58a6ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M518 266l14 14-14 14" fill="none" stroke="#f0883e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="92" y="438" width="616" height="88" rx="18" fill="#111827" stroke="#30363d" />
+  <text x="124" y="490" font-size="18" fill="#8b949e" font-family="Arial, sans-serif">컨텍스트 수집 → AI 추론 → 결과 적용의 3단계 패턴을 한 눈에 보여줍니다.</text>
+</svg>

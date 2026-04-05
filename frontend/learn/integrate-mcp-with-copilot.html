@@ -52,7 +52,9 @@
       <div class="theory-header">
         <span class="theory-badge">AI 날개 달기 · 모듈 #4</span>
       </div>
-      <h1>AI에게 새로운 능력 장착</h1>
+            <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h1>AI에게 새로운 능력 장착</h1>
       <p class="theory-skill">Integrate MCP with GitHub Copilot</p>
       <p class="theory-desc">Model Context Protocol(MCP)로 GitHub Copilot에<br>외부 도구를 연결하고, 이슈 관리부터 PR 생성까지<br>AI 기반 워크플로우를 직접 구축합니다.</p>
       <div class="theory-meta">
@@ -60,7 +62,12 @@
         <span class="t-meta-item">Copilot Pro</span>
         <span class="t-meta-item">4단계 실습</span>
       </div>
-    </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="../images/learn/integrate-mcp-with-copilot/main.png" alt="integrate-mcp-with-copilot" style="max-width:340px;border-radius:12px;">
+        </div>
+      </div>
+</div>
 
     <!-- 학습 목표 -->
     <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
@@ -118,29 +125,24 @@
     <div id="t-mcp" class="step theory-slide theory-slide-tall" data-x="2200" data-y="420" data-z="-500" data-scale="1" data-rotate-y="-12" data-rotate-x="3">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/plug-24.svg" alt="mcp"> Model Context Protocol (MCP)</h2>
       <p class="theory-subtitle">AI를 위한 USB-C — 범용 커넥터</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
-          <p><strong>MCP</strong>는 AI 도구가 외부 서비스와 <em>원활하게 상호작용</em>할 수 있게 하는 표준 프로토콜입니다.</p>
-          <p>서비스의 기능과 요구 사항을 스키마로 설명하면, AI가 어떤 메서드를 호출할지 결정하고 매개변수를 정확히 제공합니다.</p>
-          <div class="theory-highlight">
-            하나의 MCP 서버를 연결하면 GitHub, Slack, Figma 등<br><strong>수십 개의 도구</strong>를 Copilot 에이전트에 장착할 수 있습니다.
-          </div>
-          <h3>MCP 서버 설정 방법</h3>
-          <ul class="theory-list">
-            <li><code>.vscode/mcp.json</code> 파일 생성</li>
-            <li>서버 URL 등록: <code>https://api.githubcopilot.com/mcp/</code></li>
-            <li><strong>Start</strong> 클릭 → GitHub 인증 → 도구 카탈로그 로드</li>
-          </ul>
-        </div>
+      <p><strong>MCP</strong>는 AI 도구가 외부 서비스와 <em>원활하게 상호작용</em>할 수 있게 하는 표준 프로토콜입니다.</p>
+      <p>서비스의 기능과 요구 사항을 스키마로 설명하면, AI가 어떤 메서드를 호출할지 결정하고 매개변수를 정확히 제공합니다.</p>
+      <div class="theory-highlight">
+        하나의 MCP 서버를 연결하면 GitHub, Slack, Figma 등<br><strong>수십 개의 도구</strong>를 Copilot 에이전트에 장착할 수 있습니다.
       </div>
+      <h3>MCP 서버 설정 방법</h3>
+      <ul class="theory-list">
+        <li><code>.vscode/mcp.json</code> 파일 생성</li>
+        <li>서버 URL 등록: <code>https://api.githubcopilot.com/mcp/</code></li>
+        <li><strong>Start</strong> 클릭 → GitHub 인증 → 도구 카탈로그 로드</li>
+      </ul>
     </div>
 
     <!-- 에이전트 모드 -->
     <div id="t-agent" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/rocket-24.svg" alt="agent"> 에이전트 모드 — MCP 도구 호출</h2>
       <p class="theory-subtitle">Copilot이 스스로 계획하고 도구를 호출한다</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
+      <div class="theory-col-text">
           <p>프롬프트를 보내면 Copilot은 사용 가능한 <strong>도구 카탈로그(목록 + 스키마)</strong>를 함께 분석합니다.</p>
           <h3>동작 흐름</h3>
           <ul class="theory-list">
@@ -159,7 +161,6 @@
             <li>이슈 <strong>조회·생성·댓글</strong></li>
             <li>브랜치 생성 → 코드 변경 → <strong>풀 리퀘스트</strong></li>
           </ul>
-        </div>
       </div>
     </div>
 
@@ -167,8 +168,7 @@
     <div id="t-issues" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="12" data-rotate-z="-2">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/search-24.svg" alt="search"> 아이디어 탐색 & 이슈 생성</h2>
       <p class="theory-subtitle">Step 2 — 조사하고, 비교하고, 즉시 이슈로 저장</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
+      <div class="theory-col-text">
           <p>GitHub MCP 서버를 활용하면 Copilot이 직접 <strong>유사 프로젝트를 검색</strong>하고, 기능을 비교한 뒤, 새 아이디어를 <strong>이슈로 생성</strong>합니다.</p>
           <h3>실습 프롬프트 예시</h3>
           <ul class="theory-list">
@@ -181,7 +181,6 @@
             MCP 도구 호출 시 Copilot이 <strong>권한을 요청</strong>합니다.<br>
             요청 내용을 확인한 후 <strong>Continue</strong>를 클릭하세요.
           </div>
-        </div>
       </div>
     </div>
 
@@ -191,8 +190,7 @@
     <div id="t-implement" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/issue-opened-24.svg" alt="issue"> 이슈에서 PR까지 한 번에</h2>
       <p class="theory-subtitle">Step 3 — 에이전트가 분류·구현·PR 생성</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
+      <div class="theory-col-text">
           <p>Copilot 에이전트 모드에서 열린 이슈를 분석하고, 중요도를 판단한 뒤, <strong>코드 변경과 PR 생성</strong>까지 수행합니다.</p>
           <h3>워크플로우</h3>
           <ul class="theory-list">
@@ -206,16 +204,14 @@
           </div>
           <h3>도구 사전 승인</h3>
           <p>도구를 자주 사용하면 나머지 대화 세션 동안 <strong>사전 권한 부여</strong>가 가능합니다.</p>
-        </div>
-      </div>
+          </div>
     </div>
 
     <!-- 검증 & 머지 -->
     <div id="t-verify" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/checklist-24.svg" alt="verify"> AI 생성 코드 검증하기</h2>
       <p class="theory-subtitle">Step 4 — 리뷰, 머지, 그리고 감사 댓글</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
+      <div class="theory-col-text">
           <p>AI 어시스턴트가 생산성을 높여주지만, 생성 여부에 관계없이 모든 작업을 <strong>검토하고 검증</strong>하는 것은 <strong>개발자의 책임</strong>입니다.</p>
           <h3>검증 체크리스트</h3>
           <ul class="theory-list">
@@ -228,7 +224,6 @@
             실제 프로젝트에서는 <strong>GitHub Actions</strong>로<br>
             자동화된 테스트를 설정하여 AI 코드를 검증합니다.
           </div>
-        </div>
       </div>
     </div>
 

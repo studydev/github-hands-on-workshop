@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="52" y="108" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Pages 실습 검증</text>
+  <text x="52" y="148" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">page_build, push, pull_request 이벤트를</text>
+  <text x="52" y="174" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">단계별로 확인하는 워크플로우</text>
+  <rect x="80" y="286" width="160" height="106" rx="18" fill="#111d2f" stroke="#58a6ff" stroke-width="2" />
+  <rect x="320" y="286" width="160" height="106" rx="18" fill="#111d2f" stroke="#f0883e" stroke-width="2" />
+  <rect x="560" y="286" width="160" height="106" rx="18" fill="#111d2f" stroke="#3fb950" stroke-width="2" />
+  <text x="110" y="332" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Pages</text>
+  <text x="112" y="360" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">설정/빌드</text>
+  <text x="348" y="332" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Action</text>
+  <text x="344" y="360" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">단계 검증</text>
+  <text x="602" y="332" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Mona</text>
+  <text x="594" y="360" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">다음 안내</text>
+  <path d="M242 338h56" stroke="#58a6ff" stroke-width="10" stroke-linecap="round" />
+  <path d="M482 338h56" stroke="#f0883e" stroke-width="10" stroke-linecap="round" />
+  <path d="M282 324l16 14-16 14" fill="none" stroke="#58a6ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M522 324l16 14-16 14" fill="none" stroke="#f0883e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

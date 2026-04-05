@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="52" y="108" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Front Matter 블록</text>
+  <text x="52" y="148" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">파일 상단 YAML 메타데이터와</text>
+  <text x="52" y="174" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">본문 영역의 경계를 보여주는 예시</text>
+  <rect x="110" y="236" width="580" height="300" rx="18" fill="#0f1724" stroke="#30363d" />
+  <text x="146" y="288" font-size="22" fill="#c9d1d9" font-family="Courier New, monospace">---</text>
+  <text x="146" y="326" font-size="22" fill="#7ee787" font-family="Courier New, monospace">title: "내 블로그에 오신 것을 환영합니다"</text>
+  <text x="146" y="364" font-size="22" fill="#79c0ff" font-family="Courier New, monospace">date: 2026-04-05</text>
+  <text x="146" y="402" font-size="22" fill="#c9d1d9" font-family="Courier New, monospace">---</text>
+  <path d="M146 432h508" stroke="#f0883e" stroke-width="6" stroke-dasharray="10 10" />
+  <text x="146" y="474" font-size="22" fill="#e6edf3" font-family="Courier New, monospace">여기부터 본문 내용을 작성합니다...</text>
+</svg>

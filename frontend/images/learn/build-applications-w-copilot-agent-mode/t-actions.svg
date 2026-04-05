@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="520" viewBox="0 0 320 520" fill="none">
+  <rect width="320" height="520" rx="28" fill="#FFF7ED"/>
+  <rect x="34" y="28" width="252" height="70" rx="18" fill="#7C2D12"/>
+  <text x="58" y="56" fill="#FED7AA" font-family="Arial, sans-serif" font-size="14">GitHub Actions checks</text>
+  <text x="58" y="82" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="22" font-weight="700">Skill Progression</text>
+  <rect x="50" y="130" width="220" height="54" rx="16" fill="#FFEDD5"/>
+  <text x="72" y="164" fill="#9A3412" font-family="Arial, sans-serif" font-size="16" font-weight="700">1. branch created</text>
+  <path d="M160 184V210" stroke="#EA580C" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="210" width="220" height="54" rx="16" fill="#FED7AA"/>
+  <text x="72" y="244" fill="#9A3412" font-family="Arial, sans-serif" font-size="16" font-weight="700">2. backend files verified</text>
+  <path d="M160 264V290" stroke="#EA580C" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="290" width="220" height="54" rx="16" fill="#FDBA74"/>
+  <text x="72" y="324" fill="#7C2D12" font-family="Arial, sans-serif" font-size="16" font-weight="700">3. API endpoints checked</text>
+  <path d="M160 344V370" stroke="#EA580C" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="370" width="220" height="90" rx="18" fill="#7C2D12"/>
+  <text x="72" y="404" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">4. React linked</text>
+  <text x="72" y="430" fill="#FED7AA" font-family="Arial, sans-serif" font-size="14">5. PR merged and workshop advances</text>
+</svg>

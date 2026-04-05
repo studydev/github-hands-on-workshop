@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="52" y="92" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Issue to PR Agent Flow</text>
+  <text x="52" y="130" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">에디터가 아니라 이슈와 PR 중심으로 움직이는 코딩 에이전트</text>
+  <rect x="86" y="240" width="150" height="110" rx="18" fill="#111827" stroke="#58a6ff" stroke-width="2" />
+  <rect x="290" y="218" width="220" height="154" rx="18" fill="#111d2f" stroke="#f0883e" stroke-width="2" />
+  <rect x="564" y="240" width="150" height="110" rx="18" fill="#111827" stroke="#3fb950" stroke-width="2" />
+  <text x="132" y="286" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Issue</text>
+  <text x="338" y="278" font-size="24" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Copilot Agent</text>
+  <text x="336" y="310" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">analyze</text>
+  <text x="336" y="334" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">branch</text>
+  <text x="336" y="358" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">commit + PR</text>
+  <text x="614" y="286" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">PR</text>
+  <path d="M236 295h38" stroke="#58a6ff" stroke-width="10" stroke-linecap="round" />
+  <path d="M510 295h38" stroke="#f0883e" stroke-width="10" stroke-linecap="round" />
+  <path d="M260 281l14 14-14 14" fill="none" stroke="#58a6ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M534 281l14 14-14 14" fill="none" stroke="#f0883e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="126" y="426" width="548" height="82" rx="18" fill="#0f1724" stroke="#30363d" />
+  <text x="158" y="476" font-size="18" fill="#8b949e" font-family="Arial, sans-serif">피드백은 PR에서 계속 이어지고, @copilot 멘션이 새 세션을 다시 시작합니다.</text>
+</svg>

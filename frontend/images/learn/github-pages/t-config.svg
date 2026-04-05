@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="52" y="108" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">_config.yml 설정</text>
+  <text x="52" y="148" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">테마, 제목, 설명, 시간대를</text>
+  <text x="52" y="174" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">한 파일에서 관리하는 구조</text>
+  <rect x="90" y="238" width="620" height="300" rx="18" fill="#0f1724" stroke="#30363d" />
+  <text x="124" y="294" font-size="22" fill="#7ee787" font-family="Courier New, monospace">theme: minima</text>
+  <text x="124" y="334" font-size="22" fill="#79c0ff" font-family="Courier New, monospace">title: "내 블로그"</text>
+  <text x="124" y="374" font-size="22" fill="#ffa657" font-family="Courier New, monospace">description: "Pages 사이트"</text>
+  <text x="124" y="414" font-size="22" fill="#d2a8ff" font-family="Courier New, monospace">timezone: Asia/Seoul</text>
+  <rect x="508" y="276" width="156" height="194" rx="16" fill="#111d2f" stroke="#58a6ff" />
+  <path d="M540 326h92" stroke="#58a6ff" stroke-width="10" stroke-linecap="round" />
+  <path d="M540 362h72" stroke="#c9d1d9" stroke-width="10" stroke-linecap="round" opacity="0.7" />
+  <path d="M540 398h84" stroke="#f0883e" stroke-width="10" stroke-linecap="round" opacity="0.85" />
+</svg>

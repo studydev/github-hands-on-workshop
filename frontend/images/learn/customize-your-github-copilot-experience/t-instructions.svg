@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="52" y="92" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Customization Layers</text>
+  <text x="52" y="130" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">저장소 규칙에서 프롬프트와 에이전트까지 단계별로 맥락을 쌓습니다</text>
+  <rect x="112" y="196" width="576" height="76" rx="18" fill="#111d2f" stroke="#58a6ff" stroke-width="2" />
+  <rect x="142" y="290" width="516" height="72" rx="18" fill="#111827" stroke="#3fb950" stroke-width="2" />
+  <rect x="172" y="380" width="456" height="72" rx="18" fill="#0f1724" stroke="#f0883e" stroke-width="2" />
+  <rect x="202" y="470" width="396" height="72" rx="18" fill="#111827" stroke="#d2a8ff" stroke-width="2" />
+  <text x="146" y="242" font-size="24" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">copilot-instructions.md</text>
+  <text x="176" y="336" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">*.instructions.md</text>
+  <text x="206" y="426" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">*.prompt.md</text>
+  <text x="236" y="516" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">*.agent.md</text>
+</svg>

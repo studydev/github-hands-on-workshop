@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="520" viewBox="0 0 320 520" fill="none">
+  <rect width="320" height="520" rx="28" fill="#F5F3FF"/>
+  <rect x="34" y="28" width="252" height="74" rx="18" fill="#4C1D95"/>
+  <text x="58" y="58" fill="#DDD6FE" font-family="Arial, sans-serif" font-size="14">VS Code Source Control</text>
+  <text x="58" y="86" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="22" font-weight="700">Local Review</text>
+  <path d="M160 102V142" stroke="#7C3AED" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 10"/>
+  <rect x="48" y="142" width="224" height="64" rx="18" fill="#E9D5FF"/>
+  <text x="84" y="180" fill="#6B21A8" font-family="Arial, sans-serif" font-size="20" font-weight="700">Uncommitted diff</text>
+  <path d="M160 206V234" stroke="#7C3AED" stroke-width="8" stroke-linecap="round"/>
+  <rect x="48" y="234" width="224" height="64" rx="18" fill="#DDD6FE"/>
+  <text x="94" y="272" fill="#6B21A8" font-family="Arial, sans-serif" font-size="20" font-weight="700">Copilot review</text>
+  <path d="M160 298V326" stroke="#7C3AED" stroke-width="8" stroke-linecap="round"/>
+  <rect x="48" y="326" width="224" height="64" rx="18" fill="#C4B5FD"/>
+  <text x="82" y="364" fill="#4C1D95" font-family="Arial, sans-serif" font-size="20" font-weight="700">Apply or discard</text>
+  <path d="M160 390V420" stroke="#7C3AED" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 10"/>
+  <rect x="40" y="420" width="240" height="64" rx="18" fill="#4C1D95"/>
+  <text x="70" y="446" fill="#DDD6FE" font-family="Arial, sans-serif" font-size="14">quality, security, performance</text>
+  <text x="70" y="470" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">Commit with confidence</text>
+</svg>

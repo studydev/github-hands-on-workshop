@@ -52,7 +52,9 @@
       <div class="theory-header">
         <span class="theory-badge">자동화의 마법 · 모듈 #5</span>
       </div>
-      <h1>AI 기반 Action 만들기</h1>
+            <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h1>AI 기반 Action 만들기</h1>
       <p class="theory-skill">Create AI Powered Actions</p>
       <p class="theory-desc">GitHub Models와 OpenAI SDK를 활용하여<br>AI 기반 JavaScript GitHub Action을 만들어 봅니다.<br>농담을 분석하고 평가하는 완전한 AI Action을 직접 구축합니다.</p>
       <div class="theory-meta">
@@ -60,7 +62,12 @@
         <span class="t-meta-item">Free</span>
         <span class="t-meta-item">5단계 실습</span>
       </div>
-    </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="../images/learn/create-ai-powered-actions/main.png" alt="create-ai-powered-actions" style="max-width:340px;border-radius:12px;">
+        </div>
+      </div>
+</div>
 
     <!-- 2. 학습 목표 -->
     <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
@@ -135,6 +142,10 @@
           <div class="theory-highlight">
             <a href="https://github.com/marketplace/models" target="_blank" rel="noopener">GitHub Marketplace</a>에서 사용 가능한 모든 모델을 탐색할 수 있습니다.
           </div>
+        
+        </div>
+        <div class="theory-col-img">
+          <img src="../images/learn/create-ai-powered-actions/t-models.svg" alt="GitHub Models workflow" style="max-width:240px;border-radius:12px;">
         </div>
       </div>
     </div>
@@ -165,7 +176,7 @@
             <code>npm install openai</code> 후<br>엔드포인트만 GitHub Models로 지정하면 끝!
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!-- 6. Action 메타데이터 -->
@@ -198,7 +209,7 @@
             <code>runs.main: dist/index.js</code> — 번들링된 진입점
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!-- ==================== Row 3: y=840, L→R ==================== -->
@@ -221,7 +232,7 @@
             자유 텍스트 → JSON 스키마로 변경하면<br><strong>워크플로우에서 조건부 분기</strong>가 가능해집니다!
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!-- 8. Zod 스키마 -->
@@ -252,7 +263,7 @@
             응답은 자동으로 <strong>유효성 검사 + 파싱</strong>되어<br><code>completion.choices[0].message.parsed</code>로 접근
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!-- 9. (빈 슬롯 — Row3 마지막은 Actions 또는 개념) -->
@@ -279,7 +290,7 @@
           </div>
         </div>
         <div class="theory-col-img">
-          <img src="https://octodex.github.com/images/collabocats.jpg" alt="Mona" style="max-width:200px;border-radius:12px;">
+          <img src="../images/learn/create-ai-powered-actions/t-actions.svg" alt="Issue comment AI workflow" style="max-width:240px;border-radius:12px;">
         </div>
       </div>
     </div>

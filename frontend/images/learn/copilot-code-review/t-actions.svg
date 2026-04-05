@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="520" viewBox="0 0 320 520" fill="none">
+  <rect width="320" height="520" rx="28" fill="#F0FDF4"/>
+  <rect x="34" y="28" width="252" height="74" rx="18" fill="#14532D"/>
+  <text x="58" y="58" fill="#BBF7D0" font-family="Arial, sans-serif" font-size="14">push and pull_request events</text>
+  <text x="58" y="86" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="22" font-weight="700">Review Automation</text>
+  <rect x="50" y="132" width="220" height="54" rx="16" fill="#DCFCE7"/>
+  <text x="78" y="166" fill="#166534" font-family="Arial, sans-serif" font-size="16" font-weight="700">1. detect branch push</text>
+  <path d="M160 186V212" stroke="#16A34A" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="212" width="220" height="54" rx="16" fill="#BBF7D0"/>
+  <text x="72" y="246" fill="#166534" font-family="Arial, sans-serif" font-size="16" font-weight="700">2. request Copilot review</text>
+  <path d="M160 266V292" stroke="#16A34A" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="292" width="220" height="54" rx="16" fill="#86EFAC"/>
+  <text x="68" y="326" fill="#166534" font-family="Arial, sans-serif" font-size="16" font-weight="700">3. validate instructions</text>
+  <path d="M160 346V372" stroke="#16A34A" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="372" width="220" height="88" rx="18" fill="#14532D"/>
+  <text x="74" y="406" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">4. merge after resolution</text>
+  <text x="74" y="432" fill="#BBF7D0" font-family="Arial, sans-serif" font-size="14">ruleset keeps review requests consistent</text>
+</svg>

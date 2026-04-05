@@ -50,7 +50,9 @@
       <div class="theory-header">
         <span class="theory-badge">내 코드 지키기 · 모듈 #2</span>
       </div>
-      <h1>AI 보안 구멍 찾기</h1>
+            <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h1>AI 보안 구멍 찾기</h1>
       <p class="theory-skill">Introduction to CodeQL</p>
       <p class="theory-desc">CodeQL을 사용한 코드 스캐닝으로<br>SQL 인젝션 같은 보안 취약점을 자동 탐지하고,<br>알림을 검토·분류하며 수정하는 방법을 배웁니다.</p>
       <div class="theory-meta">
@@ -58,7 +60,12 @@
         <span class="t-meta-item">Free</span>
         <span class="t-meta-item">4단계 실습</span>
       </div>
-    </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="../images/learn/introduction-to-codeql/main.png" alt="introduction-to-codeql" style="max-width:340px;border-radius:12px;">
+        </div>
+      </div>
+</div>
 
     <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
       <h2>이 실습에서 배우는 것</h2>
@@ -128,6 +135,10 @@
           <div class="theory-highlight">
             실습 1단계에서 Settings → Code scanning에서 CodeQL 기본 설정을 활성화합니다.
           </div>
+        
+        </div>
+        <div class="theory-col-img">
+          <img src="https://docs.github.com/assets/cb-55553/mw-1440/images/help/repository/code-scanning-alert-without-development.webp" alt="CodeQL Alert" style="max-width:220px;border-radius:8px;">
         </div>
       </div>
     </div>
@@ -152,7 +163,7 @@
             보안 전문가 팀이 사전 구성한 스위트를 활용하면 별도 설정 없이도 강력한 분석이 가능합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <div id="t-vuln" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="10" data-rotate-z="-2">
@@ -175,7 +186,7 @@
             실습 2단계에서 routes.py에 SQL 인젝션 취약점을 도입하고 PR 체크 결과를 확인합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <!-- ==================== Row 3: 알림 분류 / 취약점 수정 / Actions (좌→우) ==================== -->
@@ -201,7 +212,7 @@
             실습 3단계에서 알림을 해제(Dismiss)하고 다시 열어(Reopen) 감사 추적을 확인합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <div id="t-fix" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
@@ -224,7 +235,7 @@
             실습 4단계에서 routes.py를 수정하고 CodeQL 재스캔으로 알림이 해결되었는지 확인합니다.
           </div>
         </div>
-      </div>
+        </div>
     </div>
 
     <div id="t-actions" class="step theory-slide" data-x="2200" data-y="840" data-z="-700" data-scale="1" data-rotate-y="-10" data-rotate-z="2">

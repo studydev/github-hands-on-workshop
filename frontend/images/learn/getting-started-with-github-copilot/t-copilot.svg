@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <text x="54" y="92" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Copilot Interaction Modes</text>
+  <text x="54" y="130" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">컨텍스트와 프롬프트에 따라 서로 다른 방식으로 협업</text>
+  <circle cx="400" cy="304" r="88" fill="#111d2f" stroke="#58a6ff" stroke-width="3" />
+  <text x="352" y="300" font-size="28" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Copilot</text>
+  <text x="346" y="332" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">assistant core</text>
+  <rect x="88" y="164" width="164" height="76" rx="18" fill="#0f1724" stroke="#3fb950" stroke-width="2" />
+  <rect x="548" y="164" width="164" height="76" rx="18" fill="#0f1724" stroke="#f0883e" stroke-width="2" />
+  <rect x="88" y="392" width="164" height="76" rx="18" fill="#0f1724" stroke="#d2a8ff" stroke-width="2" />
+  <rect x="548" y="392" width="164" height="76" rx="18" fill="#0f1724" stroke="#79c0ff" stroke-width="2" />
+  <rect x="316" y="474" width="168" height="76" rx="18" fill="#0f1724" stroke="#ffa657" stroke-width="2" />
+  <text x="128" y="210" font-size="20" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Inline</text>
+  <text x="588" y="210" font-size="20" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Ask</text>
+  <text x="126" y="438" font-size="20" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Chat</text>
+  <text x="580" y="438" font-size="20" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Agent</text>
+  <text x="354" y="520" font-size="20" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Plan</text>
+  <path d="M252 216l76 46" stroke="#3fb950" stroke-width="6" stroke-linecap="round" />
+  <path d="M548 216l-76 46" stroke="#f0883e" stroke-width="6" stroke-linecap="round" />
+  <path d="M252 418l82-44" stroke="#d2a8ff" stroke-width="6" stroke-linecap="round" />
+  <path d="M548 418l-82-44" stroke="#79c0ff" stroke-width="6" stroke-linecap="round" />
+  <path d="M400 474v-82" stroke="#ffa657" stroke-width="6" stroke-linecap="round" />
+</svg>

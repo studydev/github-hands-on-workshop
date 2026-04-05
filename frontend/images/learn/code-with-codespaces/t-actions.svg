@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)" />
+  <rect x="56" y="64" width="250" height="26" rx="13" fill="#1f6feb" opacity="0.18" />
+  <text x="56" y="132" font-size="34" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Actions 검증 흐름</text>
+  <text x="56" y="174" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">push, issue_comment 이벤트를 받아</text>
+  <text x="56" y="202" font-size="18" fill="#c9d1d9" font-family="Arial, sans-serif">실습 단계를 자동으로 검사하는 구조</text>
+
+  <rect x="70" y="292" width="170" height="94" rx="18" fill="#111d2f" stroke="#58a6ff" stroke-width="2" />
+  <text x="104" y="336" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Codespace</text>
+  <text x="104" y="366" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">코드 푸시</text>
+
+  <rect x="316" y="292" width="170" height="94" rx="18" fill="#111d2f" stroke="#f0883e" stroke-width="2" />
+  <text x="350" y="336" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Workflow</text>
+  <text x="348" y="366" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">자동 검사</text>
+
+  <rect x="562" y="292" width="170" height="94" rx="18" fill="#111d2f" stroke="#3fb950" stroke-width="2" />
+  <text x="598" y="336" font-size="22" font-weight="700" fill="#e6edf3" font-family="Arial, sans-serif">Mona</text>
+  <text x="596" y="366" font-size="16" fill="#c9d1d9" font-family="Arial, sans-serif">다음 안내</text>
+
+  <path d="M240 339h58" stroke="#58a6ff" stroke-width="10" stroke-linecap="round" />
+  <path d="M486 339h58" stroke="#f0883e" stroke-width="10" stroke-linecap="round" />
+  <path d="M286 325l18 14-18 14" fill="none" stroke="#58a6ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M532 325l18 14-18 14" fill="none" stroke="#f0883e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+
+  <rect x="70" y="454" width="662" height="72" rx="18" fill="#0f1724" stroke="#30363d" />
+  <text x="98" y="497" font-size="18" fill="#8b949e" font-family="Arial, sans-serif">학습자는 브라우저에서 작업하고, 검증은 GitHub Actions가 처리합니다.</text>
+</svg>

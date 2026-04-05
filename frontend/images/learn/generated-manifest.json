@@ -1,0 +1,207 @@
+{
+  "items": [
+    {
+      "file": "frontend/learn/deploy-to-azure.html",
+      "slide_id": "t-labels",
+      "action": "replace",
+      "output": "frontend/images/learn/deploy-to-azure/t-labels.svg",
+      "prompt": "레이블 기반 트리거를 설명하는 주제 특화 다이어그램. 슬라이드 요약: 레이블 기반 트리거 PR 레이블로 워크플로우를 선택적으로 실행 레이블 을 풀 리퀘스트에 붙이면 GitHub Actions가 해당 레이블에 맞는 작업만 실행합니다. 하나의 워크플로우에서 여러 시나리오를 관리할 수 있습니다. 이 실습의 레이블 spin up environment — Azure 리소스 생성 stage — 스테이. Slide context: 레이블 기반 트리거. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, topic-specific, flat-diagram. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/deploy-to-azure.html",
+      "slide_id": "t-azure",
+      "action": "add",
+      "output": "frontend/images/learn/deploy-to-azure/t-azure.svg",
+      "prompt": "Azure 리소스 구성의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: Azure 리소스 구성 GitHub Actions에서 Azure CLI로 인프라 생성 워크플로우에서 Azure CLI 를 사용해 리소스 그룹, App Service 플랜, 웹 앱을 자동으로 생성합니다. 생성하는 리소스 리소스 그룹 — 관련 리소스를 묶는 컨테이너 App Service 플랜 — 웹 앱 호스팅 및 요금 관리 . Slide context: Azure 리소스 구성. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/deploy-to-azure.html",
+      "slide_id": "t-docker",
+      "action": "add",
+      "output": "frontend/images/learn/deploy-to-azure/t-docker.svg",
+      "prompt": "Docker 이미지 빌드 & 푸시의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: Docker 이미지 빌드 & 푸시 GitHub Container Registry(GHCR)에 이미지 저장 애플리케이션을 Docker 이미지 로 빌드하고 GHCR 에 푸시합니다. Azure 웹 앱이 이 이미지를 풀하여 실행합니다. 빌드 파이프라인 actions/checkout — 소스 코드 체크아웃 actions/setup. Slide context: Docker 이미지 빌드 & 푸시. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/deploy-to-azure.html",
+      "slide_id": "t-staging",
+      "action": "add",
+      "output": "frontend/images/learn/deploy-to-azure/t-staging.svg",
+      "prompt": "스테이징 환경 배포의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 스테이징 환경 배포 PR 레이블로 스테이징에 먼저 배포 풀 리퀘스트에 stage 레이블을 붙이면 스테이징 배포 워크플로우 가 실행됩니다. 프로덕션 전에 안전하게 검증합니다. deploy-staging.yml 흐름 build — npm install & webpack 빌드 Build-Docker-Image — 이미지 빌드 . Slide context: 스테이징 환경 배포. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/deploy-to-azure.html",
+      "slide_id": "t-prod",
+      "action": "add",
+      "output": "frontend/images/learn/deploy-to-azure/t-prod.svg",
+      "prompt": "프로덕션 배포 & 정리의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 프로덕션 배포 & 정리 main 브랜치 병합 시 자동으로 프로덕션 배포 프로덕션 워크플로우는 main 브랜치에 푸시될 때 실행됩니다. 스테이징과 동일한 파이프라인이지만 트리거가 다릅니다 . 스테이징 vs 프로덕션 스테이징 — pull_request: [labeled] + stage 레이블 프로덕션 — push: branc. Slide context: 프로덕션 배포 & 정리. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/deploy-to-azure.html",
+      "slide_id": "t-actions",
+      "action": "add",
+      "output": "frontend/images/learn/deploy-to-azure/t-actions.svg",
+      "prompt": "사용하는 주요 Actions의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 사용하는 주요 Actions 이 실습에서 활용하는 오픈소스 Actions 빌드 & 아티팩트 actions/checkout@v4 — 코드 체크아웃 actions/setup-node@v4 — Node.js 설정 actions/upload-artifact@v4 — 빌드 결과 업로드 actions/download-artifact. Slide context: 사용하는 주요 Actions. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/idea-to-app-with-spark.html",
+      "slide_id": "t-spark",
+      "action": "replace",
+      "output": "frontend/images/learn/idea-to-app-with-spark/t-spark.svg",
+      "prompt": "GitHub Spark란?를 설명하는 주제 특화 다이어그램. 슬라이드 요약: GitHub Spark란? 코딩 없이 대화로 앱을 만드는 AI 도구 GitHub Spark 는 비개발자를 위해 설계된 도구입니다. 소프트웨어 용어 없이 일상 언어로 설명 하면 실제 웹 애플리케이션을 만들어 줍니다. 새 동료에게 설명하듯이 아이디어를 전달하면 Spark가 몇 분 안에 앱으로 구현 합니다. Spark의 핵심 . Slide context: GitHub Spark란?. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, topic-specific, flat-diagram. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/idea-to-app-with-spark.html",
+      "slide_id": "t-prompt",
+      "action": "add",
+      "output": "frontend/images/learn/idea-to-app-with-spark/t-prompt.svg",
+      "prompt": "좋은 설명 작성하기의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 좋은 설명 작성하기 명확한 소통이 좋은 결과의 핵심 Spark는 질문을 피하고 창의적으로 자유롭게 판단 하는 경향이 있습니다. 원하는 결과를 얻으려면 명확하게 설명하세요. 예제 앱 시나리오 ☕️ 커피숍 시크릿 메뉴 — 짧은 프롬프트 🥍 라크로스 통계 트래커 — 상세한 요구사항 🍽️ 종이 접시 디자이너 — 기술적 명세 + . Slide context: 좋은 설명 작성하기. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/idea-to-app-with-spark.html",
+      "slide_id": "t-iterate",
+      "action": "add",
+      "output": "frontend/images/learn/idea-to-app-with-spark/t-iterate.svg",
+      "prompt": "지속적인 개선의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 지속적인 개선 Step 2 — 대화로 앱을 계속 발전시키기 6개월간 기다릴 필요 없이 첫날부터 몇 번의 대화만으로 유용한 앱을 가질 수 있습니다! 아이디어 전달 방법 왼쪽 채팅 패널 — 원하는 변경 사항을 자유롭게 설명 요소 선택기 — 미리보기에서 특정 영역을 클릭 & 수정 요청 이미지 첨부 — 목업이나 손 스케치로 설명. Slide context: 지속적인 개선. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/idea-to-app-with-spark.html",
+      "slide_id": "t-style",
+      "action": "add",
+      "output": "frontend/images/learn/idea-to-app-with-spark/t-style.svg",
+      "prompt": "비주얼 & 데이터 커스터마이징의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 비주얼 & 데이터 커스터마이징 Step 3 — 테마, 에셋, 데이터 관리 코딩을 몰라도 되듯이, 색상 전문가가 될 필요도 없습니다. Spark가 미리 만든 테마 를 제공합니다. 커스터마이징 도구 Theme 탭 — 색상 테마, 타이포그래피, 간격 조정 Color 영역 — 테마 오버라이드로 수동 색상 설정 Assets 탭 —. Slide context: 비주얼 & 데이터 커스터마이징. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/idea-to-app-with-spark.html",
+      "slide_id": "t-share",
+      "action": "add",
+      "output": "frontend/images/learn/idea-to-app-with-spark/t-share.svg",
+      "prompt": "앱 공유 & 고급 개발자 기능의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 앱 공유 & 고급 개발자 기능 Step 4–5 — 게시, Codespace, 저장소 공개 수준 (3단계) 나만 (Private) — 내 계정만 접근 조직 (Organization) — 조직 구성원과 공유 모든 GitHub 사용자 — 로그인한 누구나 접근 데이터 공유 읽기 전용 — 보고 사용만 가능 (권장) 쓰기 접근 — . Slide context: 앱 공유 & 고급 개발자 기능. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/idea-to-app-with-spark.html",
+      "slide_id": "t-actions",
+      "action": "replace",
+      "output": "frontend/images/learn/idea-to-app-with-spark/t-actions.svg",
+      "prompt": "GitHub Actions — 실습의 비밀를 설명하는 주제 특화 다이어그램. 슬라이드 요약: GitHub Actions — 실습의 비밀 뒤에서 자동으로 돌아가는 검증 시스템 이 실습은 GitHub Actions 를 사용해 여러분의 진행을 자동으로 확인합니다. 동작 원리 1단계: 예제 선택 체크박스 → issue 이벤트 → 앱 생성 확인 2단계: Spark 기능 선택 → issue 이벤트 → 수정 완료 확인 3단계. Slide context: GitHub Actions — 실습의 비밀. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, topic-specific, flat-diagram. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/integrate-mcp-with-copilot.html",
+      "slide_id": "t-mcp",
+      "action": "replace",
+      "output": "frontend/images/learn/integrate-mcp-with-copilot/t-mcp.svg",
+      "prompt": "Model Context Protocol (MCP)를 설명하는 주제 특화 다이어그램. 슬라이드 요약: Model Context Protocol (MCP) AI를 위한 USB-C — 범용 커넥터 MCP 는 AI 도구가 외부 서비스와 원활하게 상호작용 할 수 있게 하는 표준 프로토콜입니다. 서비스의 기능과 요구 사항을 스키마로 설명하면, AI가 어떤 메서드를 호출할지 결정하고 매개변수를 정확히 제공합니다. 하나의 MCP 서버. Slide context: Model Context Protocol (MCP). Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, topic-specific, flat-diagram. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/integrate-mcp-with-copilot.html",
+      "slide_id": "t-agent",
+      "action": "add",
+      "output": "frontend/images/learn/integrate-mcp-with-copilot/t-agent.svg",
+      "prompt": "에이전트 모드 — MCP 도구 호출의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 에이전트 모드 — MCP 도구 호출 Copilot이 스스로 계획하고 도구를 호출한다 프롬프트를 보내면 Copilot은 사용 가능한 도구 카탈로그(목록 + 스키마) 를 함께 분석합니다. 동작 흐름 이 요청에 도구가 필요한가? → 판단 어떤 도구가 의도에 가장 적합 한가? → 선택 입력 스키마에 따라 인수를 구성 → 호출 결. Slide context: 에이전트 모드 — MCP 도구 호출. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/integrate-mcp-with-copilot.html",
+      "slide_id": "t-issues",
+      "action": "add",
+      "output": "frontend/images/learn/integrate-mcp-with-copilot/t-issues.svg",
+      "prompt": "아이디어 탐색 & 이슈 생성의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 아이디어 탐색 & 이슈 생성 Step 2 — 조사하고, 비교하고, 즉시 이슈로 저장 GitHub MCP 서버를 활용하면 Copilot이 직접 유사 프로젝트를 검색 하고, 기능을 비교한 뒤, 새 아이디어를 이슈로 생성 합니다. 실습 프롬프트 예시 \"과외 활동 관리 프로젝트 검색해줘\" \"3번째 프로젝트의 기능을 자세히 설명해. Slide context: 아이디어 탐색 & 이슈 생성. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/integrate-mcp-with-copilot.html",
+      "slide_id": "t-implement",
+      "action": "add",
+      "output": "frontend/images/learn/integrate-mcp-with-copilot/t-implement.svg",
+      "prompt": "이슈에서 PR까지 한 번에의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 이슈에서 PR까지 한 번에 Step 3 — 에이전트가 분류·구현·PR 생성 Copilot 에이전트 모드에서 열린 이슈를 분석하고, 중요도를 판단한 뒤, 코드 변경과 PR 생성 까지 수행합니다. 워크플로우 이슈 탐색 — \"열린 이슈가 몇 개야?\" 우선순위 판단 — \"가장 중요한 3개를 골라줘\" 구현 — \"첫 번째를 구현해줘. Slide context: 이슈에서 PR까지 한 번에. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/integrate-mcp-with-copilot.html",
+      "slide_id": "t-verify",
+      "action": "add",
+      "output": "frontend/images/learn/integrate-mcp-with-copilot/t-verify.svg",
+      "prompt": "AI 생성 코드 검증하기의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: AI 생성 코드 검증하기 Step 4 — 리뷰, 머지, 그리고 감사 댓글 AI 어시스턴트가 생산성을 높여주지만, 생성 여부에 관계없이 모든 작업을 검토하고 검증 하는 것은 개발자의 책임 입니다. 검증 체크리스트 PR의 변경사항 (diff) 검토 Copilot 코드 리뷰 기능 활용 (Pro 구독) 만족스러우면 머지 완료된 . Slide context: AI 생성 코드 검증하기. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/integrate-mcp-with-copilot.html",
+      "slide_id": "t-actions",
+      "action": "replace",
+      "output": "frontend/images/learn/integrate-mcp-with-copilot/t-actions.svg",
+      "prompt": "GitHub Actions — 실습의 비밀를 설명하는 주제 특화 다이어그램. 슬라이드 요약: GitHub Actions — 실습의 비밀 뒤에서 자동으로 돌아가는 검증 시스템 이 실습은 GitHub Actions 를 사용해 여러분의 진행을 자동으로 확인합니다. 동작 원리 1단계: mcp.json 커밋 → push 이벤트 → MCP 설정 확인 2단계: 이슈 생성 → issues 이벤트 → 이슈 존재 확인 3단계: P. Slide context: GitHub Actions — 실습의 비밀. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, topic-specific, flat-diagram. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/scale-institutional-knowledge-using-copilot-spaces.html",
+      "slide_id": "t-spaces",
+      "action": "replace",
+      "output": "frontend/images/learn/scale-institutional-knowledge-using-copilot-spaces/t-spaces.svg",
+      "prompt": "Copilot Spaces란?를 설명하는 주제 특화 다이어그램. 슬라이드 요약: Copilot Spaces란? AI 지식 허브 — 흩어진 정보를 한 곳에 Copilot Spaces 는 리포지토리, 코드, PR, 이슈, 메모 등을 한 곳에 모아 Copilot이 더 정확하게 답변할 수 있게 만드는 협업 환경입니다. 팀의 암묵적 지식을 검색 가능하고 버전 관리되는 문서 로 전환하여 특정 개인 의존도를 줄이. Slide context: Copilot Spaces란?. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, topic-specific, flat-diagram. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/scale-institutional-knowledge-using-copilot-spaces.html",
+      "slide_id": "t-knowledge",
+      "action": "add",
+      "output": "frontend/images/learn/scale-institutional-knowledge-using-copilot-spaces/t-knowledge.svg",
+      "prompt": "지식 허브 설정 — Step 1의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 지식 허브 설정 — Step 1 Space 생성 → 지침 추가 → 리포 연결 → 이슈 생성 OctoAcme 프로젝트 관리 허브를 만들고, Copilot이 문서를 이해할 수 있도록 지침과 소스 를 설정합니다. 설정 순서 Space 생성 — github.com/copilot/spaces 에서 생성 지침 추가 — 목적과 문서 . Slide context: 지식 허브 설정 — Step 1. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/scale-institutional-knowledge-using-copilot-spaces.html",
+      "slide_id": "t-explore",
+      "action": "add",
+      "output": "frontend/images/learn/scale-institutional-knowledge-using-copilot-spaces/t-explore.svg",
+      "prompt": "문서 탐색 & 요약 — Step 2의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 문서 탐색 & 요약 — Step 2 프로세스 문서를 읽고, 요약하고, PR로 만들기 Copilot Space에서 프로젝트 관리 프로세스 문서를 탐색하고 3-4 문단 으로 요약한 뒤, 코딩 에이전트로 README를 자동 생성 합니다. 요약 시 주목할 포인트 엔드투엔드 워크플로우 단계와 핸드오프 정의된 역할/페르소나 와 책임. Slide context: 문서 탐색 & 요약 — Step 2. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/scale-institutional-knowledge-using-copilot-spaces.html",
+      "slide_id": "t-agent",
+      "action": "add",
+      "output": "frontend/images/learn/scale-institutional-knowledge-using-copilot-spaces/t-agent.svg",
+      "prompt": "코딩 에이전트 — 이슈에서 PR까지의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 코딩 에이전트 — 이슈에서 PR까지 Copilot이 브랜치 생성 → 코드 변경 → PR 생성까지 Copilot Space 대화에서 이슈를 첨부 하고, github-coding-agent 도구로 자동 PR을 생성합니다. 동작 흐름 이슈 URL을 @repo/issues/# 형태로 첨부 프롬프트로 PR 생성 지시 → Allow. Slide context: 코딩 에이전트 — 이슈에서 PR까지. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/scale-institutional-knowledge-using-copilot-spaces.html",
+      "slide_id": "t-improve",
+      "action": "add",
+      "output": "frontend/images/learn/scale-institutional-knowledge-using-copilot-spaces/t-improve.svg",
+      "prompt": "반복적 프로세스 개선 — Step 3의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 반복적 프로세스 개선 — Step 3 갭 식별 → 이슈 → 구현 → 머지 — 완전한 개선 주기 이슈 템플릿을 활용해 프로세스의 부족한 부분을 식별 하고, 개선 사항을 이슈로 기록한 뒤, 코딩 에이전트로 구현 PR 을 생성합니다. 개선 워크플로우 갭 식별 — 누락된 페르소나/역할, 모호한 프로세스 이슈 생성 — 이슈 템플릿. Slide context: 반복적 프로세스 개선 — Step 3. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/scale-institutional-knowledge-using-copilot-spaces.html",
+      "slide_id": "t-actions",
+      "action": "replace",
+      "output": "frontend/images/learn/scale-institutional-knowledge-using-copilot-spaces/t-actions.svg",
+      "prompt": "GitHub Actions — 실습의 비밀를 설명하는 주제 특화 다이어그램. 슬라이드 요약: GitHub Actions — 실습의 비밀 뒤에서 자동으로 돌아가는 검증 시스템 이 실습은 GitHub Actions 를 사용해 여러분의 진행을 자동으로 확인합니다. 동작 원리 1단계: issues 이벤트 → 이슈 생성 여부 확인 2단계: pull_request 이벤트 → README PR 확인 3단계: pull_requ. Slide context: GitHub Actions — 실습의 비밀. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, topic-specific, flat-diagram. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/secure-code-game.html",
+      "slide_id": "t-injection",
+      "action": "add",
+      "output": "frontend/images/learn/secure-code-game/t-injection.svg",
+      "prompt": "인젝션 공격의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 인젝션 공격 신뢰할 수 없는 데이터가 명령어로 실행될 때 인젝션 은 사용자 입력이 쿼리·명령의 일부로 해석되어 의도하지 않은 동작 을 일으키는 공격입니다. 주요 유형 SQL Injection — ' OR 1=1 -- 로 DB 전체 읽기 LDAP Injection — 디렉터리 서비스 필터 조작 OS Command — ; r. Slide context: 인젝션 공격. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/secure-code-game.html",
+      "slide_id": "t-auth",
+      "action": "add",
+      "output": "frontend/images/learn/secure-code-game/t-auth.svg",
+      "prompt": "인증 &amp; 비밀번호 보안의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 인증 &amp; 비밀번호 보안 사용자 신원 확인의 핵심 메커니즘 인증 실패 는 비밀번호 저장·검증이 부적절할 때 발생합니다. 강력한 암호 정책만으로는 부족하며, 저장 방식 이 핵심입니다. 취약한 패턴 평문 저장 — DB 유출 시 전체 노출 약한 해싱 — MD5, SHA-1은 레인보우 테이블 공격에 취약 솔트 미사용 — 동. Slide context: 인증 &amp; 비밀번호 보안. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/secure-code-game.html",
+      "slide_id": "t-xss",
+      "action": "add",
+      "output": "frontend/images/learn/secure-code-game/t-xss.svg",
+      "prompt": "XSS (크로스 사이트 스크립팅)의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: XSS (크로스 사이트 스크립팅) 악성 스크립트가 브라우저에서 실행될 때 XSS 는 공격자가 웹 페이지에 악성 JavaScript를 삽입하여 다른 사용자의 브라우저 에서 실행시키는 공격입니다. XSS 유형 Stored XSS — 서버 DB에 스크립트 저장 → 모든 방문자 영향 Reflected XSS — URL 파라미터를. Slide context: XSS (크로스 사이트 스크립팅). Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/secure-code-game.html",
+      "slide_id": "t-memory",
+      "action": "add",
+      "output": "frontend/images/learn/secure-code-game/t-memory.svg",
+      "prompt": "버퍼 오버플로우 &amp; 메모리 안전의 핵심 개념과 단계 흐름을 설명하는 다이어그램. 슬라이드 요약: 버퍼 오버플로우 &amp; 메모리 안전 메모리 경계를 넘어서는 위험한 코드 버퍼 오버플로우 는 프로그램이 할당된 메모리 영역을 초과하여 쓸 때 발생합니다. C/C++에서 가장 흔한 메모리 안전 취약점입니다. 공격 시나리오 스택 오버플로우 — 리턴 주소 덮어쓰기로 코드 실행 힙 오버플로우 — 동적 메모리 영역 조작 정수 오. Slide context: 버퍼 오버플로우 &amp; 메모리 안전. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, flat-diagram, teaching-visual. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    },
+    {
+      "file": "frontend/learn/secure-code-game.html",
+      "slide_id": "t-actions",
+      "action": "replace",
+      "output": "frontend/images/learn/secure-code-game/t-actions.svg",
+      "prompt": "GitHub Actions — 실습의 비밀를 설명하는 주제 특화 다이어그램. 슬라이드 요약: GitHub Actions — 실습의 비밀 뒤에서 자동으로 돌아가는 검증 시스템 이 실습은 GitHub Actions 와 CodeQL 을 사용해 여러분의 수정 사항을 자동으로 검증합니다. 동작 원리 코드 수정 후 push → CodeQL 스캐닝 자동 실행 hack.py / tests.py 실행 → 보안 수정 검증 모든 체. Slide context: GitHub Actions — 실습의 비밀. Visual style: GitHub dark theme flat vector diagram, minimal text, clean geometry,\nhigh contrast, navy background, blue accent, orange emphasis, no logos, no people,\npresentation-friendly, visually centered, consistent educational infographic style. Extra keywords: github-dark, topic-specific, flat-diagram. Aspect ratio 4:3, suitable for a narrow right-side visual panel in a presentation."
+    }
+  ]
+}

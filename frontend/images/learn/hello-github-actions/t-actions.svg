@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="520" viewBox="0 0 320 520" fill="none">
+  <rect width="320" height="520" rx="28" fill="#EFF6FF"/>
+  <rect x="34" y="28" width="252" height="74" rx="18" fill="#1E3A8A"/>
+  <text x="58" y="58" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="14">hello-github-actions</text>
+  <text x="58" y="86" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="22" font-weight="700">Validation Path</text>
+  <rect x="50" y="132" width="220" height="54" rx="16" fill="#DBEAFE"/>
+  <text x="78" y="166" fill="#1D4ED8" font-family="Arial, sans-serif" font-size="16" font-weight="700">1. workflow file exists</text>
+  <path d="M160 186V212" stroke="#2563EB" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="212" width="220" height="54" rx="16" fill="#BFDBFE"/>
+  <text x="92" y="246" fill="#1E3A8A" font-family="Arial, sans-serif" font-size="16" font-weight="700">2. jobs section added</text>
+  <path d="M160 266V292" stroke="#2563EB" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="292" width="220" height="54" rx="16" fill="#93C5FD"/>
+  <text x="88" y="326" fill="#1E3A8A" font-family="Arial, sans-serif" font-size="16" font-weight="700">3. steps logic checked</text>
+  <path d="M160 346V372" stroke="#2563EB" stroke-width="8" stroke-linecap="round"/>
+  <rect x="50" y="372" width="220" height="88" rx="18" fill="#1E40AF"/>
+  <text x="82" y="406" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">4. PR runs workflow</text>
+  <text x="82" y="432" fill="#DBEAFE" font-family="Arial, sans-serif" font-size="14">5. merge closes the skill loop</text>
+</svg>

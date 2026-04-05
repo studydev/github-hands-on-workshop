@@ -50,7 +50,9 @@
       <div class="theory-header">
         <span class="theory-badge">내 코드 지키기 · 모듈 #5</span>
       </div>
-      <h1>해커 입장에서 뷰어보기</h1>
+            <div class="theory-two-col">
+        <div class="theory-col-text">
+          <h1>해커 입장에서 뷰어보기</h1>
       <p class="theory-skill">Secure code game</p>
       <p class="theory-desc">의도적으로 취약한 코드를 분석하고 수정하며<br>공격자의 시선으로 보안 취약점을 발견하는<br>인-레포 게임형 학습 경험입니다.</p>
       <div class="theory-meta">
@@ -58,7 +60,12 @@
         <span class="t-meta-item">Free</span>
         <span class="t-meta-item">3시즌 · 16레벨</span>
       </div>
-    </div>
+        </div>
+        <div class="theory-col-img">
+          <img src="../images/learn/secure-code-game/main.png" alt="secure-code-game" style="max-width:340px;border-radius:12px;">
+        </div>
+      </div>
+</div>
 
     <div id="t-learn" class="step theory-slide" data-x="1100" data-y="0" data-z="-100" data-scale="1" data-rotate-z="1">
       <h2>이 실습에서 배우는 것</h2>
@@ -121,6 +128,10 @@
           <div class="theory-highlight">
             Secure Code Game의 각 레벨은 OWASP Top 10 카테고리 중 하나 이상에 해당하는 취약점을 다룹니다.
           </div>
+        
+        </div>
+        <div class="theory-col-img">
+          <img src="https://octodex.github.com/images/securityknightocat.png" alt="Security Game" style="max-width:200px;border-radius:12px;">
         </div>
       </div>
     </div>
@@ -128,8 +139,7 @@
     <div id="t-injection" class="step theory-slide" data-x="1100" data-y="420" data-z="-600" data-scale="1" data-rotate-y="-5" data-rotate-x="-3">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/terminal-24.svg" alt="injection"> 인젝션 공격</h2>
       <p class="theory-subtitle">신뢰할 수 없는 데이터가 명령어로 실행될 때</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
+      <div class="theory-col-text">
           <p><strong>인젝션</strong>은 사용자 입력이 쿼리·명령의 일부로 해석되어 <em>의도하지 않은 동작</em>을 일으키는 공격입니다.</p>
           <h3>주요 유형</h3>
           <ul class="theory-list">
@@ -146,15 +156,13 @@
           <div class="theory-highlight">
             시즌 1 레벨 4(Data Bank)에서 SQL 인젝션을, 레벨 3(Social Network)에서 LDAP 인젝션을 직접 수정합니다.
           </div>
-        </div>
       </div>
     </div>
 
     <div id="t-auth" class="step theory-slide" data-x="0" data-y="420" data-z="-400" data-scale="1" data-rotate-y="12" data-rotate-z="-2">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/key-24.svg" alt="auth"> 인증 &amp; 비밀번호 보안</h2>
       <p class="theory-subtitle">사용자 신원 확인의 핵심 메커니즘</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
+      <div class="theory-col-text">
           <p><strong>인증 실패</strong>는 비밀번호 저장·검증이 부적절할 때 발생합니다. 강력한 암호 정책만으로는 부족하며, <em>저장 방식</em>이 핵심입니다.</p>
           <h3>취약한 패턴</h3>
           <ul class="theory-list">
@@ -171,7 +179,6 @@
           <div class="theory-highlight">
             시즌 1 레벨 5(Locanda)에서 비밀번호 저장의 치명적 실수를 발견하고 수정합니다.
           </div>
-        </div>
       </div>
     </div>
 
@@ -179,8 +186,7 @@
     <div id="t-xss" class="step theory-slide" data-x="0" data-y="840" data-z="-800" data-scale="1" data-rotate-y="12" data-rotate-x="5">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/code-24.svg" alt="xss"> XSS (크로스 사이트 스크립팅)</h2>
       <p class="theory-subtitle">악성 스크립트가 브라우저에서 실행될 때</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
+      <div class="theory-col-text">
           <p><strong>XSS</strong>는 공격자가 웹 페이지에 악성 JavaScript를 삽입하여 <em>다른 사용자의 브라우저</em>에서 실행시키는 공격입니다.</p>
           <h3>XSS 유형</h3>
           <ul class="theory-list">
@@ -197,15 +203,13 @@
           <div class="theory-highlight">
             시즌 1 레벨 3(Social Network)에서 사용자 입력이 템플릿에 주입되는 XSS 취약점을 수정합니다.
           </div>
-        </div>
       </div>
     </div>
 
     <div id="t-memory" class="step theory-slide" data-x="1100" data-y="840" data-z="-900" data-scale="1" data-rotate-y="5" data-rotate-x="-4">
       <h2><img class="th-icon" src="https://raw.githubusercontent.com/primer/octicons/main/icons/cpu-24.svg" alt="memory"> 버퍼 오버플로우 &amp; 메모리 안전</h2>
       <p class="theory-subtitle">메모리 경계를 넘어서는 위험한 코드</p>
-      <div class="theory-two-col">
-        <div class="theory-col-text">
+      <div class="theory-col-text">
           <p><strong>버퍼 오버플로우</strong>는 프로그램이 할당된 메모리 영역을 초과하여 쓸 때 발생합니다. C/C++에서 가장 흔한 <em>메모리 안전</em> 취약점입니다.</p>
           <h3>공격 시나리오</h3>
           <ul class="theory-list">
@@ -222,7 +226,6 @@
           <div class="theory-highlight">
             시즌 1 레벨 2(Matrix)에서 C 코드의 버퍼·정수 오버플로우를 직접 분석하고 수정합니다.
           </div>
-        </div>
       </div>
     </div>
 

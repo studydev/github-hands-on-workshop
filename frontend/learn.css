@@ -6,7 +6,10 @@
   opacity: 0.15;
   visibility: visible;
   transition: opacity 0.6s, visibility 0.6s;
+  overflow: hidden;
 }
+/* Prevent inline images from overflowing slides */
+.theory-slide .theory-col-text img { max-width: 100%; max-height: 180px; object-fit: contain; border-radius: 8px; }
 .theory-slide.active { opacity: 1; }
 .theory-slide.present { opacity: 1; }
 /* Overview mode: show all slides */
@@ -116,8 +119,10 @@
 .flow-step-card:hover img { opacity: 1; }
 
 /* ============ TWO-COL LAYOUT ============ */
-.theory-two-col { display: flex; gap: 24px; }
-.theory-col-text { flex: 1; }
+.theory-two-col { display: flex; gap: 24px; align-items: flex-start; }
+.theory-col-text { flex: 1; min-width: 0; }
+.theory-col-img { flex: 0 0 200px; display: flex; align-items: center; justify-content: center; padding-top: 16px; }
+.theory-col-img img { max-width: 100%; border-radius: 12px; }
 .theory-col-text p { font-size: 0.82rem; color: #c9d1d9; line-height: 1.6; margin-bottom: 8px; }
 .theory-col-text em { color: #58a6ff; font-style: normal; font-weight: 600; }
 .theory-col-text h3 { font-size: 1rem; font-weight: 700; color: #e6edf3; margin: 16px 0 8px; }
