@@ -189,15 +189,57 @@
       // Overview cards
       var card = document.querySelector('.overview-cat-card[data-cat="' + cat.key + '"]');
       if (card) {
-        card.classList.remove('card-completed', 'card-in-progress');
+        card.classList.remove('card-completed', 'card-in-progress', 'card-not-started');
         if (allDone) card.classList.add('card-completed');
         else if (anyStarted) card.classList.add('card-in-progress');
+        else card.classList.add('card-not-started');
+        var statusBadge = card.querySelector('.overview-cat-status-badge');
+        if (statusBadge) {
+          if (allDone) {
+            statusBadge.textContent = '✅ 완료';
+            statusBadge.className = 'overview-cat-status-badge badge-completed';
+          } else if (anyStarted) {
+            statusBadge.textContent = '🔄 진행 중';
+            statusBadge.className = 'overview-cat-status-badge badge-started';
+          } else {
+            statusBadge.textContent = '';
+            statusBadge.className = 'overview-cat-status-badge';
+          }
+        }
         var prog = card.querySelector('.overview-cat-progress');
         if (prog) {
           var done = cat.modules.filter(function (m) { return getModuleStatus(m.repo) === 'completed'; }).length;
           prog.textContent = done + '/' + cat.modules.length + ' 완료';
+          prog.className = 'overview-cat-progress ' + (allDone ? 'prog-done' : done > 0 ? 'prog-partial' : 'prog-none');
         }
       }
+      var compactCard = document.querySelector('.compact-overview-cat[data-cat="' + cat.key + '"]');
+      if (compactCard) {
+        compactCard.classList.remove('compact-completed', 'compact-started', 'compact-not-started');
+        if (allDone) compactCard.classList.add('compact-completed');
+        else if (anyStarted) compactCard.classList.add('compact-started');
+        else compactCard.classList.add('compact-not-started');
+
+        var compactBadge = compactCard.querySelector('.compact-cat-status');
+        if (compactBadge) {
+          if (allDone) compactBadge.textContent = '✅ 완료';
+          else if (anyStarted) compactBadge.textContent = '🔄 진행 중';
+          else compactBadge.textContent = '미시작';
+        }
+
+        var compactProgress = compactCard.querySelector('.compact-cat-progress');
+        if (compactProgress) {
+          compactProgress.textContent = cat.modules.filter(function (m) { return getModuleStatus(m.repo) === 'completed'; }).length + '/' + cat.modules.length;
+        }
+      }
+
+      cat.modules.forEach(function (m) {
+        var moduleStatus = getModuleStatus(m.repo) || 'not-started';
+        var compactItem = document.querySelector('.compact-overview-item[data-repo="' + m.repo + '"]');
+        if (!compactItem) return;
+        compactItem.classList.remove('is-completed', 'is-started', 'is-not-started');
+        compactItem.classList.add('is-' + moduleStatus);
+      });
       // Nav buttons
       var btn = document.querySelector('.pres-nav-cat-btn[data-cat-key="' + cat.key + '"]');
       if (btn) btn.classList.toggle('nav-completed', allDone);
@@ -206,19 +248,116 @@
 
   // ===================== BUILD SLIDES =====================
   var CAT_X_SPACING = 3500;
-  var MOD_Y_SPACING = 1100;
-  var MOD_Y_START = 1400;
+  var MOD_Y_SPACING = 860;
+  var MOD_Y_START = 1380;
+  var MOD_ARC_RADIUS_X = 1100;
+  var MOD_ARC_DEPTH = 240;
+  var MOD_ROTATE_MAX_SWEEP = 84;
+
+  function getModulePlacement(catX, moduleIndex, totalModules) {
+    var sweep = totalModules > 1 ? Math.min(MOD_ROTATE_MAX_SWEEP, Math.max(26, (totalModules - 1) * 10)) : 0;
+    var angle = totalModules > 1 ? (-sweep / 2) + (sweep / (totalModules - 1)) * moduleIndex : 0;
+    var radians = angle * Math.PI / 180;
+    var arcOffsetX = Math.sin(radians) * MOD_ARC_RADIUS_X;
+    var arcLiftY = (1 - Math.cos(radians)) * 320;
+    var arcDepthZ = -Math.abs(Math.sin(radians)) * MOD_ARC_DEPTH;
+
+    return {
+      x: Math.round(catX + arcOffsetX),
+      y: Math.round(MOD_Y_START + moduleIndex * MOD_Y_SPACING + arcLiftY),
+      z: Math.round(arcDepthZ),
+      rotateZ: Math.round(angle * 1.15),
+      rotateX: Math.round(-Math.abs(angle) * 0.08)
+    };
+  }
+
+  function getStepDimensions(step) {
+    if (step.classList.contains('slide-overview')) return { width: 1380, height: 860 };
+    if (step.classList.contains('slide-category')) return { width: 1240, height: 820 };
+    return { width: 1200, height: 760 };
+  }
+
+  function calcAutoOverview() {
+    var steps = document.querySelectorAll('.step:not(.step-overview-auto):not(.slide-overview)');
+    if (!steps.length) return;
+
+    var impressRoot = document.getElementById('impress');
+    var viewportWidth = parseFloat(impressRoot.getAttribute('data-width')) || 1300;
+    var viewportHeight = parseFloat(impressRoot.getAttribute('data-height')) || 750;
+    var minX = Infinity;
+    var maxX = -Infinity;
+    var minY = Infinity;
+    var maxY = -Infinity;
+
+    steps.forEach(function (step) {
+      var posX = parseFloat(step.getAttribute('data-x')) || 0;
+      var posY = parseFloat(step.getAttribute('data-y')) || 0;
+      var scale = parseFloat(step.getAttribute('data-scale')) || 1;
+      var dimensions = getStepDimensions(step);
+      var halfWidth = dimensions.width * scale / 2;
+      var halfHeight = dimensions.height * scale / 2;
+
+      if (posX - halfWidth < minX) minX = posX - halfWidth;
+      if (posX + halfWidth > maxX) maxX = posX + halfWidth;
+      if (posY - halfHeight < minY) minY = posY - halfHeight;
+      if (posY + halfHeight > maxY) maxY = posY + halfHeight;
+    });
+
+    var overviewStep = document.getElementById('overview-auto');
+    if (!overviewStep) return;
+
+    overviewStep.setAttribute('data-x', Math.round((minX + maxX) / 2));
+    overviewStep.setAttribute('data-y', Math.round((minY + maxY) / 2));
+    overviewStep.setAttribute('data-scale', (Math.max((maxX - minX) / viewportWidth, (maxY - minY) / viewportHeight) * 1.06).toFixed(2));
+  }
+
+  function buildCompactOverviewPanel() {
+    var panel = document.getElementById('compact-overview-panel');
+    if (!panel) return;
+
+    var html = '<div class="compact-overview-inner">';
+    html += '<div class="compact-overview-head"><h2>전체 코스 보기</h2><p>카테고리별 실습을 한 화면에서 빠르게 탐색합니다.</p></div>';
+    html += '<div class="compact-overview-grid">';
+
+    CATEGORIES.forEach(function (cat) {
+      html += '<section class="compact-overview-cat compact-not-started" data-cat="' + cat.key + '" style="--cat-color:' + cat.color + '">';
+      html += '<a class="compact-overview-cat-head" href="#cat-' + cat.key + '" data-target="cat-' + cat.key + '">';
+      html += '<span class="compact-cat-title-row"><span class="compact-cat-icon">' + cat.icon + '</span><span class="compact-cat-title">' + esc(cat.title) + '</span></span>';
+      html += '<span class="compact-cat-meta"><span class="compact-cat-status">미시작</span><span class="compact-cat-progress">0/' + cat.modules.length + '</span></span>';
+      html += '</a>';
+      html += '<div class="compact-overview-list">';
+      cat.modules.forEach(function (m, mi) {
+        html += '<a class="compact-overview-item is-not-started" href="#mod-' + m.repo + '" data-target="mod-' + m.repo + '" data-repo="' + m.repo + '">';
+        html += '<span class="compact-item-index">' + (mi + 1) + '</span>';
+        html += '<span class="compact-item-text">' + esc(m.title) + '</span>';
+        html += '<span class="compact-item-time">' + m.time + '분</span>';
+        html += '</a>';
+      });
+      html += '</div></section>';
+    });
+
+    html += '</div></div>';
+    panel.innerHTML = html;
+  }
 
   function buildSlides() {
     var root = document.getElementById('impress');
     var navCats = document.getElementById('pres-nav-cats');
     var slideOrder = [];
 
+    var homeBtn = document.createElement('button');
+    homeBtn.id = 'btn-home';
+    homeBtn.className = 'pres-nav-cat-btn';
+    homeBtn.textContent = 'Home';
+    homeBtn.addEventListener('click', function () { window.impress().goto('overview'); });
+    navCats.appendChild(homeBtn);
+
     // Overview
-    var ov = el('div', { id: 'overview', className: 'step slide-overview', 'data-x': '8000', 'data-y': '-5000', 'data-scale': '8' });
+      var ov = el('div', { id: 'overview', className: 'step slide-overview', 'data-x': '8000', 'data-y': '-5000', 'data-scale': '4.1' });
     var catCards = '';
     CATEGORIES.forEach(function (cat) {
       catCards += '<a class="overview-cat-card" href="#cat-' + cat.key + '" data-cat="' + cat.key + '" style="--cat-color:' + cat.color + '">' +
+        '<span class="overview-cat-status-badge"></span>' +
         '<span class="overview-cat-icon">' + cat.icon + '</span>' +
         '<span class="overview-cat-title">' + esc(cat.title) + '</span>' +
         '<span class="overview-cat-count">' + cat.modules.length + '개 실습</span>' +
@@ -230,6 +369,9 @@
 
     CATEGORIES.forEach(function (cat, ci) {
       var catX = ci * CAT_X_SPACING;
+      var categoryClass = 'step slide-category cat-' + cat.key.replace('cat_', '');
+      if (cat.modules.length > 8) categoryClass += ' cat-dense';
+      if (cat.modules.length > 10) categoryClass += ' cat-very-dense';
 
       // Nav btn
       var btn = document.createElement('button');
@@ -241,8 +383,10 @@
       navCats.appendChild(btn);
 
       // Category slide
-      var cs = el('div', { id: 'cat-' + cat.key, className: 'step slide-category cat-' + cat.key.replace('cat_', ''), 'data-x': catX, 'data-y': 0, 'data-scale': '1.5' });
-      var modList = '<div class="cat-mod-list">';
+  var cs = el('div', { id: 'cat-' + cat.key, className: categoryClass, 'data-x': catX, 'data-y': 0, 'data-scale': '1' });
+  var modListClass = 'cat-mod-list';
+  if (cat.modules.length > 8) modListClass += ' cat-mod-list-grid';
+  var modList = '<div class="' + modListClass + '">';
       cat.modules.forEach(function (m, mi) {
         modList += '<a class="cat-mod-item" href="#mod-' + m.repo + '"><span class="cat-mod-num">' + (mi + 1) + '</span><span class="cat-mod-title">' + esc(m.title) + '</span><span class="cat-mod-time">⏱' + m.time + '분</span></a>';
       });
@@ -253,7 +397,18 @@
 
       // Modules
       cat.modules.forEach(function (m, mi) {
-        var ms = el('div', { id: 'mod-' + m.repo, className: 'step slide-module', 'data-x': catX, 'data-y': MOD_Y_START + mi * MOD_Y_SPACING, 'data-scale': '1', 'data-repo': m.repo });
+        var placement = getModulePlacement(catX, mi, cat.modules.length);
+        var ms = el('div', {
+          id: 'mod-' + m.repo,
+          className: 'step slide-module',
+          'data-x': placement.x,
+          'data-y': placement.y,
+          'data-z': placement.z,
+          'data-rotate-z': placement.rotateZ,
+          'data-rotate-x': placement.rotateX,
+          'data-scale': '1',
+          'data-repo': m.repo
+        });
         var lc = 'mod-badge-' + m.license.replace('+', 'plus').replace(' ', '-').toLowerCase();
 
         // Theory link (only for repos that have a theory page)
@@ -271,23 +426,85 @@
         slideOrder.push(ms.id);
       });
     });
+
+    var autoOverview = el('div', {
+      id: 'overview-auto',
+      className: 'step step-overview-auto',
+      'data-x': '0',
+      'data-y': '0',
+      'data-z': '0',
+      'data-scale': '10'
+    });
+    root.appendChild(autoOverview);
+
+    var overviewBtn = document.createElement('button');
+    overviewBtn.id = 'btn-overview';
+    overviewBtn.className = 'pres-nav-cat-btn';
+    overviewBtn.textContent = '모든 코스';
+    navCats.appendChild(overviewBtn);
+
     return slideOrder;
   }
 
   // ===================== EVENTS =====================
   function setupEvents() {
+    var impressRoot = document.getElementById('impress');
+    var body = document.body;
+    var savedStepId = null;
+
     document.addEventListener('impress:stepenter', function (e) {
       var step = e.target;
       var repo = step.getAttribute('data-repo');
+      var overviewBtn = document.getElementById('btn-overview');
+      var homeBtn = document.getElementById('btn-home');
+      var isAutoOverview = step.id === 'overview-auto';
+
+      if (isAutoOverview) impressRoot.classList.add('impress-overview');
+      else impressRoot.classList.remove('impress-overview');
+      body.classList.toggle('presentation-overview-mode', isAutoOverview);
+
       document.querySelectorAll('.pres-nav-cat-btn').forEach(function (btn) {
         var catKey = btn.getAttribute('data-cat-key');
-        btn.classList.toggle('active', btn.getAttribute('data-target') === step.id || (repo && repoInfo[repo] && catKey === repoInfo[repo].catKey));
+        btn.classList.toggle('active', !isAutoOverview && (btn.getAttribute('data-target') === step.id || (repo && repoInfo[repo] && catKey === repoInfo[repo].catKey)));
       });
-      var all = document.querySelectorAll('.step');
+      if (overviewBtn) overviewBtn.classList.toggle('active', isAutoOverview);
+      if (homeBtn) homeBtn.classList.toggle('active', step.id === 'overview');
+      var all = document.querySelectorAll('.step:not(.step-overview-auto)');
       var idx = Array.prototype.indexOf.call(all, step);
       var bar = document.getElementById('pres-progress');
-      if (bar) bar.style.width = ((idx + 1) / all.length * 100) + '%';
+      if (bar && idx >= 0) bar.style.width = ((idx + 1) / all.length * 100) + '%';
     });
+
+    var compactPanel = document.getElementById('compact-overview-panel');
+    if (compactPanel) {
+      compactPanel.addEventListener('click', function (e) {
+        var link = e.target.closest('[data-target]');
+        if (!link) return;
+        e.preventDefault();
+        savedStepId = link.getAttribute('data-target');
+        window.impress().goto(savedStepId);
+      });
+    }
+
+    var overviewBtn = document.getElementById('btn-overview');
+    if (overviewBtn) {
+      overviewBtn.addEventListener('click', function () {
+        var activeStep = document.querySelector('.step.active');
+        if (activeStep && activeStep.id === 'overview-auto') {
+          if (savedStepId) window.impress().goto(savedStepId);
+          return;
+        }
+        savedStepId = (activeStep || {}).id || 'overview';
+        window.impress().goto('overview-auto');
+      });
+    }
+
+    var homeBtn = document.getElementById('btn-home');
+    if (homeBtn) {
+      homeBtn.addEventListener('click', function () {
+        window.impress().goto('overview');
+      });
+    }
 
     document.getElementById('learner-btn').addEventListener('click', function () {
       var q = document.getElementById('learner-input').value.trim();
@@ -313,6 +530,8 @@
   // ===================== INIT =====================
   document.addEventListener('DOMContentLoaded', function () {
     buildSlides();
+    buildCompactOverviewPanel();
+    calcAutoOverview();
     window.impress().init();
     setupEvents();
   });
