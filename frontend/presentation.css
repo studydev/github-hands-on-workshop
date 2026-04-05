@@ -70,7 +70,7 @@ body {
     rgba(13,17,23,0.92);
   backdrop-filter: blur(10px);
 }
-.presentation-overview-mode .compact-overview-panel { display: block; }
+body.presentation-overview-mode .compact-overview-panel { display: block; }
 .compact-overview-inner {
   height: 100%;
   display: flex;
@@ -210,6 +210,196 @@ body {
 .presentation-overview-mode #impress {
   opacity: 0.12;
   filter: saturate(0.9);
+}
+
+body.presentation-touch #pres-nav {
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+body.presentation-touch .pres-nav-title {
+  font-size: 0.78rem;
+}
+
+body.presentation-touch .learner-search {
+  margin-left: 0;
+  min-width: 0;
+}
+
+body.presentation-touch .learner-input {
+  width: 112px;
+  font-size: 0.7rem;
+}
+
+body.presentation-touch .learner-btn,
+body.presentation-touch .pres-nav-cat-btn {
+  font-size: 0.62rem;
+  padding: 3px 8px;
+}
+
+body.presentation-touch .learner-status {
+  font-size: 0.62rem;
+}
+
+body.presentation-touch .step {
+  padding: 24px 28px;
+  border-radius: 18px;
+}
+
+body.presentation-touch.presentation-overview-mode #impress {
+  opacity: 0.08;
+}
+
+body.presentation-touch .compact-overview-panel {
+  top: 52px;
+  padding: 12px 12px 14px;
+}
+
+body.presentation-touch .compact-overview-inner {
+  gap: 10px;
+}
+
+body.presentation-touch .compact-overview-head {
+  padding: 0 2px;
+}
+
+body.presentation-touch .compact-overview-head h2 {
+  font-size: 0.92rem;
+}
+
+body.presentation-touch .compact-overview-head p {
+  font-size: 0.66rem;
+}
+
+body.presentation-touch .compact-overview-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+body.presentation-touch .compact-overview-cat {
+  padding: 8px;
+  border-radius: 14px;
+}
+
+body.presentation-touch .compact-overview-cat-head {
+  gap: 6px;
+  padding-bottom: 6px;
+}
+
+body.presentation-touch .compact-cat-title {
+  font-size: 0.74rem;
+}
+
+body.presentation-touch .compact-cat-status,
+body.presentation-touch .compact-cat-progress {
+  font-size: 0.62rem;
+}
+
+body.presentation-touch .compact-overview-list {
+  gap: 4px;
+}
+
+body.presentation-touch .compact-overview-item {
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  gap: 6px;
+  padding: 6px 7px;
+  border-radius: 8px;
+}
+
+body.presentation-touch .compact-item-index,
+body.presentation-touch .compact-item-time {
+  font-size: 0.58rem;
+}
+
+body.presentation-touch .compact-item-text {
+  font-size: 0.64rem;
+  line-height: 1.18;
+}
+
+body.presentation-touch .slide-overview {
+  width: 980px;
+}
+
+body.presentation-touch .slide-overview h1 {
+  font-size: 2rem;
+}
+
+body.presentation-touch .slide-overview .overview-sub {
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+}
+
+body.presentation-touch .overview-cats {
+  gap: 12px;
+}
+
+body.presentation-touch .overview-cat-card {
+  min-width: 140px;
+  padding: 16px 18px;
+  border-radius: 14px;
+}
+
+body.presentation-touch .overview-cat-icon {
+  font-size: 1.7rem;
+}
+
+body.presentation-touch .overview-cat-title {
+  font-size: 0.82rem;
+}
+
+body.presentation-touch .overview-cat-count,
+body.presentation-touch .overview-cat-progress,
+body.presentation-touch .overview-cat-status-badge {
+  font-size: 0.62rem;
+}
+
+body.presentation-touch .slide-category {
+  width: 960px;
+}
+
+body.presentation-touch .slide-category .cat-icon {
+  font-size: 2.4rem;
+}
+
+body.presentation-touch .slide-category h2 {
+  font-size: 1.45rem;
+}
+
+body.presentation-touch .slide-category .cat-subtitle,
+body.presentation-touch .slide-category .cat-desc {
+  font-size: 0.8rem;
+}
+
+body.presentation-touch .cat-mod-list,
+body.presentation-touch .cat-mod-list-grid {
+  max-width: 100%;
+  gap: 8px;
+}
+
+body.presentation-touch .cat-mod-item {
+  padding: 10px 12px;
+  font-size: 0.76rem;
+}
+
+body.presentation-touch .slide-module {
+  width: 940px;
+}
+
+body.presentation-touch .slide-module h3 {
+  font-size: 1.25rem;
+}
+
+body.presentation-touch .slide-module .mod-skill,
+body.presentation-touch .slide-module .mod-learn {
+  font-size: 0.82rem;
+}
+
+body.presentation-touch .mod-badge,
+body.presentation-touch .mod-link,
+body.presentation-touch .mod-num,
+body.presentation-touch .mod-status-badge,
+body.presentation-touch .mod-cat-badge {
+  font-size: 0.62rem;
 }
 
 /* ============ HINT ============ */

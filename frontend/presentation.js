@@ -113,12 +113,52 @@
     'introduction-to-secret-scanning': ['introduction-to-github'],
   };
 
+  var THEORY_PAGES = {
+    'introduction-to-github': true,
+    'communicate-using-markdown': true,
+    'github-pages': true,
+    'introduction-to-git': true,
+    'review-pull-requests': true,
+    'resolve-merge-conflicts': true,
+    'code-with-codespaces': true,
+    'introduction-to-repository-management': true,
+    'change-commit-history': true,
+    'connect-the-dots': true,
+    'getting-started-with-github-copilot': true,
+    'customize-your-github-copilot-experience': true,
+    'copilot-code-review': true,
+    'integrate-mcp-with-copilot': true,
+    'expand-your-team-with-copilot': true,
+    'create-applications-with-the-copilot-cli': true,
+    'modernize-your-legacy-code-with-github-copilot': true,
+    'scale-institutional-knowledge-using-copilot-spaces': true,
+    'build-applications-w-copilot-agent-mode': true,
+    'idea-to-app-with-spark': true,
+    'copilot-codespaces-vscode': true,
+    'your-first-extension-for-github-copilot': true,
+    'hello-github-actions': true,
+    'test-with-actions': true,
+    'ai-in-actions': true,
+    'write-javascript-actions': true,
+    'create-ai-powered-actions': true,
+    'publish-docker-images': true,
+    'reusable-workflows': true,
+    'release-based-workflow': true,
+    'deploy-to-azure': true,
+    'secure-repository-supply-chain': true,
+    'introduction-to-codeql': true,
+    'introduction-to-secret-scanning': true,
+    'configure-codeql-language-matrix': true,
+    'secure-code-game': true,
+    'migrate-ado-repository': true
+  };
+
   // Build lookups
   var repoInfo = {};
   var SUCCESSORS = {};
   CATEGORIES.forEach(function (cat) {
     cat.modules.forEach(function (m) {
-      repoInfo[m.repo] = { catKey: cat.key, catTitle: cat.title, catIcon: cat.icon, moduleTitle: m.title, color: cat.color };
+      repoInfo[m.repo] = { catKey: cat.key, catTitle: cat.title, catIcon: cat.icon, moduleTitle: m.title, color: cat.color, module: m, category: cat };
     });
   });
   Object.keys(PREREQS).forEach(function (repo) {
@@ -161,6 +201,42 @@
   function getModuleStatus(repo) {
     if (!learnerResults) return null;
     return learnerStatusMap[repo] || 'not-started';
+  }
+
+  function isTouchPresentationMode() {
+    return (navigator.maxTouchPoints || 0) > 0 || window.matchMedia('(pointer: coarse)').matches;
+  }
+
+  function getCurrentRouteId() {
+    return (window.location.hash || '#overview').replace(/^#/, '') || 'overview';
+  }
+
+  function navigateTo(targetId) {
+    window.impress().goto(targetId);
+  }
+
+  function getCategoryByKey(catKey) {
+    var normalizedKey = catKey.indexOf('cat_') === 0 ? catKey : catKey.replace(/^cat-/, 'cat_');
+    for (var i = 0; i < CATEGORIES.length; i += 1) {
+      if (CATEGORIES[i].key === normalizedKey) return CATEGORIES[i];
+    }
+    return null;
+  }
+
+  function getCategoryState(cat) {
+    var completedCount = cat.modules.filter(function (m) { return getModuleStatus(m.repo) === 'completed'; }).length;
+    var allDone = completedCount === cat.modules.length && cat.modules.length > 0;
+    var anyStarted = cat.modules.some(function (m) {
+      var status = getModuleStatus(m.repo);
+      return status === 'completed' || status === 'started';
+    });
+
+    return {
+      completedCount: completedCount,
+      allDone: allDone,
+      anyStarted: anyStarted,
+      label: allDone ? '✅ 완료' : anyStarted ? '🔄 진행 중' : '미시작'
+    };
   }
 
   function applyLearnerStatus() {
@@ -244,27 +320,44 @@
       var btn = document.querySelector('.pres-nav-cat-btn[data-cat-key="' + cat.key + '"]');
       if (btn) btn.classList.toggle('nav-completed', allDone);
     });
+
   }
 
   // ===================== BUILD SLIDES =====================
-  var CAT_X_SPACING = 3500;
-  var MOD_Y_SPACING = 860;
-  var MOD_Y_START = 1380;
-  var MOD_ARC_RADIUS_X = 1100;
-  var MOD_ARC_DEPTH = 240;
-  var MOD_ROTATE_MAX_SWEEP = 84;
+  var presentationLayout = null;
+
+  function getPresentationLayout() {
+    return presentationLayout || {
+      catXSpacing: 3500,
+      modYSpacing: 860,
+      modYStart: 1380,
+      modArcRadiusX: 1100,
+      modArcDepth: 240,
+      modRotateMaxSweep: 84,
+      overviewX: 8000,
+      overviewY: -5000,
+      overviewScale: 4.1,
+      overviewWidth: 1380,
+      overviewHeight: 860,
+      categoryWidth: 1240,
+      categoryHeight: 820,
+      moduleWidth: 1200,
+      moduleHeight: 760
+    };
+  }
 
   function getModulePlacement(catX, moduleIndex, totalModules) {
-    var sweep = totalModules > 1 ? Math.min(MOD_ROTATE_MAX_SWEEP, Math.max(26, (totalModules - 1) * 10)) : 0;
+    var layout = getPresentationLayout();
+    var sweep = totalModules > 1 ? Math.min(layout.modRotateMaxSweep, Math.max(12, (totalModules - 1) * (document.body.classList.contains('presentation-touch') ? 4 : 10))) : 0;
     var angle = totalModules > 1 ? (-sweep / 2) + (sweep / (totalModules - 1)) * moduleIndex : 0;
     var radians = angle * Math.PI / 180;
-    var arcOffsetX = Math.sin(radians) * MOD_ARC_RADIUS_X;
-    var arcLiftY = (1 - Math.cos(radians)) * 320;
-    var arcDepthZ = -Math.abs(Math.sin(radians)) * MOD_ARC_DEPTH;
+    var arcOffsetX = Math.sin(radians) * layout.modArcRadiusX;
+    var arcLiftY = (1 - Math.cos(radians)) * (document.body.classList.contains('presentation-touch') ? 80 : 320);
+    var arcDepthZ = -Math.abs(Math.sin(radians)) * layout.modArcDepth;
 
     return {
       x: Math.round(catX + arcOffsetX),
-      y: Math.round(MOD_Y_START + moduleIndex * MOD_Y_SPACING + arcLiftY),
+      y: Math.round(layout.modYStart + moduleIndex * layout.modYSpacing + arcLiftY),
       z: Math.round(arcDepthZ),
       rotateZ: Math.round(angle * 1.15),
       rotateX: Math.round(-Math.abs(angle) * 0.08)
@@ -272,9 +365,10 @@
   }
 
   function getStepDimensions(step) {
-    if (step.classList.contains('slide-overview')) return { width: 1380, height: 860 };
-    if (step.classList.contains('slide-category')) return { width: 1240, height: 820 };
-    return { width: 1200, height: 760 };
+    var layout = getPresentationLayout();
+    if (step.classList.contains('slide-overview')) return { width: layout.overviewWidth, height: layout.overviewHeight };
+    if (step.classList.contains('slide-category')) return { width: layout.categoryWidth, height: layout.categoryHeight };
+    return { width: layout.moduleWidth, height: layout.moduleHeight };
   }
 
   function calcAutoOverview() {
@@ -344,16 +438,17 @@
     var root = document.getElementById('impress');
     var navCats = document.getElementById('pres-nav-cats');
     var slideOrder = [];
+    var layout = getPresentationLayout();
 
     var homeBtn = document.createElement('button');
     homeBtn.id = 'btn-home';
     homeBtn.className = 'pres-nav-cat-btn';
     homeBtn.textContent = 'Home';
-    homeBtn.addEventListener('click', function () { window.impress().goto('overview'); });
+    homeBtn.addEventListener('click', function () { navigateTo('overview'); });
     navCats.appendChild(homeBtn);
 
     // Overview
-      var ov = el('div', { id: 'overview', className: 'step slide-overview', 'data-x': '8000', 'data-y': '-5000', 'data-scale': '4.1' });
+      var ov = el('div', { id: 'overview', className: 'step slide-overview', 'data-x': String(layout.overviewX), 'data-y': String(layout.overviewY), 'data-scale': String(layout.overviewScale) });
     var catCards = '';
     CATEGORIES.forEach(function (cat) {
       catCards += '<a class="overview-cat-card" href="#cat-' + cat.key + '" data-cat="' + cat.key + '" style="--cat-color:' + cat.color + '">' +
@@ -368,7 +463,7 @@
     slideOrder.push('overview');
 
     CATEGORIES.forEach(function (cat, ci) {
-      var catX = ci * CAT_X_SPACING;
+      var catX = ci * layout.catXSpacing;
       var categoryClass = 'step slide-category cat-' + cat.key.replace('cat_', '');
       if (cat.modules.length > 8) categoryClass += ' cat-dense';
       if (cat.modules.length > 10) categoryClass += ' cat-very-dense';
@@ -379,7 +474,7 @@
       btn.textContent = cat.icon + ' ' + cat.title;
       btn.setAttribute('data-target', 'cat-' + cat.key);
       btn.setAttribute('data-cat-key', cat.key);
-      btn.addEventListener('click', function () { window.impress().goto('cat-' + cat.key); });
+      btn.addEventListener('click', function () { navigateTo('cat-' + cat.key); });
       navCats.appendChild(btn);
 
       // Category slide
@@ -413,8 +508,7 @@
 
         // Theory link (only for repos that have a theory page)
         var theoryBtn = '';
-        var theoryPages = { 'introduction-to-github': true, 'communicate-using-markdown': true, 'github-pages': true, 'introduction-to-git': true, 'review-pull-requests': true, 'resolve-merge-conflicts': true, 'code-with-codespaces': true, 'introduction-to-repository-management': true, 'change-commit-history': true, 'connect-the-dots': true, 'getting-started-with-github-copilot': true, 'customize-your-github-copilot-experience': true, 'copilot-code-review': true, 'integrate-mcp-with-copilot': true, 'expand-your-team-with-copilot': true, 'create-applications-with-the-copilot-cli': true, 'modernize-your-legacy-code-with-github-copilot': true, 'scale-institutional-knowledge-using-copilot-spaces': true, 'build-applications-w-copilot-agent-mode': true, 'idea-to-app-with-spark': true, 'copilot-codespaces-vscode': true, 'your-first-extension-for-github-copilot': true, 'hello-github-actions': true, 'test-with-actions': true, 'ai-in-actions': true, 'write-javascript-actions': true, 'create-ai-powered-actions': true, 'publish-docker-images': true, 'reusable-workflows': true, 'release-based-workflow': true, 'deploy-to-azure': true, 'secure-repository-supply-chain': true, 'introduction-to-codeql': true, 'introduction-to-secret-scanning': true, 'configure-codeql-language-matrix': true, 'secure-code-game': true, 'migrate-ado-repository': true };
-        if (theoryPages[m.repo]) {
+        if (THEORY_PAGES[m.repo]) {
           theoryBtn = '<a class="mod-link mod-link-theory" href="learn/' + m.repo + '.html" target="_blank">이론 📖</a>';
         }
 
@@ -482,7 +576,7 @@
         if (!link) return;
         e.preventDefault();
         savedStepId = link.getAttribute('data-target');
-        window.impress().goto(savedStepId);
+        navigateTo(savedStepId);
       });
     }
 
@@ -491,18 +585,18 @@
       overviewBtn.addEventListener('click', function () {
         var activeStep = document.querySelector('.step.active');
         if (activeStep && activeStep.id === 'overview-auto') {
-          if (savedStepId) window.impress().goto(savedStepId);
+          if (savedStepId) navigateTo(savedStepId);
           return;
         }
         savedStepId = (activeStep || {}).id || 'overview';
-        window.impress().goto('overview-auto');
+        navigateTo('overview-auto');
       });
     }
 
     var homeBtn = document.getElementById('btn-home');
     if (homeBtn) {
       homeBtn.addEventListener('click', function () {
-        window.impress().goto('overview');
+        navigateTo('overview');
       });
     }
 
@@ -529,6 +623,27 @@
 
   // ===================== INIT =====================
   document.addEventListener('DOMContentLoaded', function () {
+    if (isTouchPresentationMode()) {
+      document.body.classList.add('presentation-touch');
+      presentationLayout = {
+        catXSpacing: 1680,
+        modYSpacing: 540,
+        modYStart: 860,
+        modArcRadiusX: 220,
+        modArcDepth: 36,
+        modRotateMaxSweep: 18,
+        overviewX: 4200,
+        overviewY: -1200,
+        overviewScale: 2.2,
+        overviewWidth: 980,
+        overviewHeight: 720,
+        categoryWidth: 960,
+        categoryHeight: 700,
+        moduleWidth: 940,
+        moduleHeight: 620
+      };
+    }
+
     buildSlides();
     buildCompactOverviewPanel();
     calcAutoOverview();
