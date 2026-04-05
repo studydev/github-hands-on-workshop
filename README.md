@@ -4,7 +4,7 @@ GitHub Skills 워크숍 참가자의 실시간 진행 상황을 추적하고 리
 
 ![GitHub Skills Workshop](./images/workshop-hero-dark.png)
 
-> **Dashboard:** https://github-skills.studydev.com
+> **Dashboard:** https://github-skills.studydev.com  
 > **Self Study Map:** https://github-skills.studydev.com/presentation.html
 
 ## 아키텍처
